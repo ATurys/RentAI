@@ -6,6 +6,7 @@ public class Endereco {
     private String complemento;
     private String cep;
 
+    // Construtor
     public Endereco(String bairro, String cidade, String rua, String numero, String cep) {
         this.bairro = bairro;
         this.cidade = cidade;
