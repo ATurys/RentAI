@@ -21,18 +21,38 @@ public class Main {
                 break;
             case 2:
                 userPrompt = leitor.lerInt(mensagem.getVisualizar());
+                switch (userPrompt){
+                    case 1:
+                        break;
+                }
                 break;
             case 3:
                 userPrompt = leitor.lerInt(mensagem.getAlterar());
+                switch (userPrompt){
+                    case 1:
+                        break;
+                }
                 break;
             case 4:
                 userPrompt = leitor.lerInt(mensagem.getRemover());
+                switch (userPrompt){
+                    case 1:
+                        break;
+                }
                 break;
             case 5:
                 userPrompt = leitor.lerInt(mensagem.getCriar());
+                switch (userPrompt){
+                    case 1:
+                        break;
+                }
                 break;
             case 6:
                 userPrompt = leitor.lerInt(mensagem.getAnunciar());
+                switch (userPrompt){
+                    case 1:
+                        break;
+                }
                 break;
             case 7:
                 return;
