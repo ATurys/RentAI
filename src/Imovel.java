@@ -22,7 +22,7 @@ public class Imovel {
         this.idImovel = idImovel;
         this.nomeImovel = nomeImovel;
         this.tipoImovel = tipoImovel;
-        this.statusImovel = "Disponível";
+        this.statusImovel = "N/A";
     }
 
     // Getters

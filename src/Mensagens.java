@@ -9,6 +9,7 @@ public class Mensagens {
             "\t6 - Anunciar uma Venda\n" +
             "\t7 - Sair\n";
 
+    // Textos camda 1
     private String cadastro =
             "\t1 - Cadastrar Cliente\n" +
             "\t2 - Cadastrar Corretor\n" +
@@ -47,13 +48,45 @@ public class Mensagens {
             "\t1 - Selecione o ID da Proposta que foi aceita\n" +
             "\t2 - Voltar\n";
 
+    // Opções após selecionar o texto inicial -> Cadastro
+    private String cadastroCliente =
+            "Precisaremos das seguintes informações: \n" +
+            "1° - e-mail\n" +
+            "2° - senha\n" +
+            "3° - nome\n" +
+            "4° - sobrenome\n" +
+            "5 ° - telefone\n" +
+            "6 ° - CPF/CNPJ\n";
+    private String cadastroCorretor =
+            "Precisaremos das seguintes informações: \n" +
+            "1° - e-mail\n" +
+            "2° - senha\n" +
+            "3° - nome\n" +
+            "4° - sobrenome\n" +
+            "5 ° - telefone\n" +
+            "6 ° - número do seu creci\n";
+    private String cadastroProprietario =
+            "Precisaremos das seguintes informações: \n" +
+            "1° - e-mail:\n" +
+            "2° - senha:\n" +
+            "3° - nome:\n" +
+            "4° - sobrenome:\n" +
+            "5 ° - telefone:\n" +
+            "6 ° - CPF/CNPJ\n";
+    private String cadastroImovel =
+            "Precisaremos das seguintes informações: \n" +
+            "1° - bairro\n" +
+            "2° - cidade\n" +
+            "3° - rua\n" +
+            "4° - numero\n" +
+            "5 ° - cep\n" +
+            "6 ° - tipo de imovel (casa ou apto.)\n" +
+            "8 ° - status do imovel\n" +
+            "9 ° - nome do ímovel\n" +
+            "10 ° - CPF/CNPJ do proprietário\n";
+
     // Criar getters e o texto para os de baixo
     // Opções após selecionar o texto inicial
-    private String cadastroCliente;
-    private String cadastroCorretor;
-    private String cadastroProprietario;
-    private String cadastroImovel;
-
     private String visualizarCliente;
     private String visualizarCorretor;
     private String visualizarProprietario;
@@ -61,11 +94,15 @@ public class Mensagens {
     private String visualzarImovelPropostas;
     private String visualzarImovelInformacoes;
 
+    // Criar getters e o texto para os de baixo
+    // Opções após selecionar o texto inicial
     private String alterarCliente;
     private String alterarCorretor;
     private String alterarProprietario;
     private String alterarImovel;
 
+    // Criar getters e o texto para os de baixo
+    // Opções após selecionar o texto inicial
     private String removerCliente;
     private String removerCorretor;
     private String removerProprietario;
@@ -77,10 +114,12 @@ public class Mensagens {
     private String proposta;
 
 
+    //Getter texto inicial
     public String getTextoInicial() {
         return textoInicial;
     }
 
+    // Getter camada 01
     public String getCadastro() {
         return cadastro;
     }
@@ -103,5 +142,23 @@ public class Mensagens {
 
     public String getAnunciar() {
         return anunciar;
+    }
+
+    // Getters camada 2 -> Cadastro
+
+    public String getCadastroCliente() {
+        return cadastroCliente;
+    }
+
+    public String getCadastroCorretor() {
+        return cadastroCorretor;
+    }
+
+    public String getCadastroProprietario() {
+        return cadastroProprietario;
+    }
+
+    public String getCadastroImovel() {
+        return cadastroImovel;
     }
 }
