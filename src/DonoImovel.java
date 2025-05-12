@@ -6,11 +6,15 @@ public class DonoImovel {
     private String cpfOuCnpjDonoImovel;
 
     // Construtor
-    public DonoImovel(ArrayList<Imovel> imoveis, Usuario userInfo, String cpfOuCnpjDonoImovel) {
-        this.imoveis = imoveis;
+    public DonoImovel(Usuario userInfo, String cpfOuCnpjDonoImovel) {
         this.userInfo = userInfo;
         this.cpfOuCnpjDonoImovel = cpfOuCnpjDonoImovel;
+        this.imoveis = new ArrayList<>();
     }
+
+    public void AdicionarImovel(Imovel imovel) {
+        imoveis.add(imovel);
+    };
 
     // Getters
     public ArrayList<Imovel> getImoveis() {

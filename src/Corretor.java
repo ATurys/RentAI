@@ -5,9 +5,8 @@ public class Corretor {
     private float comissaoCorretor;
 
     // Construtor
-    public Corretor(Usuario userInfo, float comissaoCorretor, String creciCoretor) {
+    public Corretor(Usuario userInfo, String creciCoretor) {
         this.userInfo = userInfo;
-        this.comissaoCorretor = comissaoCorretor;
         this.creciCoretor = creciCoretor;
     }
 

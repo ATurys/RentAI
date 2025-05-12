@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     public static void testePrompt (int max, int userPrompt) {
@@ -10,7 +11,10 @@ public class Main {
     public static void main(String[] args) {
         Leitor leitor = new Leitor();
         Mensagens mensagem = new Mensagens();
-        ArrayList<Cliente> usuarios = new ArrayList<Cliente>();
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        ArrayList<Corretor> corretores = new ArrayList<Corretor>();
+        ArrayList<DonoImovel> proprietarios = new ArrayList<DonoImovel>();
+        ArrayList<Imovel> imoveis = new ArrayList<Imovel>();
 
         boolean continua = true;
 
@@ -24,16 +28,79 @@ public class Main {
 
                     switch (userPrompt) {
                         case 1:
-                            userPrompt = leitor.lerInt(mensagem.getCadastroCliente());
+                            System.out.println(mensagem.getCadastroCliente());
+                            String emailCliente = leitor.lerString("Digite seu e-mail: ");
+                            String senhaCliente = leitor.lerString("Digite sua senha: ");
+                            String nomeCliente = leitor.lerString("Digite o nome do cliente: ");
+                            String sobrenomeCliente = leitor.lerString("Digite o sobrenome do cliente: ");
+                            String telefoneCliente = leitor.lerString("Digite o telefone do cliente: ");
+                            String cpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do cliente: ");
+
+                            Usuario novoUser = new Usuario(emailCliente, senhaCliente, nomeCliente, sobrenomeCliente, telefoneCliente);
+                            Cliente novoCliente = new Cliente(novoUser, cpfCnpjCliente);
+                            clientes.add(novoCliente);
                             break;
                         case 2:
-                            userPrompt = leitor.lerInt(mensagem.getCadastroCorretor());
+                            System.out.println(mensagem.getCadastroCorretor());
+                            String emailCorretor = leitor.lerString("Digite seu e-mail: ");
+                            String senhaCorretor = leitor.lerString("Digite sua senha: ");
+                            String nomeCorretor = leitor.lerString("Digite o nome do corretor: ");
+                            String sobrenomeCorretor = leitor.lerString("Digite o sobrenome do corretor: ");
+                            String telefoneCorretor = leitor.lerString("Digite o telefone do corretor: ");
+                            String creciCorretor = leitor.lerString("Digite o CRECI do corretor: ");
+
+                            Usuario novoUser2 = new Usuario(emailCorretor, senhaCorretor, nomeCorretor, sobrenomeCorretor, telefoneCorretor);
+                            Corretor novoCorretor = new Corretor(novoUser2, creciCorretor);
+                            corretores.add(novoCorretor);
                             break;
                         case 3:
-                            userPrompt = leitor.lerInt(mensagem.getCadastroProprietario());
+                            System.out.println(mensagem.getCadastroProprietario());
+                            String emailProprietario = leitor.lerString("Digite seu e-mail: ");
+                            String senhaProprietario = leitor.lerString("Digite sua senha: ");
+                            String nomeProprietario = leitor.lerString("Digite o nome do proprietário: ");
+                            String sobrenomeProprietario = leitor.lerString("Digite o sobrenome do proprietário: ");
+                            String telefoneProprietario = leitor.lerString("Digite o telefone do proprietário: ");
+                            String cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+
+                            Usuario novoUser3 = new Usuario(emailProprietario, senhaProprietario, nomeProprietario, sobrenomeProprietario, telefoneProprietario);
+                            DonoImovel novoProprietario = new DonoImovel(novoUser3, cpfCnpjProprietario);
+                            proprietarios.add(novoProprietario);
                             break;
                         case 4:
-                            userPrompt = leitor.lerInt(mensagem.getCadastroImovel());
+                            System.out.println(mensagem.getCadastroImovel());
+                            String bairroImovel = leitor.lerString("Digite o bairro: ");
+                            String cidadeImovel = leitor.lerString("Digite a cidade: ");
+                            String ruaImovel = leitor.lerString("Digite a rua: ");
+                            String numeroImovel = leitor.lerString("Digite o numero: ");
+                            String cepImovel = leitor.lerString("Digite o CEP: ");
+                            String tipoImovel = leitor.lerString("Digite o tipo (casa ou apartamneto): ");
+                            String statusImovel = leitor.lerString("Digite o status do ímovel (Reformado, Mobiliado ou Construção): ");
+                            String nomeImovel = leitor.lerString("Digite o nome do movel: ");
+                            String cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+
+                            // Cria o Endereço, ID e Ímovel em sí no sistema
+                            Endereco novoEndereco = new Endereco(bairroImovel, cidadeImovel, ruaImovel, numeroImovel, cepImovel);
+                            int idImovel = imoveis.size() + 1;
+                            Imovel novoimovel = new Imovel(novoEndereco, idImovel, nomeImovel,tipoImovel, statusImovel);
+
+                            // Validação de proprietário
+                            boolean achouProprietario = false;
+                            while (!achouProprietario) {
+                                for (int i = 0; i < proprietarios.size(); i++) {
+                                    DonoImovel p = proprietarios.get(i);
+                                    if (p.getCpfOuCnpjDonoImovel().equals(cpfCnpjImovel)) {
+                                        // Achou o proprietário com o CPF correspondente
+                                        System.out.println("Proprietário encontrado: " + p.getUserInfo().getNome());
+                                        achouProprietario = true;
+                                        break;
+                                    }
+                                }
+                                System.out.println("Proprietário não encontrado, tente novamente: ");
+                                cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+                            }
+
+                            //confirma o cadastro + informa a ID
+                            System.out.println("Cadastro concluído, o número de ID desse ímovel é " + idImovel + ", Não esqueça!");
                             break;
                         case 5:
                             break;

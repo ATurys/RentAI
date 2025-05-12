@@ -8,21 +8,13 @@ public class Imovel {
     private String nomeImovel;
 
     // Construtor
-    public Imovel(Endereco endereco, int idImovel, String tipoImovel, String tamanhoImovel, String statusImovel, String nomeImovel) {
-        this.endereco = endereco;
-        this.idImovel = idImovel;
-        this.tipoImovel = tipoImovel;
-        this.tamanhoImovel = tamanhoImovel;
-        this.statusImovel = statusImovel;
-        this.nomeImovel = nomeImovel;
-    }
 
-    public Imovel(Endereco endereco, int idImovel, String nomeImovel, String tipoImovel) {
+    public Imovel(Endereco endereco, int idImovel, String nomeImovel, String tipoImovel, String statusImovel) {
         this.endereco = endereco;
         this.idImovel = idImovel;
         this.nomeImovel = nomeImovel;
         this.tipoImovel = tipoImovel;
-        this.statusImovel = "N/A";
+        this.statusImovel = statusImovel;
     }
 
     // Getters

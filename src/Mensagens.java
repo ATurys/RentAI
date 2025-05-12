@@ -64,7 +64,7 @@ public class Mensagens {
             "3° - nome\n" +
             "4° - sobrenome\n" +
             "5 ° - telefone\n" +
-            "6 ° - número do seu creci\n";
+            "6 ° - número do CRECI\n";
     private String cadastroProprietario =
             "Precisaremos das seguintes informações: \n" +
             "1° - e-mail:\n" +
@@ -85,33 +85,51 @@ public class Mensagens {
             "9 ° - nome do ímovel\n" +
             "10 ° - CPF/CNPJ do proprietário\n";
 
-    // Criar getters e o texto para os de baixo
-    // Opções após selecionar o texto inicial
-    private String visualizarCliente;
-    private String visualizarCorretor;
-    private String visualizarProprietario;
-    private String visualizarImovel;
-    private String visualzarImovelPropostas;
-    private String visualzarImovelInformacoes;
 
-    // Criar getters e o texto para os de baixo
-    // Opções após selecionar o texto inicial
-    private String alterarCliente;
-    private String alterarCorretor;
-    private String alterarProprietario;
-    private String alterarImovel;
+    // Opções de visualizar após selecionar o texto inicial
+    private String visualizarCliente =
+            "Digite o CPF/CNPJ: \n";
+    private String visualizarCorretor =
+            "Digite o número do creci: \n";
+    private String visualizarProprietario =
+            "Digite o CPF/CNPJ: \n";
+    private String visualizarImovel =
+            "1° - Visualizar propostas\n" +
+            "2° - Visualizar informações\n";
+    private String visualzarImovelPropostas =
+                   "Digite o ID da proposta: \n:";
+    private String visualzarImovelInformacoes =
+            "Digite o ID do ímovel: \n:";
 
-    // Criar getters e o texto para os de baixo
-    // Opções após selecionar o texto inicial
-    private String removerCliente;
-    private String removerCorretor;
-    private String removerProprietario;
-    private String removerImovel;
+
+    // Opções de alterar após selecionar o texto inicial
+    private String alterarCliente =
+            "Digite o CPF/CNPJ: \n";
+    private String alterarCorretor =
+            "Digite o número do creci: \n";
+    private String alterarProprietario =
+            "Digite o CPF/CNPJ: \n";
+    private String alterarImovel =
+            "Digite o ID do ímovel: \n:";
+
+
+    // Opções de remover após selecionar o texto inicial
+    private String removerCliente =
+            "Digite o CPF/CNPJ: \n";
+    private String removerCorretor =
+            "Digite o número do creci: \n";
+    private String removerProprietario =
+            "Digite o CPF/CNPJ: \n";
+    private String removerImovel =
+            "Digite o ID do ímovel: \n:";
 
     // Criar getters e o texto para os de baixo
     // Opções para criar uma proposta
 
-    private String proposta;
+    private String proposta
+            /*"Digite o CPF/CNPJ do cliente que vai fazer a proposta: \n" +
+            "Digite o ID do ímovel que o cliente quer propor a oferta: \n" +
+            "Digite o CPF/CNPJ do cliente que vai fazer a proposta: \n"; */;
 
 
     //Getter texto inicial
@@ -119,7 +137,9 @@ public class Mensagens {
         return textoInicial;
     }
 
+
     // Getter camada 01
+
     public String getCadastro() {
         return cadastro;
     }
@@ -144,6 +164,7 @@ public class Mensagens {
         return anunciar;
     }
 
+
     // Getters camada 2 -> Cadastro
 
     public String getCadastroCliente() {
@@ -160,5 +181,67 @@ public class Mensagens {
 
     public String getCadastroImovel() {
         return cadastroImovel;
+    }
+
+    // Getters camada 2 -> Visualizar
+    public String getVisualizarCliente() {
+        return visualizarCliente;
+    }
+
+    public String getVisualizarCorretor() {
+        return visualizarCorretor;
+    }
+
+    public String getVisualizarProprietario() {
+        return visualizarProprietario;
+    }
+
+    public String getVisualizarImovel() {
+        return visualizarImovel;
+    }
+
+    public String getVisualzarImovelPropostas() {
+        return visualzarImovelPropostas;
+    }
+
+    public String getVisualzarImovelInformacoes() {
+        return visualzarImovelInformacoes;
+    }
+
+
+    // Getters camada 2 -> Alterar
+
+    public String getAlterarCliente() {
+        return alterarCliente;
+    }
+
+    public String getAlterarCorretor() {
+        return alterarCorretor;
+    }
+
+    public String getAlterarProprietario() {
+        return alterarProprietario;
+    }
+
+    public String getAlterarImovel() {
+        return alterarImovel;
+    }
+
+    // Getters camada 2 -> remover
+
+    public String getRemoverCliente() {
+        return removerCliente;
+    }
+
+    public String getRemoverCorretor() {
+        return removerCorretor;
+    }
+
+    public String getRemoverProprietario() {
+        return removerProprietario;
+    }
+
+    public String getRemoverImovel() {
+        return removerImovel;
     }
 }
