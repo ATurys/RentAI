@@ -87,10 +87,16 @@ public class Mensagens {
 
 
     // Opções de visualizar após selecionar o texto inicial
+    /*      "\t1 - Visualizar Cliente\n" +
+            "\t2 - Visualizar Corretor\n" +
+            "\t3 - Visualizar Proprietário\n" +
+            "\t4 - Visualizar Ímovel\n" +
+            "\t5 - Voltar\n";
+    */
     private String visualizarCliente =
             "Digite o CPF/CNPJ: \n";
     private String visualizarCorretor =
-            "Digite o número do creci: \n";
+            "Digite o número do CRECI: \n";
     private String visualizarProprietario =
             "Digite o CPF/CNPJ: \n";
     private String visualizarImovel =

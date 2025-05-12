@@ -4,7 +4,8 @@ import java.util.ArrayList;
 public class Main {
     public static void testePrompt (int max, int userPrompt) {
         if (userPrompt > max || userPrompt <= 0) {
-            throw new ArithmeticException("Nesta parte, favor digitar um numero que esteja entre 1 e " + max);
+            System.out.println("\nNesta parte, favor digitar um numero que esteja entre 1 e " + max + "\n" +
+                    "Voltando... \n\n");
         } // Verifica se o numero esta entre os valores delimitados
     }
 
@@ -39,6 +40,8 @@ public class Main {
                             Usuario novoUser = new Usuario(emailCliente, senhaCliente, nomeCliente, sobrenomeCliente, telefoneCliente);
                             Cliente novoCliente = new Cliente(novoUser, cpfCnpjCliente);
                             clientes.add(novoCliente);
+
+                            System.out.println("Cadastro concluído");
                             break;
                         case 2:
                             System.out.println(mensagem.getCadastroCorretor());
@@ -52,6 +55,8 @@ public class Main {
                             Usuario novoUser2 = new Usuario(emailCorretor, senhaCorretor, nomeCorretor, sobrenomeCorretor, telefoneCorretor);
                             Corretor novoCorretor = new Corretor(novoUser2, creciCorretor);
                             corretores.add(novoCorretor);
+
+                            System.out.println("Cadastro concluído");
                             break;
                         case 3:
                             System.out.println(mensagem.getCadastroProprietario());
@@ -65,6 +70,8 @@ public class Main {
                             Usuario novoUser3 = new Usuario(emailProprietario, senhaProprietario, nomeProprietario, sobrenomeProprietario, telefoneProprietario);
                             DonoImovel novoProprietario = new DonoImovel(novoUser3, cpfCnpjProprietario);
                             proprietarios.add(novoProprietario);
+
+                            System.out.println("Cadastro concluído");
                             break;
                         case 4:
                             System.out.println(mensagem.getCadastroImovel());
@@ -106,13 +113,57 @@ public class Main {
                             break;
                     }
                     break;
+
                 case 2://Visualizar
                     userPrompt = leitor.lerInt(mensagem.getVisualizar());
+                    testePrompt(5, userPrompt);// Verifica se o numero esta entre 1 e 5
                     switch (userPrompt) {
                         case 1:
+                            String view = leitor.lerString(mensagem.getVisualizarCliente());
+                            // Validação de cliente
+                            boolean achouCliente = false;
+                            while (!achouCliente) {
+                                for (int i = 0; i < clientes.size(); i++) {
+                                    Cliente c = clientes.get(i);
+                                    if (c.getCpfOuCnpjCliente().equals(view)) {
+                                        // Achou o Cliente com o CPF correspondente
+                                        clientes.get(i).mostrarInfoCliente();
+                                        achouCliente = true;
+                                        break;
+                                    }
+                                }
+                                System.out.println("Cliente não encontrado, tente novamente: ");
+                                view = leitor.lerString("Digite o CPF/CNPJ do Cliente: ");
+                            }
                             break;
-                    }
+
+                        case 2:
+                            String view = leitor.lerString(mensagem.getVisualizarCorretor());
+                            // Validação de corretor
+                            boolean achouCorretor = false;
+                            while (!achouCorretor) {
+                                for (int i = 0; i < corretores.size(); i++) {
+                                    Corretor c = corretores.get(i);
+                                    if (c.getCreciCoretor().equals(view)) {
+                                        // Achou o Corretor com o CRECI correspondente
+                                        corretores.get(i).mostrarInfoCorretor();
+                                        achouCorretor = true;
+                                        break;
+                                    }
+                                }
+                                System.out.println("Corretor não encontrado, tente novamente: ");
+                                view = leitor.lerString("Digite o CCRECI do Corretor: ");
+                            }
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            break;
+                }
                     break;
+
                 case 3://Alterar informação
                     userPrompt = leitor.lerInt(mensagem.getAlterar());
                     switch (userPrompt) {

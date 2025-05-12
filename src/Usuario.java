@@ -22,6 +22,12 @@ public class Usuario {
         this.telefone = telefone;
     }
 
+    public void mostrarInfoUser() {
+        System.out.println("Email: " + email);
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Sobrenome: " + this.sobrenome);
+        System.out.println("Telefone: " + this.telefone);
+    }
     //Getters
     public String getEmail() {
         return email;

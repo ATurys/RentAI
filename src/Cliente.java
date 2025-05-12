@@ -7,6 +7,14 @@ public class Cliente {
     public Cliente(Usuario userInfo, String cpfOuCnpjCliente) {
         this.userInfo = userInfo;
         this.cpfOuCnpjCliente = cpfOuCnpjCliente;
+
+    }
+
+    public void mostrarInfoCliente() {
+        System.out.println(userInfo.mostrarInfoUser());
+
+        String cpfOuCnpjInicial = this.cpfOuCnpjCliente.substring(0,4);
+        System.out.println("CPF/CNPJ: " + cpfOuCnpjInicial + "....");
     }
 
     // Getters

@@ -6,6 +6,7 @@ public class Imovel {
     private String tamanhoImovel;
     private String statusImovel;
     private String nomeImovel;
+    private float comissaoCorretor;
 
     // Construtor
 
@@ -42,6 +43,10 @@ public class Imovel {
         return nomeImovel;
     }
 
+    public float getComissaoCorretor() {
+        return comissaoCorretor;
+    }
+
     // Setters
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
@@ -61,5 +66,11 @@ public class Imovel {
 
     public void setNomeImovel(String nomeImovel) {
         this.nomeImovel = nomeImovel;
+
+    }
+
+    public void setComissaoCorretor(float comissaoCorretor) {
+        this.comissaoCorretor = comissaoCorretor;
     }
 }
+

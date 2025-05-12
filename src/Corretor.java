@@ -2,7 +2,7 @@ public class Corretor {
 
     private Usuario userInfo;
     private String creciCoretor;
-    private float comissaoCorretor;
+
 
     // Construtor
     public Corretor(Usuario userInfo, String creciCoretor) {
@@ -10,6 +10,10 @@ public class Corretor {
         this.creciCoretor = creciCoretor;
     }
 
+    public void mostrarInfoCorretor() {
+        System.out.println(userInfo.mostrarInfoUser());
+        System.out.println("CRECI: " + creciCoretor);
+    }
     // Getters
     public Usuario getUserInfo() {
         return userInfo;
@@ -19,17 +23,13 @@ public class Corretor {
         return creciCoretor;
     }
 
-    public float getComissaoCorretor() {
-        return comissaoCorretor;
-    }
+
 
     // Setters
     public void setUserInfo(Usuario userInfo) {
         this.userInfo = userInfo;
     }
 
-    public void setComissaoCorretor(float comissaoCorretor) {
-        this.comissaoCorretor = comissaoCorretor;
-    }
+
 }
 
