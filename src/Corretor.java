@@ -11,7 +11,7 @@ public class Corretor {
     }
 
     public void mostrarInfoCorretor() {
-        System.out.println(userInfo.mostrarInfoUser());
+        userInfo.mostrarInfoUser();
         System.out.println("CRECI: " + creciCoretor);
     }
     // Getters

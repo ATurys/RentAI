@@ -39,11 +39,12 @@ public class Mensagens {
             "\t5 - Voltar\n";
 
     private String criar =
-            "\t1 - Informar Cliente\n" +
-            "\t2 - Informar Corretor\n" +
-            "\t3 - Informar Proprietário\n" +
-            "\t4 - Informar Ímovel\n" +
-            "\t5 - Voltar\n";
+            "Precisaremos das seguintes informações: \n" +
+            "\t1 - CPF do Cliente\n" +
+            "\t2 - CRECI do Corretor\n" +
+            "\t3 - ID Ímovel\n" +
+            "\t4 - Valor da proposta\n" +
+            "\t5 - Comissão do corretor\n";
     private String anunciar =
             "\t1 - Selecione o ID da Proposta que foi aceita\n" +
             "\t2 - Voltar\n";
@@ -79,20 +80,15 @@ public class Mensagens {
             "2° - cidade\n" +
             "3° - rua\n" +
             "4° - numero\n" +
-            "5 ° - cep\n" +
-            "6 ° - tipo de imovel (casa ou apto.)\n" +
-            "8 ° - status do imovel\n" +
-            "9 ° - nome do ímovel\n" +
-            "10 ° - CPF/CNPJ do proprietário\n";
+            "5° - cep\n" +
+            "6° - tipo de imovel (casa ou apto.)\n" +
+            "8° - status do imovel\n" +
+            "9° - nome do ímovel\n" +
+            "10° - CPF/CNPJ do proprietário\n";
 
 
     // Opções de visualizar após selecionar o texto inicial
-    /*      "\t1 - Visualizar Cliente\n" +
-            "\t2 - Visualizar Corretor\n" +
-            "\t3 - Visualizar Proprietário\n" +
-            "\t4 - Visualizar Ímovel\n" +
-            "\t5 - Voltar\n";
-    */
+
     private String visualizarCliente =
             "Digite o CPF/CNPJ: \n";
     private String visualizarCorretor =
@@ -129,13 +125,19 @@ public class Mensagens {
     private String removerImovel =
             "Digite o ID do ímovel: \n:";
 
-    // Criar getters e o texto para os de baixo
+
     // Opções para criar uma proposta
 
-    private String proposta
-            /*"Digite o CPF/CNPJ do cliente que vai fazer a proposta: \n" +
-            "Digite o ID do ímovel que o cliente quer propor a oferta: \n" +
-            "Digite o CPF/CNPJ do cliente que vai fazer a proposta: \n"; */;
+    private String propostaCpfCnpjCliente =
+            "Digite o CPF/CNPJ do cliente que vai fazer a proposta: \n";
+    private String propostaCreci =
+            "Digite o Creci do corretor que vai fazer a proposta: \n";
+    private String propostaImovel =
+            "Digite o ID do ímovel que o cliente quer propor a oferta: \n";
+    private String propostaValor =
+            "Digite o valor da proposta: \n";
+    private String propostaComissao =
+            "Digite o valor da comissao do corretor: \n";
 
 
     //Getter texto inicial
@@ -249,5 +251,28 @@ public class Mensagens {
 
     public String getRemoverImovel() {
         return removerImovel;
+    }
+
+
+    // Getters camada 2 -> Criar Proposta
+
+    public String getPropostaCpfCnpjCliente() {
+        return propostaCpfCnpjCliente;
+    }
+
+    public String getPropostaCreci() {
+        return propostaCreci;
+    }
+
+    public String getPropostaImovel() {
+        return propostaImovel;
+    }
+
+    public String getPropostaValor() {
+        return propostaValor;
+    }
+
+    public String getPropostaComissao() {
+        return propostaComissao;
     }
 }

@@ -2,19 +2,18 @@ public class Cliente {
 
     private Usuario userInfo;
     private String cpfOuCnpjCliente;
+    private String cpfOuCnpjClienteCripted;
 
     // Construtor
     public Cliente(Usuario userInfo, String cpfOuCnpjCliente) {
         this.userInfo = userInfo;
         this.cpfOuCnpjCliente = cpfOuCnpjCliente;
-
+        this.cpfOuCnpjClienteCripted = cpfOuCnpjCliente.substring(0,4);
     }
 
     public void mostrarInfoCliente() {
-        System.out.println(userInfo.mostrarInfoUser());
-
-        String cpfOuCnpjInicial = this.cpfOuCnpjCliente.substring(0,4);
-        System.out.println("CPF/CNPJ: " + cpfOuCnpjInicial + "....");
+        userInfo.mostrarInfoUser();
+        System.out.println("CPF/CNPJ: " + cpfOuCnpjClienteCripted + "....");
     }
 
     // Getters
@@ -24,6 +23,10 @@ public class Cliente {
 
     public String getCpfOuCnpjCliente() {
         return cpfOuCnpjCliente;
+    }
+
+    public String getCpfOuCnpjClienteCripted() {
+        return cpfOuCnpjClienteCripted;
     }
 
     // Setters

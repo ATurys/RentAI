@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
@@ -16,6 +15,7 @@ public class Main {
         ArrayList<Corretor> corretores = new ArrayList<Corretor>();
         ArrayList<DonoImovel> proprietarios = new ArrayList<DonoImovel>();
         ArrayList<Imovel> imoveis = new ArrayList<Imovel>();
+        ArrayList<Proposta> propostas = new ArrayList<Proposta>();
 
         boolean continua = true;
 
@@ -118,7 +118,7 @@ public class Main {
                     userPrompt = leitor.lerInt(mensagem.getVisualizar());
                     testePrompt(5, userPrompt);// Verifica se o numero esta entre 1 e 5
                     switch (userPrompt) {
-                        case 1:
+                        case 1: // Ver cliente
                             String view = leitor.lerString(mensagem.getVisualizarCliente());
                             // Validação de cliente
                             boolean achouCliente = false;
@@ -137,8 +137,8 @@ public class Main {
                             }
                             break;
 
-                        case 2:
-                            String view = leitor.lerString(mensagem.getVisualizarCorretor());
+                        case 2: // Ver corretor
+                            view = leitor.lerString(mensagem.getVisualizarCorretor());
                             // Validação de corretor
                             boolean achouCorretor = false;
                             while (!achouCorretor) {
@@ -155,9 +155,37 @@ public class Main {
                                 view = leitor.lerString("Digite o CCRECI do Corretor: ");
                             }
                             break;
-                        case 3:
+                        case 3: // Ver proprietario
+                            view = leitor.lerString(mensagem.getVisualizarProprietario());
+                            // Validação de Proprietario
+                            boolean achouProprietario = false;
+                            while (!achouProprietario) {
+                                for (int i = 0; i < proprietarios.size(); i++) {
+                                    DonoImovel p = proprietarios.get(i);
+                                    if (p.getCpfOuCnpjDonoImovel().equals(view)) {
+                                        // Achou o Cliente com o CPF correspondente
+                                        proprietarios.get(i).mostrarInfoProprietario();
+                                        achouProprietario = true;
+                                        break;
+                                    }
+                                }
+                                System.out.println("Proprietário não encontrado, tente novamente: ");
+                                view = leitor.lerString("Digite o CPF/CNPJ do Proprietario: ");
+                            }
                             break;
-                        case 4:
+                        case 4: // Ver imovel
+                            userPrompt = leitor.lerInt(mensagem.getVisualizarImovel());
+                            testePrompt(2, userPrompt);// Verifica se o numero esta entre 1 e 2
+                            switch (userPrompt) {
+                                case 1:
+                                    view = leitor.lerString(mensagem.getVisualzarImovelPropostas());
+                                    // TODO
+                                    break;
+                                case 2:
+                                    view = leitor.lerString(mensagem.getVisualzarImovelInformacoes());
+                                    // TODO
+                                    break;
+                            }
                             break;
                         case 5:
                             break;
@@ -179,11 +207,94 @@ public class Main {
                     }
                     break;
                 case 5: //Criar proposta
-                    userPrompt = leitor.lerInt(mensagem.getCriar());
-                    switch (userPrompt) {
-                        case 1:
+                    System.out.println(mensagem.getCriar());
+                    boolean achou = false;
+
+                    // Pegar cliente pelo CPF
+                    String propostaCpfCnpjCliente = leitor.lerString(mensagem.getPropostaCpfCnpjCliente());
+                    achou = false;
+                    while (!achou) {
+                        for (int i = 0; i < clientes.size(); i++) {
+                            Cliente clienteProposta = clientes.get(i);
+                            if (clienteProposta.getCpfOuCnpjCliente().equals(propostaCpfCnpjCliente)) {
+                                // Achou o Cliente com o CPF correspondente
+                                achou = true;
+                                break;
+                            }
+                        }
+                        System.out.println("Cliente não encontrado, tente novamente: ");
+                        propostaCpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do Cliente ou digite 0 para sair: ");
+                        if (propostaCpfCnpjCliente.equals("0")) {
                             break;
+                        }
+                    } // Verifica se existe esse cliente
+                    // Saida da criação de proposta
+                    if (propostaCpfCnpjCliente.equals("0")) {
+                        break;
                     }
+
+                    // Pegar corretor pelo Creci
+                    String propostaCreci = leitor.lerString(mensagem.getPropostaCreci());
+                    achou = false;
+                    while (!achou) {
+                        for (int i = 0; i < corretores.size(); i++) {
+                            Corretor corretorProposta = corretores.get(i);
+                            if (corretorProposta.getCreciCoretor().equals(propostaCreci)) {
+                                // Achou o Cliente com o CPF correspondente
+                                achou = true;
+                                break;
+                            }
+                        }
+                        System.out.println("Corretor não encontrado, tente novamente: ");
+                        propostaCreci = leitor.lerString("Digite o CRECI do Corretor ou digite 0 para sair: ");
+                        if (propostaCreci.equals("0")) {
+                            break;
+                        }
+                    } // Verifica se existe esse corretor
+                    // Saida da criação de proposta
+                    if (propostaCreci.equals("0")) {
+                        break;
+                    }
+
+                    int propostaImovel = leitor.lerInt(mensagem.getPropostaImovel());
+                    achou = false;
+                    while (!achou) {
+                        for (int i = 0; i < imoveis.size(); i++) {
+                            Imovel imovelProposta = imoveis.get(i);
+                            if (imovelProposta.getIdImovel() == propostaImovel) {
+                                // Achou o Cliente com o CPF correspondente
+                                achou = true;
+                                break;
+                            }
+                        }
+                        if (propostaImovel == 0) {
+                            break;
+                        }
+                        System.out.println("Imovel não encontrado, tente novamente: ");
+                        propostaImovel = leitor.lerInt("Digite o ID do Imovel ou digite 0 para sair: ");
+                    } // Verifica se existe esse cliente
+                    // Saida da criação de proposta
+                    if (propostaImovel == 0) {
+                        break;
+                    }
+
+                    String propostaValor = leitor.lerString(mensagem.getPropostaValor());
+                    String propostaComissao = leitor.lerString(mensagem.getPropostaComissao());
+
+                    // Cria o ID no sistema
+                    int idProposta = propostas.size() + 1;
+
+                    //TODO
+                        // Pegar cliente pelo CPF
+
+                        // Pegar corretor pelo Creci
+                        // Pegar Imovel pelo ID
+
+                    //Proposta novaProposta = new Proposta(emailProprietario, senhaProprietario, nomeProprietario, sobrenomeProprietario, telefoneProprietario);
+                    //DonoImovel novoProprietario = new DonoImovel(novoUser3, cpfCnpjProprietario);
+                    //proprietarios.add(novoProprietario);
+
+                    System.out.println("Cadastro concluído");
                     break;
                 case 6://Anunciar Venda
                     userPrompt = leitor.lerInt(mensagem.getAnunciar());
