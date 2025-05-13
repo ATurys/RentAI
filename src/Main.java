@@ -119,10 +119,14 @@ public class Main {
                     testePrompt(5, userPrompt);// Verifica se o numero esta entre 1 e 5
                     switch (userPrompt) {
                         case 1: // Ver cliente
+                            System.out.println("[DIGITE 0 PARA SAIR]");
                             String view = leitor.lerString(mensagem.getVisualizarCliente());
                             // Validação de cliente
                             boolean achouCliente = false;
                             while (!achouCliente) {
+                                if (view.equals("0")) {
+                                    break;
+                                }
                                 for (int i = 0; i < clientes.size(); i++) {
                                     Cliente c = clientes.get(i);
                                     if (c.getCpfOuCnpjCliente().equals(view)) {
@@ -138,10 +142,14 @@ public class Main {
                             break;
 
                         case 2: // Ver corretor
+                            System.out.println("[DIGITE 0 PARA SAIR]");
                             view = leitor.lerString(mensagem.getVisualizarCorretor());
                             // Validação de corretor
                             boolean achouCorretor = false;
                             while (!achouCorretor) {
+                                if (view.equals("0")) {
+                                    break;
+                                }
                                 for (int i = 0; i < corretores.size(); i++) {
                                     Corretor c = corretores.get(i);
                                     if (c.getCreciCoretor().equals(view)) {
@@ -155,11 +163,16 @@ public class Main {
                                 view = leitor.lerString("Digite o CCRECI do Corretor: ");
                             }
                             break;
+
                         case 3: // Ver proprietario
+                            System.out.println("[DIGITE 0 PARA SAIR]");
                             view = leitor.lerString(mensagem.getVisualizarProprietario());
                             // Validação de Proprietario
                             boolean achouProprietario = false;
                             while (!achouProprietario) {
+                                if (view.equals("0")) {
+                                    break;
+                                }
                                 for (int i = 0; i < proprietarios.size(); i++) {
                                     DonoImovel p = proprietarios.get(i);
                                     if (p.getCpfOuCnpjDonoImovel().equals(view)) {
@@ -175,14 +188,20 @@ public class Main {
                             break;
 
                         case 4: // Ver imovel
+                            System.out.println("[DIGITE 0 PARA SAIR]");
                             userPrompt = leitor.lerInt(mensagem.getVisualizarImovel());
+                            if (userPrompt == 0) {
+                                break;
+                            }
                             testePrompt(2, userPrompt);// Verifica se o numero esta entre 1 e 2
                             switch (userPrompt) {
                                 case 1:
+                                    System.out.println("[DIGITE 0 PARA SAIR]");
                                     view = leitor.lerString(mensagem.getVisualzarImovelPropostas());
                                     // TODO
                                     break;
                                 case 2:
+                                    System.out.println("[DIGITE 0 PARA SAIR]");
                                     view = leitor.lerString(mensagem.getVisualzarImovelInformacoes());
                                     // TODO
                                     break;
