@@ -137,7 +137,7 @@ public class Mensagens {
     private String propostaValor =
             "Digite o valor da proposta: \n";
     private String propostaComissao =
-            "Digite o valor da comissao do corretor: \n";
+            "Digite o valor da comissao do corretor (em porcentagem): \n";
 
 
     //Getter texto inicial
