@@ -30,13 +30,32 @@ public class Main {
 
                     switch (userPrompt) {
                         case 1: //Cadastro de Cliente
+                            System.out.println("[DIGITE 0 PARA SAIR]");
                             System.out.println(mensagem.getCadastroCliente());
                             String emailCliente = leitor.lerString("Digite seu e-mail: ");
+                            if (emailCliente.equals("0")) {
+                                break;
+                            }
                             String senhaCliente = leitor.lerString("Digite sua senha: ");
+                            if (senhaCliente.equals("0")) {
+                                break;
+                            }
                             String nomeCliente = leitor.lerString("Digite o nome do cliente: ");
+                            if (nomeCliente.equals("0")) {
+                                break;
+                            }
                             String sobrenomeCliente = leitor.lerString("Digite o sobrenome do cliente: ");
+                            if (sobrenomeCliente.equals("0")) {
+                                break;
+                            }
                             String telefoneCliente = leitor.lerString("Digite o telefone do cliente: ");
+                            if (telefoneCliente.equals("0")) {
+                                break;
+                            }
                             String cpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do cliente: ");
+                            if (cpfCnpjCliente.equals("0")) {
+                                break;
+                            }
 
                             Usuario novoUser = new Usuario(emailCliente, senhaCliente, nomeCliente, sobrenomeCliente, telefoneCliente);
                             Cliente novoCliente = new Cliente(novoUser, cpfCnpjCliente);
@@ -44,14 +63,34 @@ public class Main {
 
                             System.out.println("Cadastro concluído");
                             break;
+
                         case 2://Cadastro de Corretor
+                            System.out.println("[DIGITE 0 PARA SAIR]");
                             System.out.println(mensagem.getCadastroCorretor());
                             String emailCorretor = leitor.lerString("Digite seu e-mail: ");
+                            if (emailCorretor.equals("0")) {
+                                break;
+                            }
                             String senhaCorretor = leitor.lerString("Digite sua senha: ");
+                            if (senhaCorretor.equals("0")) {
+                                break;
+                            }
                             String nomeCorretor = leitor.lerString("Digite o nome do corretor: ");
+                            if (nomeCorretor.equals("0")) {
+                                break;
+                            }
                             String sobrenomeCorretor = leitor.lerString("Digite o sobrenome do corretor: ");
+                            if (sobrenomeCorretor.equals("0")) {
+                                break;
+                            }
                             String telefoneCorretor = leitor.lerString("Digite o telefone do corretor: ");
+                            if (telefoneCorretor.equals("0")) {
+                                break;
+                            }
                             String creciCorretor = leitor.lerString("Digite o CRECI do corretor: ");
+                            if (creciCorretor.equals("0")) {
+                                break;
+                            }
 
                             Usuario novoUser2 = new Usuario(emailCorretor, senhaCorretor, nomeCorretor, sobrenomeCorretor, telefoneCorretor);
                             Corretor novoCorretor = new Corretor(novoUser2, creciCorretor);
@@ -60,13 +99,32 @@ public class Main {
                             System.out.println("Cadastro concluído");
                             break;
                         case 3://Cadastro de Proprietario
+                            System.out.println("[DIGITE 0 PARA SAIR]");
                             System.out.println(mensagem.getCadastroProprietario());
                             String emailProprietario = leitor.lerString("Digite seu e-mail: ");
+                            if (emailProprietario.equals("0")) {
+                                break;
+                            }
                             String senhaProprietario = leitor.lerString("Digite sua senha: ");
+                            if (senhaProprietario.equals("0")) {
+                                break;
+                            }
                             String nomeProprietario = leitor.lerString("Digite o nome do proprietário: ");
+                            if (nomeProprietario.equals("0")) {
+                                break;
+                            }
                             String sobrenomeProprietario = leitor.lerString("Digite o sobrenome do proprietário: ");
+                            if (sobrenomeProprietario.equals("0")) {
+                                break;
+                            }
                             String telefoneProprietario = leitor.lerString("Digite o telefone do proprietário: ");
+                            if (telefoneProprietario.equals("0")) {
+                                break;
+                            }
                             String cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+                            if (cpfCnpjProprietario.equals("0")) {
+                                break;
+                            }
 
                             Usuario novoUser3 = new Usuario(emailProprietario, senhaProprietario, nomeProprietario, sobrenomeProprietario, telefoneProprietario);
                             DonoImovel novoProprietario = new DonoImovel(novoUser3, cpfCnpjProprietario);
@@ -74,6 +132,7 @@ public class Main {
 
                             System.out.println("Cadastro concluído");
                             break;
+
                         case 4://Cadastro de Imovel
                             System.out.println("[DIGITE 0 PARA SAIR]");
                             System.out.println(mensagem.getCadastroImovel());
@@ -114,19 +173,18 @@ public class Main {
                                 break;
                             }
 
-                            // Cria o Endereço, ID e Ímovel em sí no sistema
-                            Endereco novoEndereco = new Endereco(bairroImovel, cidadeImovel, ruaImovel, numeroImovel, cepImovel);
-                            int idImovel = imoveis.size() + 1;
-                            Imovel novoimovel = new Imovel(novoEndereco, idImovel, nomeImovel,tipoImovel, statusImovel);
-
                             // Validação de proprietário
+                            DonoImovel proprietarioImovel = null;
                             boolean achouProprietario = false;
                             while (!achouProprietario) {
                                 for (int i = 0; i < proprietarios.size(); i++) {
-                                    DonoImovel p = proprietarios.get(i);
-                                    if (p.getCpfOuCnpjDonoImovel().equals(cpfCnpjImovel)) {
+                                    if (cpfCnpjImovel.equals("0")) {
+                                        break;
+                                    }
+                                    proprietarioImovel = proprietarios.get(i);
+                                    if (proprietarioImovel.getCpfOuCnpjDonoImovel().equals(cpfCnpjImovel)) {
                                         // Achou o proprietário com o CPF correspondente
-                                        System.out.println("Proprietário encontrado: " + p.getUserInfo().getNome());
+                                        System.out.println("Proprietário encontrado: " + proprietarioImovel.getUserInfo().getNome());
                                         achouProprietario = true;
                                         break;
                                     }
@@ -137,6 +195,15 @@ public class Main {
                                 System.out.println("Proprietário não encontrado, tente novamente: ");
                                 cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
                             }
+                            if (cpfCnpjImovel.equals("0")) {
+                                break;
+                            }
+
+                            // Cria o Endereço, ID e Ímovel em sí no sistema
+                            Endereco novoEndereco = new Endereco(bairroImovel, cidadeImovel, ruaImovel, numeroImovel, cepImovel);
+                            int idImovel = imoveis.size() + 1;
+                            Imovel novoimovel = new Imovel(novoEndereco, idImovel, nomeImovel,tipoImovel, statusImovel, proprietarioImovel);
+                            imoveis.add(novoimovel);
 
                             //confirma o cadastro + informa a ID
                             System.out.println("Cadastro concluído, o número de ID desse ímovel é " + idImovel + ", Não esqueça!");
@@ -168,6 +235,9 @@ public class Main {
                                         break;
                                     }
                                 }
+                                if (achouCliente) {
+                                    break;
+                                }
                                 System.out.println("Cliente não encontrado, tente novamente: ");
                                 view = leitor.lerString("Digite o CPF/CNPJ do Cliente: ");
                             }
@@ -191,6 +261,9 @@ public class Main {
                                         break;
                                     }
                                 }
+                                if (achouCorretor) {
+                                    break;
+                                }
                                 System.out.println("Corretor não encontrado, tente novamente: ");
                                 view = leitor.lerString("Digite o CCRECI do Corretor: ");
                             }
@@ -213,6 +286,9 @@ public class Main {
                                         achouProprietario = true;
                                         break;
                                     }
+                                }
+                                if (achouProprietario) {
+                                    break;
                                 }
                                 System.out.println("Proprietário não encontrado, tente novamente: ");
                                 view = leitor.lerString("Digite o CPF/CNPJ do Proprietario: ");
@@ -239,11 +315,14 @@ public class Main {
                                         for (int i = 0; i < propostas.size(); i++) {
                                             Proposta prop = propostas.get(i);
                                             if (prop.getId() == userPrompt) {
-                                                // Achou o Imovel com o ID correspondente
+                                                // Achou a Proposta com o ID correspondente
                                                 propostas.get(i).mostrarInfoProposta();
                                                 achouProposta = true;
                                                 break;
                                             }
+                                        }
+                                        if (achouProposta) {
+                                            break;
                                         }
                                         System.out.println("Proposta não encontrada, tente novamente: ");
                                         userPrompt = leitor.lerInt(mensagem.getVisualzarImovelPropostas());
@@ -267,6 +346,9 @@ public class Main {
                                                 achouImovel = true;
                                                 break;
                                             }
+                                        }
+                                        if (achouImovel) {
+                                            break;
                                         }
                                         System.out.println("Imovel não encontrado, tente novamente: ");
                                         userPrompt = leitor.lerInt(mensagem.getVisualzarImovelInformacoes());
@@ -317,7 +399,6 @@ public class Main {
 
                     // Pegar cliente pelo CPF
                     String propostaCpfCnpjCliente = leitor.lerString(mensagem.getPropostaCpfCnpjCliente());
-                    achou = false;
                     while (!achou) {
                         if (propostaCpfCnpjCliente.equals("0")) {
                             break;
@@ -329,6 +410,9 @@ public class Main {
                                 achou = true;
                                 break;
                             }
+                        }
+                        if (achou) {
+                            break;
                         }
                         System.out.println("Cliente não encontrado, tente novamente: ");
                         propostaCpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do Cliente ou digite 0 para sair: ");
@@ -353,6 +437,9 @@ public class Main {
                                 break;
                             }
                         }
+                        if (achou) {
+                            break;
+                        }
                         System.out.println("Corretor não encontrado, tente novamente: ");
                         propostaCreci = leitor.lerString("Digite o CRECI do Corretor ou digite 0 para sair: ");
                     } // Verifica se existe esse corretor
@@ -375,6 +462,9 @@ public class Main {
                                 achou = true;
                                 break;
                             }
+                        }
+                        if (achou) {
+                            break;
                         }
                         System.out.println("Imovel não encontrado, tente novamente: ");
                         propostaImovel = leitor.lerInt("Digite o ID do Imovel ou digite 0 para sair: ");
@@ -413,7 +503,7 @@ public class Main {
                     break;
 
                 case 4://Anunciar Venda
-                    Boolean verifica = false;
+                    boolean verifica = false;
                     while (!verifica) {
                         System.out.println("[DIGITE 0 PARA SAIR]");
                         System.out.println((mensagem.getAnunciar()));
@@ -452,7 +542,7 @@ public class Main {
                             }// verifica saida
                             for (int i = 0; i < proprietarios.size(); i++) {
                                 donoImovel = proprietarios.get(i);
-                                if (donoImovel.getCpfOuCnpjDonoImovel() == (cpfCnpjProprietario)) {
+                                if (donoImovel.getCpfOuCnpjDonoImovel().equals(cpfCnpjProprietario)) {
                                     // Achou Proprietario correspondente
                                     achou = true;
                                     break;
@@ -505,6 +595,7 @@ public class Main {
                                     valorVenda,
                                     formaDePagamento
                             );
+                            vendas.add(venda);
                         }
                     }
                     break;
