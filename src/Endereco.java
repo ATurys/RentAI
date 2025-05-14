@@ -13,16 +13,14 @@ public class Endereco {
         this.rua = rua;
         this.numero = numero;
         this.cep = cep;
-        this.complemento = "N/A";
     }
 
-    public Endereco(String bairro, String cidade, String rua, String numero, String cep, String complemento) {
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.rua = rua;
-        this.numero = numero;
-        this.cep = cep;
-        this.complemento = complemento;
+    public void mostrarEndereco(){
+        System.out.println("Bairro: " + bairro);
+        System.out.println("Cidade: " + cidade);
+        System.out.println("Rua: " + rua);
+        System.out.println("Número: " + numero);
+        System.out.println("CEP: " + cep);
     }
 
     // Getters e Setters (todos possuem tanto get quanto set)
@@ -56,14 +54,6 @@ public class Endereco {
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
     }
 
     public String getCep() {

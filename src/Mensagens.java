@@ -3,11 +3,9 @@ public class Mensagens {
             "Olá, selecione uma das opções abaixo:\n" +
             "\t1 - Cadastrar\n" +
             "\t2 - Visualizar\n" +
-            "\t3 - Alterar uma informação\n" +
-            "\t4 - Remover uma informação\n" +
-            "\t5 - Criar uma proposta\n" +
-            "\t6 - Anunciar uma Venda\n" +
-            "\t7 - Sair\n";
+            "\t3 - Criar uma proposta\n" +
+            "\t4 - Anunciar uma Venda\n" +
+            "\t5 - Sair\n";
 
     // Textos camda 1
     private String cadastro =
@@ -22,20 +20,6 @@ public class Mensagens {
             "\t2 - Visualizar Corretor\n" +
             "\t3 - Visualizar Proprietário\n" +
             "\t4 - Visualizar Ímovel\n" +
-            "\t5 - Voltar\n";
-
-    private String alterar =
-            "\t1 - Alterar Cliente\n" +
-            "\t2 - Alterar Corretor\n" +
-            "\t3 - Alterar Proprietário\n" +
-            "\t4 - Alterar Ímovel\n" +
-            "\t5 - Voltar\n";
-
-    private String remover =
-            "\t1 - Remover Cliente\n" +
-            "\t2 - Remover Corretor\n" +
-            "\t3 - Remover Proprietário\n" +
-            "\t4 - Remover Ímovel\n" +
             "\t5 - Voltar\n";
 
     private String criar =
@@ -154,14 +138,6 @@ public class Mensagens {
 
     public String getVisualizar() {
         return visualizar;
-    }
-
-    public String getAlterar() {
-        return alterar;
-    }
-
-    public String getRemover() {
-        return remover;
     }
 
     public String getCriar() {

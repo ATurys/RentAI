@@ -21,14 +21,14 @@ public class Main {
 
         while (continua) {
             int userPrompt = leitor.lerInt(mensagem.getTextoInicial());
-            testePrompt(7, userPrompt);// Verifica se o numero esta entre 1 e 7
+            testePrompt(5, userPrompt);// Verifica se o numero esta entre 1 e 5
             switch (userPrompt) {
                 case 1://Cadastrar
                     userPrompt = leitor.lerInt(mensagem.getCadastro());
                     testePrompt(5, userPrompt);
 
                     switch (userPrompt) {
-                        case 1:
+                        case 1: //Cadastro de Cliente
                             System.out.println(mensagem.getCadastroCliente());
                             String emailCliente = leitor.lerString("Digite seu e-mail: ");
                             String senhaCliente = leitor.lerString("Digite sua senha: ");
@@ -43,7 +43,7 @@ public class Main {
 
                             System.out.println("Cadastro concluído");
                             break;
-                        case 2:
+                        case 2://Cadastro de Corretor
                             System.out.println(mensagem.getCadastroCorretor());
                             String emailCorretor = leitor.lerString("Digite seu e-mail: ");
                             String senhaCorretor = leitor.lerString("Digite sua senha: ");
@@ -58,7 +58,7 @@ public class Main {
 
                             System.out.println("Cadastro concluído");
                             break;
-                        case 3:
+                        case 3://Cadastro de Proprietario
                             System.out.println(mensagem.getCadastroProprietario());
                             String emailProprietario = leitor.lerString("Digite seu e-mail: ");
                             String senhaProprietario = leitor.lerString("Digite sua senha: ");
@@ -73,7 +73,7 @@ public class Main {
 
                             System.out.println("Cadastro concluído");
                             break;
-                        case 4:
+                        case 4://Cadastro de Imovel
                             System.out.println(mensagem.getCadastroImovel());
                             String bairroImovel = leitor.lerString("Digite o bairro: ");
                             String cidadeImovel = leitor.lerString("Digite a cidade: ");
@@ -109,7 +109,7 @@ public class Main {
                             //confirma o cadastro + informa a ID
                             System.out.println("Cadastro concluído, o número de ID desse ímovel é " + idImovel + ", Não esqueça!");
                             break;
-                        case 5:
+                        case 5: //opção de saida
                             break;
                     }
                     break;
@@ -176,7 +176,7 @@ public class Main {
                                 for (int i = 0; i < proprietarios.size(); i++) {
                                     DonoImovel p = proprietarios.get(i);
                                     if (p.getCpfOuCnpjDonoImovel().equals(view)) {
-                                        // Achou o Cliente com o CPF correspondente
+                                        // Achou o Proprietario com o CPF correspondente
                                         proprietarios.get(i).mostrarInfoProprietario();
                                         achouProprietario = true;
                                         break;
@@ -195,15 +195,50 @@ public class Main {
                             }
                             testePrompt(2, userPrompt);// Verifica se o numero esta entre 1 e 2
                             switch (userPrompt) {
-                                case 1:
+                                case 1:// Ver imovel Propostas
                                     System.out.println("[DIGITE 0 PARA SAIR]");
-                                    view = leitor.lerString(mensagem.getVisualzarImovelPropostas());
-                                    // TODO
+                                    userPrompt = leitor.lerInt(mensagem.getVisualzarImovelPropostas());
+                                    // Validação da proposta
+                                    boolean achouProposta = false;
+                                    while (!achouProposta) {
+                                        if (userPrompt == 0) {
+                                            break;
+                                        }
+                                        for (int i = 0; i < propostas.size(); i++) {
+                                            Proposta prop = propostas.get(i);
+                                            if (prop.getId() == userPrompt) {
+                                                // Achou o Imovel com o ID correspondente
+                                                propostas.get(i).mostrarInfoProposta();
+                                                achouProposta = true;
+                                                break;
+                                            }
+                                        }
+                                        System.out.println("Proposta não encontrada, tente novamente: ");
+                                        userPrompt = leitor.lerInt(mensagem.getVisualzarImovelPropostas());
+                                    }
                                     break;
-                                case 2:
+
+                                case 2: // Ver imoveis Infos
                                     System.out.println("[DIGITE 0 PARA SAIR]");
-                                    view = leitor.lerString(mensagem.getVisualzarImovelInformacoes());
-                                    // TODO
+                                    userPrompt = leitor.lerInt(mensagem.getVisualzarImovelInformacoes());
+                                    // Validação de Imovel
+                                    boolean achouImovel = false;
+                                    while (!achouImovel) {
+                                        if (userPrompt == 0) {
+                                            break;
+                                        }
+                                        for (int i = 0; i < imoveis.size(); i++) {
+                                            Imovel imov = imoveis.get(i);
+                                            if (imov.getIdImovel() == userPrompt) {
+                                                // Achou o Imovel com o ID correspondente
+                                                imoveis.get(i).mostrarInfoImovel();
+                                                achouImovel = true;
+                                                break;
+                                            }
+                                        }
+                                        System.out.println("Imovel não encontrado, tente novamente: ");
+                                        userPrompt = leitor.lerInt(mensagem.getVisualzarImovelInformacoes());
+                                    }
                                     break;
                             }
                             break;
@@ -212,22 +247,7 @@ public class Main {
                 }
                     break;
 
-                case 3://Atualizar informação
-                    userPrompt = leitor.lerInt(mensagem.getAlterar());
-                    switch (userPrompt) {
-                        case 1:
-                            break;
-                    }
-                    break;
-                case 4://Remover informação
-                    userPrompt = leitor.lerInt(mensagem.getRemover());
-                    switch (userPrompt) {
-                        case 1:
-                            break;
-                    }
-                    break;
-
-                case 5: //Criar proposta
+                case 3: //Criar proposta
                     System.out.println(mensagem.getCriar());
                     boolean achou = false;
                     Cliente clienteProposta = null;
@@ -329,17 +349,17 @@ public class Main {
                     );
                     propostas.add(novaProposta);
 
-                    System.out.println("Cadastro concluído");
+                    System.out.println("Cadastro concluído, o ID dessa proposta é " + novaProposta.getId() + ", não esqueça!");
                     break;
 
-                case 6://Anunciar Venda
+                case 4://Anunciar Venda
                     userPrompt = leitor.lerInt(mensagem.getAnunciar());
                     switch (userPrompt) {
                         case 1:
                             break;
                     }
                     break;
-                case 7: //Sair
+                case 5: //Sair
                     continua = false;
                     break;
 

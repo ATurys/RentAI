@@ -22,7 +22,7 @@ public class Proposta {
         this.status = status;
     }
 
-    public void mostrarProposta(){
+    public void mostrarInfoProposta(){
         System.out.println("ID da proposta: " + this.id);
         System.out.println("Cliente: " + cliente.getUserInfo().getNome() + " " + cliente.getUserInfo().getSobrenome() );
         System.out.println("Iniciais CPF/CNPJ do Cliente: " + cliente.getCpfOuCnpjClienteCripted());
