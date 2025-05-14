@@ -5,20 +5,26 @@ public class Imovel {
     private String tipoImovel;
     private String statusImovel;
     private String nomeImovel;
+    private DonoImovel donoImovel;
 
     // Construtor
 
-    public Imovel(Endereco endereco, int idImovel, String nomeImovel, String tipoImovel, String statusImovel) {
+    public Imovel(Endereco endereco, int idImovel, String nomeImovel, String tipoImovel, String statusImovel, DonoImovel donoImovel) {
         this.endereco = endereco;
         this.idImovel = idImovel;
         this.nomeImovel = nomeImovel;
         this.tipoImovel = tipoImovel;
         this.statusImovel = statusImovel;
+        this.donoImovel = donoImovel;
     }
 
     public void mostrarInfoImovel() {
-        System.out.println("Endereço: ");
-        endereco.mostrarEndereco();
+        System.out.println("Dono do imovel: ");
+        this.donoImovel.mostrarInfoProprietario();
+
+        System.out.println("\nEndereço: ");
+        this.endereco.mostrarEndereco();
+
         System.out.println("\nSobre o ímovel: ");
         System.out.println("ID do Imovel: " + this.idImovel);
         System.out.println("Nome do Imovel: " + this.nomeImovel);
