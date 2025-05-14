@@ -19,6 +19,24 @@ public class Venda {
         this.formaPagamentoVenda = formaPagamentoVenda;
     }
 
+    public void mostrarInfoVenda() {
+        System.out.println("Informações da Proposta: \n");
+        this.proposta.mostrarInfoProposta();
+
+        System.out.println("\nInformações sobre o dono anterior do ímovel (Antes de ser realizada a venda): \n");
+        this.donoImovel.mostrarInfoProprietario();
+
+        System.out.println("\nInformações sobre o dono atual do ímovel (Após de ser realizada a venda): \n");
+        this.proposta.getCliente().mostrarInfoCliente();
+
+        System.out.println("Informações da Venda em sí: \n");
+        System.out.println("ID da venda: " + this.idVenda);
+        System.out.println("Data da venda: " + this.dataVenda);
+        System.out.println("Valor da venda: " + this.valorFinalVenda);
+        System.out.println("Forma de pagamento: " + this.formaPagamentoVenda);
+
+    }
+
     // Getters
     public Proposta getProposta() {
         return proposta;

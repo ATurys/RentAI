@@ -20,7 +20,8 @@ public class Mensagens {
             "\t2 - Visualizar Corretor\n" +
             "\t3 - Visualizar Proprietário\n" +
             "\t4 - Visualizar Ímovel\n" +
-            "\t5 - Voltar\n";
+            "\t5 - Visualizar Vendas\n" +
+            "\t6 - Voltar\n";
 
     private String criar =
             "Precisaremos das seguintes informações: \n" +
@@ -86,9 +87,11 @@ public class Mensagens {
             "1° - Visualizar propostas\n" +
             "2° - Visualizar informações\n";
     private String visualzarImovelPropostas =
-                   "Digite o ID da proposta: \n:";
+                   "Digite o ID da proposta: \n";
     private String visualzarImovelInformacoes =
-            "Digite o ID do ímovel: \n:";
+            "Digite o ID do ímovel: \n";
+    private String visualizarVenda =
+            "Digite o ID da venda: \n";
 
 
     // Opções para criar uma proposta
@@ -178,6 +181,10 @@ public class Mensagens {
 
     public String getVisualzarImovelInformacoes() {
         return visualzarImovelInformacoes;
+    }
+
+    public String getVisualizarVenda() {
+        return visualizarVenda;
     }
 
 

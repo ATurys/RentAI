@@ -148,7 +148,7 @@ public class Main {
 
                 case 2://Visualizar
                     userPrompt = leitor.lerInt(mensagem.getVisualizar());
-                    testePrompt(5, userPrompt);// Verifica se o numero esta entre 1 e 5
+                    testePrompt(6, userPrompt);// Verifica se o numero esta entre 1 e 6
                     switch (userPrompt) {
                         case 1: // Ver cliente
                             System.out.println("[DIGITE 0 PARA SAIR]");
@@ -274,7 +274,34 @@ public class Main {
                                     break;
                             }
                             break;
-                        case 5:
+
+                        case 5: // Ver vendas
+                            System.out.println("[DIGITE 0 PARA SAIR]");
+                            userPrompt = leitor.lerInt(mensagem.getVisualizarVenda());
+                            // Validação de Venda
+                            boolean achouVenda = false;
+                            while (!achouVenda) {
+                                if (userPrompt == 0) {
+                                    break;
+                                }
+                                for (int i = 0; i < vendas.size(); i++) {
+                                    Venda venda = vendas.get(i);
+                                    if (venda.getId() == userPrompt) {
+                                        // Achou a Venda com o ID correspondente
+                                        vendas.get(i).mostrarInfoVenda();
+                                        achouVenda = true;
+                                        break;
+                                    }
+                                }
+                                if (achouVenda) {
+                                    break;
+                                }
+                                System.out.println("Venda não encontrada, tente novamente: ");
+                                userPrompt = leitor.lerInt(mensagem.getVisualizarVenda());
+                            }
+                            break;
+
+                        case 6:
                             break;
                 }
                     break;
@@ -457,7 +484,7 @@ public class Main {
                                 "\nValor da venda: " + propostaVenda.getValorOferecido() +
                                 "\nForma de pagamento: " + formaDePagamento +
                                 "\nProprietario atual: " + donoImovel.getUserInfo().getNome() + " " + donoImovel.getUserInfo().getSobrenome() +
-                                "\nCPF/CNPJ do proprietario atual: " + donoImovel.getCpfOuCnpjProprietarioCripted();
+                                "\nCPF/CNPJ do proprietario atual: " + donoImovel.getCpfOuCnpjProprietarioCripted()
                         );
                         verifica = leitor.lerBoolean("Confirmar?");
                         if (verifica) {
@@ -479,17 +506,6 @@ public class Main {
                                     formaDePagamento
                             );
                         }
-                        //TODO
-                        // Obter proposta -> feito
-                        // Obter proprietario -> feito
-                        /* Definir:
-                            ID da venda -> feito
-                            Valor final -> feito
-                            Forma de pagamento -> feito
-                            Atualizar Status -> feito
-                            Criar a venda -> feito
-                            Permitir a visualização na parte de view do sistema -> FAZER
-                         */
                     }
                     break;
                 case 5: //Sair
