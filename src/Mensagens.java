@@ -29,9 +29,12 @@ public class Mensagens {
             "\t3 - ID Ímovel\n" +
             "\t4 - Valor da proposta\n" +
             "\t5 - Comissão do corretor\n";
+
     private String anunciar =
-            "\t1 - Selecione o ID da Proposta que foi aceita\n" +
-            "\t2 - Voltar\n";
+            "Precisaremos das seguintes informações: \n" +
+            "\t1 - ID da Proposta que foi aceita\n" +
+            "\t2 - CPF/CNPJ do proprietário atual\n" +
+            "\t3 - Forma de pagamento\n";
 
     // Opções após selecionar o texto inicial -> Cadastro
     private String cadastroCliente =
@@ -88,28 +91,6 @@ public class Mensagens {
             "Digite o ID do ímovel: \n:";
 
 
-    // Opções de alterar após selecionar o texto inicial
-    private String alterarCliente =
-            "Digite o CPF/CNPJ: \n";
-    private String alterarCorretor =
-            "Digite o número do creci: \n";
-    private String alterarProprietario =
-            "Digite o CPF/CNPJ: \n";
-    private String alterarImovel =
-            "Digite o ID do ímovel: \n:";
-
-
-    // Opções de remover após selecionar o texto inicial
-    private String removerCliente =
-            "Digite o CPF/CNPJ: \n";
-    private String removerCorretor =
-            "Digite o número do creci: \n";
-    private String removerProprietario =
-            "Digite o CPF/CNPJ: \n";
-    private String removerImovel =
-            "Digite o ID do ímovel: \n:";
-
-
     // Opções para criar uma proposta
 
     private String propostaCpfCnpjCliente =
@@ -123,6 +104,13 @@ public class Mensagens {
     private String propostaComissao =
             "Digite o valor da comissao do corretor (em porcentagem): \n";
 
+    // Opções para criar uma venda
+    private String vendaPropostaID =
+            "ID da Proposta que foi aceita: ";
+    private String vendaCpfCnpjProprietario =
+            "CPF/CNPJ do proprietário atual: ";
+    private String vendaFormaDePagamento =
+            "Forma de pagamento: ";
 
     //Getter texto inicial
     public String getTextoInicial() {
@@ -193,43 +181,6 @@ public class Mensagens {
     }
 
 
-    // Getters camada 2 -> Alterar
-
-    public String getAlterarCliente() {
-        return alterarCliente;
-    }
-
-    public String getAlterarCorretor() {
-        return alterarCorretor;
-    }
-
-    public String getAlterarProprietario() {
-        return alterarProprietario;
-    }
-
-    public String getAlterarImovel() {
-        return alterarImovel;
-    }
-
-    // Getters camada 2 -> remover
-
-    public String getRemoverCliente() {
-        return removerCliente;
-    }
-
-    public String getRemoverCorretor() {
-        return removerCorretor;
-    }
-
-    public String getRemoverProprietario() {
-        return removerProprietario;
-    }
-
-    public String getRemoverImovel() {
-        return removerImovel;
-    }
-
-
     // Getters camada 2 -> Criar Proposta
 
     public String getPropostaCpfCnpjCliente() {
@@ -250,5 +201,20 @@ public class Mensagens {
 
     public String getPropostaComissao() {
         return propostaComissao;
+    }
+
+
+    // Getters camada 2 -> Criar Venda
+
+    public String getVendaPropostaID() {
+        return vendaPropostaID;
+    }
+
+    public String getVendaCpfCnpjProprietario() {
+        return vendaCpfCnpjProprietario;
+    }
+
+    public String getVendaFormaDePagamento() {
+        return vendaFormaDePagamento;
     }
 }

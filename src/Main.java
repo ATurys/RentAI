@@ -16,6 +16,7 @@ public class Main {
         ArrayList<DonoImovel> proprietarios = new ArrayList<DonoImovel>();
         ArrayList<Imovel> imoveis = new ArrayList<Imovel>();
         ArrayList<Proposta> propostas = new ArrayList<Proposta>();
+        ArrayList<Venda> vendas = new ArrayList<Venda>();
 
         boolean continua = true;
 
@@ -74,16 +75,44 @@ public class Main {
                             System.out.println("Cadastro concluído");
                             break;
                         case 4://Cadastro de Imovel
+                            System.out.println("[DIGITE 0 PARA SAIR]");
                             System.out.println(mensagem.getCadastroImovel());
                             String bairroImovel = leitor.lerString("Digite o bairro: ");
+                            if (bairroImovel.equals("0")) {
+                                break;
+                            }
                             String cidadeImovel = leitor.lerString("Digite a cidade: ");
+                            if (cidadeImovel.equals("0")) {
+                                break;
+                            }
                             String ruaImovel = leitor.lerString("Digite a rua: ");
+                            if (ruaImovel.equals("0")) {
+                                break;
+                            }
                             String numeroImovel = leitor.lerString("Digite o numero: ");
+                            if (numeroImovel.equals("0")) {
+                                break;
+                            }
                             String cepImovel = leitor.lerString("Digite o CEP: ");
+                            if (cepImovel.equals("0")) {
+                                break;
+                            }
                             String tipoImovel = leitor.lerString("Digite o tipo (casa ou apartamneto): ");
+                            if (tipoImovel.equals("0")) {
+                                break;
+                            }
                             String statusImovel = leitor.lerString("Digite o status do ímovel (Reformado, Mobiliado ou Construção): ");
+                            if (statusImovel.equals("0")) {
+                                break;
+                            }
                             String nomeImovel = leitor.lerString("Digite o nome do movel: ");
+                            if (nomeImovel.equals("0")) {
+                                break;
+                            }
                             String cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+                            if (cpfCnpjImovel.equals("0")) {
+                                break;
+                            }
 
                             // Cria o Endereço, ID e Ímovel em sí no sistema
                             Endereco novoEndereco = new Endereco(bairroImovel, cidadeImovel, ruaImovel, numeroImovel, cepImovel);
@@ -101,6 +130,9 @@ public class Main {
                                         achouProprietario = true;
                                         break;
                                     }
+                                }
+                                if (achouProprietario) {
+                                    break;
                                 }
                                 System.out.println("Proprietário não encontrado, tente novamente: ");
                                 cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
@@ -319,7 +351,7 @@ public class Main {
                         }
                         System.out.println("Imovel não encontrado, tente novamente: ");
                         propostaImovel = leitor.lerInt("Digite o ID do Imovel ou digite 0 para sair: ");
-                    } // Verifica se existe esse cliente
+                    } // Verifica se existe esse imovel
                         // Saida da criação de proposta
                     if (propostaImovel == 0) {
                         break;
@@ -332,10 +364,11 @@ public class Main {
                     }
 
                     // Pegar comissao (não há saida nesse caso)
+                    System.out.println("Digite 0 caso não haja comissão, você não vai sair do sistema!\n");
                     float propostaComissao = leitor.lerFloat(mensagem.getPropostaComissao());
 
                     // Cria o ID no sistema
-                    int idProposta = propostas.size() + 1;
+                    int iDProposta = propostas.size() + 1;
 
 
                     Proposta novaProposta = new Proposta(
@@ -343,7 +376,7 @@ public class Main {
                             corretorProposta,
                             propostaComissao,
                             imovelProposta,
-                            idProposta,
+                            iDProposta,
                             propostaValor,
                             "PROPOSTA ABERTA"
                     );
@@ -353,10 +386,110 @@ public class Main {
                     break;
 
                 case 4://Anunciar Venda
-                    userPrompt = leitor.lerInt(mensagem.getAnunciar());
-                    switch (userPrompt) {
-                        case 1:
+                    Boolean verifica = false;
+                    while (!verifica) {
+                        System.out.println("[DIGITE 0 PARA SAIR]");
+                        System.out.println((mensagem.getAnunciar()));
+                        Proposta propostaVenda = null;
+                        DonoImovel donoImovel = null;
+
+                        //Pegar Proposta
+                        iDProposta = leitor.lerInt((mensagem.getVendaPropostaID()));
+                        achou = false;
+                        while (!achou) {
+                            if (iDProposta == 0) {
+                                break;
+                            }// verifica saida
+                            for (int i = 0; i < propostas.size(); i++) {
+                                propostaVenda = propostas.get(i);
+                                if (propostaVenda.getId() == (iDProposta)) {
+                                    // Achou Proposta correspondente
+                                    achou = true;
+                                    break;
+                                }
+                            }
+                            System.out.println("Proposta não encontrado, tente novamente: ");
+                            iDProposta = leitor.lerInt("Digite o ID da Proposta ou digite 0 para sair: ");
+                        } // Verifica se existe essa proposta
+                        // Saida da escolha de proposta
+                        if (iDProposta == 0) {
                             break;
+                        }
+
+                        //Pegar Proprietario
+                        String cpfCnpjProprietario = leitor.lerString(mensagem.getVendaCpfCnpjProprietario());
+                        achou = false;
+                        while (!achou) {
+                            if (cpfCnpjProprietario.equals("0")) {
+                                break;
+                            }// verifica saida
+                            for (int i = 0; i < proprietarios.size(); i++) {
+                                donoImovel = proprietarios.get(i);
+                                if (donoImovel.getCpfOuCnpjDonoImovel() == (cpfCnpjProprietario)) {
+                                    // Achou Proprietario correspondente
+                                    achou = true;
+                                    break;
+                                }
+                            }
+                            System.out.println("Proprietario não encontrado, tente novamente: ");
+                            cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do Proprietario ou digite 0 para sair: ");
+                        } // Verifica se existe esse Proprietario
+                        // Saida da escolha de Proprietario
+                        if (cpfCnpjProprietario.equals("0")) {
+                            break;
+                        }
+
+                        //Escolher forma de pagamento
+                        System.out.println("[DIGITE 0 PARA SAIR]");
+                        String formaDePagamento = leitor.lerString(mensagem.getVendaFormaDePagamento());
+                        if (formaDePagamento.equals("0")) {
+                            break;
+                        }
+
+                        // Definir valor da venda
+                        float valorVenda = propostaVenda.getValorOferecido();
+
+                        //Definir ID da venda
+                        int idVenda = vendas.size() + 1;
+
+                        System.out.println("Venda: " +
+                                "\nId da proposta: " + propostaVenda.getId() +
+                                "\nValor da venda: " + propostaVenda.getValorOferecido() +
+                                "\nForma de pagamento: " + formaDePagamento +
+                                "\nProprietario atual: " + donoImovel.getUserInfo().getNome() + " " + donoImovel.getUserInfo().getSobrenome() +
+                                "\nCPF/CNPJ do proprietario atual: " + donoImovel.getCpfOuCnpjProprietarioCripted();
+                        );
+                        verifica = leitor.lerBoolean("Confirmar?");
+                        if (verifica) {
+                            //Atualiza status da proposta
+                            for (int i = 0; i < propostas.size(); i++) {
+                                if (propostaVenda.equals(propostas.get(i))) {
+                                    // Achou Proposta correspondente
+                                    propostas.get(i).setStatus("PROPOSTA TRANSFORMADA EM VENDA");
+                                    propostaVenda.setStatus("PROPOSTA TRANSFORMADA EM VENDA");
+                                    break;
+                                }
+                            }
+                            //Cria a venda
+                            Venda venda = new Venda(
+                                    propostaVenda,
+                                    donoImovel,
+                                    idVenda,
+                                    valorVenda,
+                                    formaDePagamento
+                            );
+                        }
+                        //TODO
+                        // Obter proposta -> feito
+                        // Obter proprietario -> feito
+                        /* Definir:
+                            ID da venda -> feito
+                            Valor final -> feito
+                            Forma de pagamento -> feito
+                            Atualizar Status -> feito
+                            Criar a venda -> feito
+                            Permitir a visualização na parte de view do sistema -> FAZER
+                         */
                     }
                     break;
                 case 5: //Sair

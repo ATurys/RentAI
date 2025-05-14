@@ -2,27 +2,21 @@ import java.time.LocalDateTime;
 
 public class Venda {
     private Proposta proposta;
-    private Cliente cliente;
-    private Corretor corretor;
     private DonoImovel donoImovel;
 
-    private int id;
+    private int idVenda;
     private String dataVenda;
     private float valorFinalVenda;
     private String formaPagamentoVenda;
-    private boolean comissaoVenda;
 
 
-    public Venda(Proposta proposta, Cliente cliente, Corretor corretor, DonoImovel donoImovel, int id, float valorFinalVenda, String formaPagamentoVenda, boolean comissaoVenda) {
+    public Venda(Proposta proposta, DonoImovel donoImovel, int id, float valorFinalVenda, String formaPagamentoVenda) {
         this.proposta = proposta;
-        this.cliente = cliente;
-        this.corretor = corretor;
         this.donoImovel = donoImovel;
-        this.id = id;
+        this.idVenda = id;
         this.dataVenda = LocalDateTime.now().toString();
         this.valorFinalVenda = valorFinalVenda;
         this.formaPagamentoVenda = formaPagamentoVenda;
-        this.comissaoVenda = comissaoVenda;
     }
 
     // Getters
@@ -30,20 +24,12 @@ public class Venda {
         return proposta;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public Corretor getCorretor() {
-        return corretor;
-    }
-
     public DonoImovel getDonoImovel() {
         return donoImovel;
     }
 
     public int getId() {
-        return id;
+        return idVenda;
     }
 
     public String getDataVenda() {
@@ -58,10 +44,6 @@ public class Venda {
         return formaPagamentoVenda;
     }
 
-    public boolean isComissaoVenda() {
-        return comissaoVenda;
-    }
-
     // Setters
     public void setValorFinalVenda(float valorFinalVenda) {
         this.valorFinalVenda = valorFinalVenda;
@@ -69,9 +51,5 @@ public class Venda {
 
     public void setFormaPagamentoVenda(String formaPagamentoVenda) {
         this.formaPagamentoVenda = formaPagamentoVenda;
-    }
-
-    public void setComissaoVenda(boolean comissaoVenda) {
-        this.comissaoVenda = comissaoVenda;
     }
 }
