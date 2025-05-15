@@ -7,6 +7,34 @@ public class Main {
                     "Voltando... \n\n");
         } // Verifica se o numero esta entre os valores delimitados
     }
+    public static boolean verificarCpfOuCnpj(String cpfOuCnpj) {
+        if (cpfOuCnpj.length() == 11 || cpfOuCnpj.length() == 14 ) {
+            return true;
+        } else {
+            System.out.println("Digite o CPF ou CNPJ corretamente:\n" +
+                    "CPF(11 Dígitos): 12345678901\n" +
+                    "CNPJ(14 Dígitos): 12345678901234\n");
+            return false;
+        }
+    } // Verifica se esta entre o tamanho minimo de CPF ou CNPJ
+
+    public static boolean verificarCreci(String creci) {
+        /* REGEX:
+            ^ → início da string
+            CRECI- → texto fixo
+            [A-Z]{2} → duas letras maiúsculas (iniciais do estado)
+            \\d{8} → exatamente 8 dígitos
+            $ → fim da string
+         */
+        String modelo = "^CRECI-[A-Z]{2}\\d{8}$";
+        if (creci.matches(modelo) ) {
+            return true;
+        } else {
+            System.out.println("Digite o CRECI corretamente:\n" +
+                    "Modelo Exemplo de CRECI: CRECI-RS01234567");
+            return false;
+        }
+    } // Verifica se esta o modelo CRECI corretamente
 
     public static void main(String[] args) {
         Leitor leitor = new Leitor();
@@ -52,7 +80,26 @@ public class Main {
                             if (telefoneCliente.equals("0")) {
                                 break;
                             }
+
                             String cpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do cliente: ");
+                            if (cpfCnpjCliente.equals("0")) {
+                                break;
+                            }
+
+                            //Realiza a verificação do CPF/CNPJ digitado
+                            boolean verificado = false;
+                            while (!verificado){
+                                if (verificarCpfOuCnpj(cpfCnpjCliente)){
+                                    verificado = true;
+                                    break;
+                                }
+                                else{
+                                    cpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do cliente: ");
+                                    if (cpfCnpjCliente.equals("0")) {
+                                        break;
+                                    }
+                                }
+                            }
                             if (cpfCnpjCliente.equals("0")) {
                                 break;
                             }
@@ -92,6 +139,24 @@ public class Main {
                                 break;
                             }
 
+                            //Realiza a verificação do CRECI digitado
+                            verificado = false;
+                            while (!verificado){
+                                if (verificarCreci(creciCorretor)){
+                                    verificado = true;
+                                    break;
+                                }
+                                else{
+                                    creciCorretor = leitor.lerString("Digite o CRECI do corretor: ");
+                                    if (creciCorretor.equals("0")) {
+                                        break;
+                                    }
+                                }
+                            }
+                            if (creciCorretor.equals("0")) {
+                                break;
+                            }
+
                             Usuario novoUser2 = new Usuario(emailCorretor, senhaCorretor, nomeCorretor, sobrenomeCorretor, telefoneCorretor);
                             Corretor novoCorretor = new Corretor(novoUser2, creciCorretor);
                             corretores.add(novoCorretor);
@@ -122,6 +187,24 @@ public class Main {
                                 break;
                             }
                             String cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+                            if (cpfCnpjProprietario.equals("0")) {
+                                break;
+                            }
+
+                            //Realiza a verificação do CPF/CNPJ digitado
+                            verificado = false;
+                            while (!verificado){
+                                if (verificarCpfOuCnpj(cpfCnpjProprietario)){
+                                    verificado = true;
+                                    break;
+                                }
+                                else{
+                                    cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+                                    if (cpfCnpjProprietario.equals("0")) {
+                                        break;
+                                    }
+                                }
+                            }
                             if (cpfCnpjProprietario.equals("0")) {
                                 break;
                             }
@@ -173,6 +256,24 @@ public class Main {
                                 break;
                             }
 
+                            //Realiza a verificação do CPF/CNPJ digitado
+                            verificado = false;
+                            while (!verificado){
+                                if (verificarCpfOuCnpj(cpfCnpjImovel)){
+                                    verificado = true;
+                                    break;
+                                }
+                                else{
+                                    cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+                                    if (cpfCnpjImovel.equals("0")) {
+                                        break;
+                                    }
+                                }
+                            }
+                            if (cpfCnpjImovel.equals("0")) {
+                                break;
+                            }
+
                             // Validação de proprietário
                             DonoImovel proprietarioImovel = null;
                             boolean achouProprietario = false;
@@ -194,6 +295,24 @@ public class Main {
                                 }
                                 System.out.println("Proprietário não encontrado, tente novamente: ");
                                 cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+
+                                //Realiza a verificação do CPF/CNPJ digitado
+                                verificado = false;
+                                while (!verificado){
+                                    if (verificarCpfOuCnpj(cpfCnpjImovel)){
+                                        verificado = true;
+                                        break;
+                                    }
+                                else{
+                                        cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
+                                        if (cpfCnpjImovel.equals("0")) {
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (cpfCnpjImovel.equals("0")) {
+                                    break;
+                                }
                             }
                             if (cpfCnpjImovel.equals("0")) {
                                 break;
