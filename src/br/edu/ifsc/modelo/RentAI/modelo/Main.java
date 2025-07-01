@@ -116,9 +116,7 @@ public class Main {
                             if (cpfCnpjCliente.equals("0")) {
                                 break;
                             }
-
-                            Usuario novoUser = new Usuario(emailCliente, senhaCliente, nomeCliente, sobrenomeCliente, telefoneCliente);
-                            Cliente novoCliente = new Cliente(novoUser, cpfCnpjCliente);
+                            Cliente novoCliente = new Cliente(emailCliente, senhaCliente, nomeCliente, sobrenomeCliente, telefoneCliente, cpfCnpjCliente);
                             clientes.add(novoCliente);
 
                             System.out.println("Cadastro concluído");
@@ -169,9 +167,7 @@ public class Main {
                             if (creciCorretor.equals("0")) {
                                 break;
                             }
-
-                            Usuario novoUser2 = new Usuario(emailCorretor, senhaCorretor, nomeCorretor, sobrenomeCorretor, telefoneCorretor);
-                            Corretor novoCorretor = new Corretor(novoUser2, creciCorretor);
+                            Corretor novoCorretor = new Corretor(emailCorretor, senhaCorretor, nomeCorretor, sobrenomeCorretor, telefoneCorretor, creciCorretor);
                             corretores.add(novoCorretor);
 
                             System.out.println("Cadastro concluído");
@@ -221,9 +217,7 @@ public class Main {
                             if (cpfCnpjProprietario.equals("0")) {
                                 break;
                             }
-
-                            Usuario novoUser3 = new Usuario(emailProprietario, senhaProprietario, nomeProprietario, sobrenomeProprietario, telefoneProprietario);
-                            DonoImovel novoProprietario = new DonoImovel(novoUser3, cpfCnpjProprietario);
+                            DonoImovel novoProprietario = new DonoImovel(emailProprietario, senhaProprietario, nomeProprietario, sobrenomeProprietario, telefoneProprietario, cpfCnpjProprietario);
                             proprietarios.add(novoProprietario);
 
                             System.out.println("Cadastro concluído");

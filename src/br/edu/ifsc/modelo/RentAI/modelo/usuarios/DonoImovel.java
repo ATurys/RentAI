@@ -1,16 +1,18 @@
 package br.edu.ifsc.modelo.RentAI.modelo.usuarios;
 
+import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
 import java.util.ArrayList;
 
-public class DonoImovel {
+public class DonoImovel extends Usuario {
     private ArrayList<Imovel> imoveis;
     private Usuario userInfo;
     private String cpfOuCnpjDonoImovel;
     private String cpfOuCnpjProprietarioCripted;
 
     // Construtor
-    public DonoImovel(Usuario userInfo, String cpfOuCnpjDonoImovel) {
-        this.userInfo = userInfo;
+    public DonoImovel(String email, String senha, String nome, String sobrenome, String telefone, String cpfOuCnpjDonoImovel) {
+
+        super(email, senha, nome, sobrenome, telefone);
         this.cpfOuCnpjDonoImovel = cpfOuCnpjDonoImovel;
         this.imoveis = new ArrayList<>();
         this.cpfOuCnpjProprietarioCripted = cpfOuCnpjDonoImovel.substring(0,4);

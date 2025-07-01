@@ -1,27 +1,23 @@
 package br.edu.ifsc.modelo.RentAI.modelo.usuarios;
 
-public class Cliente {
+public class Cliente extends Usuario {
 
-    private Usuario userInfo;
     private String cpfOuCnpjCliente;
     private String cpfOuCnpjClienteCripted;
 
     // Construtor
-    public Cliente(Usuario userInfo, String cpfOuCnpjCliente) {
-        this.userInfo = userInfo;
+    public Cliente(String email, String senha, String nome, String sobrenome, String telefone, String cpfOuCnpjCliente) {
+        super(email, senha, nome, sobrenome, telefone);
         this.cpfOuCnpjCliente = cpfOuCnpjCliente;
         this.cpfOuCnpjClienteCripted = cpfOuCnpjCliente.substring(0,4);
     }
 
     public void mostrarInfoCliente() {
-        userInfo.mostrarInfoUser();
+        mostrarInfoUser();
         System.out.println("CPF/CNPJ: " + cpfOuCnpjClienteCripted + "....");
     }
 
     // Getters
-    public Usuario getUserInfo() {
-        return userInfo;
-    }
 
     public String getCpfOuCnpjCliente() {
         return cpfOuCnpjCliente;
@@ -32,7 +28,4 @@ public class Cliente {
     }
 
     // Setters
-    public void setUserInfo(Usuario userInfo) {
-        this.userInfo = userInfo;
-    }
 }

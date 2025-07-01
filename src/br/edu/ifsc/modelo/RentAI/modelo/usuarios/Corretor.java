@@ -1,25 +1,21 @@
 package br.edu.ifsc.modelo.RentAI.modelo.usuarios;
 
-public class Corretor {
+public class Corretor extends Usuario {
 
-    private Usuario userInfo;
     private String creciCoretor;
 
 
     // Construtor
-    public Corretor(Usuario userInfo, String creciCoretor) {
-        this.userInfo = userInfo;
+    public Corretor(String email, String senha, String nome, String sobrenome, String telefone, String creciCoretor) {
+        super(email, senha, nome, sobrenome, telefone);
         this.creciCoretor = creciCoretor;
     }
 
     public void mostrarInfoCorretor() {
-        userInfo.mostrarInfoUser();
+        mostrarInfoUser();
         System.out.println("CRECI: " + creciCoretor);
     }
     // Getters
-    public Usuario getUserInfo() {
-        return userInfo;
-    }
 
     public String getCreciCoretor() {
         return creciCoretor;
@@ -28,10 +24,5 @@ public class Corretor {
 
 
     // Setters
-    public void setUserInfo(Usuario userInfo) {
-        this.userInfo = userInfo;
-    }
-
-
 }
 

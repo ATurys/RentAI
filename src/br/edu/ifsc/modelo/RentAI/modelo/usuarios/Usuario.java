@@ -1,6 +1,6 @@
 package br.edu.ifsc.modelo.RentAI.modelo.usuarios;
 
-public class Usuario {
+public abstract class Usuario {
     private String email;
     private String senha;
     private String nome;
@@ -25,7 +25,7 @@ public class Usuario {
     }
 
     public void mostrarInfoUser() {
-        System.out.println("Email: " + email);
+        System.out.println("Email: " + this.email);
         System.out.println("Nome: " + this.nome);
         System.out.println("Sobrenome: " + this.sobrenome);
         System.out.println("Telefone: " + this.telefone);
