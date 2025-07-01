@@ -1,3 +1,7 @@
+package br.edu.ifsc.modelo.RentAI.modelo.transacoes;
+
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
+
 import java.time.LocalDateTime;
 
 public class Venda {
@@ -20,7 +24,7 @@ public class Venda {
     }
 
     public void mostrarInfoVenda() {
-        System.out.println("Informações da Proposta: \n");
+        System.out.println("Informações da br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta: \n");
         this.proposta.mostrarInfoProposta();
 
         System.out.println("\nInformações sobre o dono anterior do ímovel (Antes de ser realizada a venda): \n");
@@ -29,7 +33,7 @@ public class Venda {
         System.out.println("\nInformações sobre o dono atual do ímovel (Após de ser realizada a venda): \n");
         this.proposta.getCliente().mostrarInfoCliente();
 
-        System.out.println("Informações da Venda em sí: \n");
+        System.out.println("Informações da br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda em sí: \n");
         System.out.println("ID da venda: " + this.idVenda);
         System.out.println("Data da venda: " + this.dataVenda);
         System.out.println("Valor da venda: " + this.valorFinalVenda);

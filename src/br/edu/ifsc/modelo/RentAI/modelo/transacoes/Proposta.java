@@ -1,3 +1,9 @@
+package br.edu.ifsc.modelo.RentAI.modelo.transacoes;
+
+import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
+
 import java.time.LocalDateTime;
 
 public class Proposta {
@@ -24,11 +30,11 @@ public class Proposta {
 
     public void mostrarInfoProposta(){
         System.out.println("ID da proposta: " + this.id);
-        System.out.println("Cliente: " + cliente.getUserInfo().getNome() + " " + cliente.getUserInfo().getSobrenome() );
-        System.out.println("Iniciais CPF/CNPJ do Cliente: " + cliente.getCpfOuCnpjClienteCripted());
-        System.out.println("Corretor: " + corretor.getUserInfo().getNome() + " " + corretor.getUserInfo().getSobrenome() );
-        System.out.println("CRECI Corretor: " + corretor.getCreciCoretor());
-        System.out.println("Comissão do Corretor: " + comissaoCorretor);
+        System.out.println("br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente: " + cliente.getUserInfo().getNome() + " " + cliente.getUserInfo().getSobrenome() );
+        System.out.println("Iniciais CPF/CNPJ do br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente: " + cliente.getCpfOuCnpjClienteCripted());
+        System.out.println("br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor: " + corretor.getUserInfo().getNome() + " " + corretor.getUserInfo().getSobrenome() );
+        System.out.println("CRECI br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor: " + corretor.getCreciCoretor());
+        System.out.println("Comissão do br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor: " + comissaoCorretor);
         System.out.println("Valor oferecido: " + this.valorOferecido);
         System.out.println("Data da proposta: " + this.dataDaProposta);
         System.out.println("Status: " + this.status);

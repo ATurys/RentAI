@@ -1,3 +1,5 @@
+package br.edu.ifsc.modelo.RentAI.modelo.imovel;
+
 public class Endereco {
     private String bairro;
     private String cidade;

@@ -1,3 +1,5 @@
+package br.edu.ifsc.modelo.RentAI.modelo.usuarios;
+
 public class Cliente {
 
     private Usuario userInfo;

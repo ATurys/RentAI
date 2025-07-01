@@ -1,3 +1,5 @@
+package br.edu.ifsc.modelo.RentAI.modelo.usuarios;
+
 public class Usuario {
     private String email;
     private String senha;

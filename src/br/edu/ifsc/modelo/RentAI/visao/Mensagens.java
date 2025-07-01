@@ -1,23 +1,25 @@
+package br.edu.ifsc.modelo.RentAI.visao;
+
 public class Mensagens {
     private String textoInicial =
             "Olá, selecione uma das opções abaixo:\n" +
             "\t1 - Cadastrar\n" +
             "\t2 - Visualizar\n" +
             "\t3 - Criar uma proposta\n" +
-            "\t4 - Anunciar uma Venda\n" +
+            "\t4 - Anunciar uma br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda\n" +
             "\t5 - Sair\n";
 
     // Textos camda 1
     private String cadastro =
-            "\t1 - Cadastrar Cliente\n" +
-            "\t2 - Cadastrar Corretor\n" +
+            "\t1 - Cadastrar br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente\n" +
+            "\t2 - Cadastrar br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor\n" +
             "\t3 - Cadastrar Proprietário\n" +
             "\t4 - Cadastrar Ímovel\n" +
             "\t5 - Voltar\n";
 
     private String visualizar =
-            "\t1 - Visualizar Cliente\n" +
-            "\t2 - Visualizar Corretor\n" +
+            "\t1 - Visualizar br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente\n" +
+            "\t2 - Visualizar br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor\n" +
             "\t3 - Visualizar Proprietário\n" +
             "\t4 - Visualizar Ímovel\n" +
             "\t5 - Visualizar Vendas\n" +
@@ -25,15 +27,15 @@ public class Mensagens {
 
     private String criar =
             "Precisaremos das seguintes informações: \n" +
-            "\t1 - CPF do Cliente\n" +
-            "\t2 - CRECI do Corretor\n" +
+            "\t1 - CPF do br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente\n" +
+            "\t2 - CRECI do br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor\n" +
             "\t3 - ID Ímovel\n" +
             "\t4 - Valor da proposta\n" +
             "\t5 - Comissão do corretor\n";
 
     private String anunciar =
             "Precisaremos das seguintes informações: \n" +
-            "\t1 - ID da Proposta que foi aceita\n" +
+            "\t1 - ID da br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta que foi aceita\n" +
             "\t2 - CPF/CNPJ do proprietário atual\n" +
             "\t3 - Forma de pagamento\n";
 
@@ -109,7 +111,7 @@ public class Mensagens {
 
     // Opções para criar uma venda
     private String vendaPropostaID =
-            "ID da Proposta que foi aceita: ";
+            "ID da br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta que foi aceita: ";
     private String vendaCpfCnpjProprietario =
             "CPF/CNPJ do proprietário atual: ";
     private String vendaFormaDePagamento =
@@ -188,7 +190,7 @@ public class Mensagens {
     }
 
 
-    // Getters camada 2 -> Criar Proposta
+    // Getters camada 2 -> Criar br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta
 
     public String getPropostaCpfCnpjCliente() {
         return propostaCpfCnpjCliente;
@@ -211,7 +213,7 @@ public class Mensagens {
     }
 
 
-    // Getters camada 2 -> Criar Venda
+    // Getters camada 2 -> Criar br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda
 
     public String getVendaPropostaID() {
         return vendaPropostaID;

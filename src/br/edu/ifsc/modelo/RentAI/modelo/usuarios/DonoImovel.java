@@ -1,3 +1,5 @@
+package br.edu.ifsc.modelo.RentAI.modelo.usuarios;
+
 import java.util.ArrayList;
 
 public class DonoImovel {

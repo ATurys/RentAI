@@ -1,3 +1,7 @@
+package br.edu.ifsc.modelo.RentAI.modelo.imovel;
+
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
+
 public class Imovel {
 
     private Endereco endereco;
@@ -26,10 +30,10 @@ public class Imovel {
         this.endereco.mostrarEndereco();
 
         System.out.println("\nSobre o ímovel: ");
-        System.out.println("ID do Imovel: " + this.idImovel);
-        System.out.println("Nome do Imovel: " + this.nomeImovel);
-        System.out.println("Tipo do Imovel: " + this.tipoImovel);
-        System.out.println("Status do Imovel: " + this.statusImovel);
+        System.out.println("ID do br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel: " + this.idImovel);
+        System.out.println("Nome do br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel: " + this.nomeImovel);
+        System.out.println("Tipo do br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel: " + this.tipoImovel);
+        System.out.println("Status do br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel: " + this.statusImovel);
     }
 
     // Getters

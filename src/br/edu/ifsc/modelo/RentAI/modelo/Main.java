@@ -1,3 +1,16 @@
+package br.edu.ifsc.modelo.RentAI.modelo;
+
+import br.edu.ifsc.modelo.RentAI.leitor.Leitor;
+import br.edu.ifsc.modelo.RentAI.modelo.imovel.Endereco;
+import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
+import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta;
+import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Usuario;
+import br.edu.ifsc.modelo.RentAI.visao.Mensagens;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -348,7 +361,7 @@ public class Main {
                                 for (int i = 0; i < clientes.size(); i++) {
                                     Cliente c = clientes.get(i);
                                     if (c.getCpfOuCnpjCliente().equals(view)) {
-                                        // Achou o Cliente com o CPF correspondente
+                                        // Achou o usuarios.Cliente com o CPF correspondente
                                         clientes.get(i).mostrarInfoCliente();
                                         achouCliente = true;
                                         break;
@@ -358,7 +371,7 @@ public class Main {
                                     break;
                                 }
                                 System.out.println("Cliente não encontrado, tente novamente: ");
-                                view = leitor.lerString("Digite o CPF/CNPJ do Cliente: ");
+                                view = leitor.lerString("Digite o CPF/CNPJ do usuarios.Cliente: ");
                             }
                             break;
 
@@ -374,7 +387,7 @@ public class Main {
                                 for (int i = 0; i < corretores.size(); i++) {
                                     Corretor c = corretores.get(i);
                                     if (c.getCreciCoretor().equals(view)) {
-                                        // Achou o Corretor com o CRECI correspondente
+                                        // Achou o usuarios.Corretor com o CRECI correspondente
                                         corretores.get(i).mostrarInfoCorretor();
                                         achouCorretor = true;
                                         break;
@@ -383,8 +396,8 @@ public class Main {
                                 if (achouCorretor) {
                                     break;
                                 }
-                                System.out.println("Corretor não encontrado, tente novamente: ");
-                                view = leitor.lerString("Digite o CCRECI do Corretor: ");
+                                System.out.println("usuarios.Corretor não encontrado, tente novamente: ");
+                                view = leitor.lerString("Digite o CCRECI do usuarios.Corretor: ");
                             }
                             break;
 
@@ -434,7 +447,7 @@ public class Main {
                                         for (int i = 0; i < propostas.size(); i++) {
                                             Proposta prop = propostas.get(i);
                                             if (prop.getId() == userPrompt) {
-                                                // Achou a Proposta com o ID correspondente
+                                                // Achou a transacoes.Proposta com o ID correspondente
                                                 propostas.get(i).mostrarInfoProposta();
                                                 achouProposta = true;
                                                 break;

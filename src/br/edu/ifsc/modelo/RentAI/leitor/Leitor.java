@@ -1,3 +1,5 @@
+package br.edu.ifsc.modelo.RentAI.leitor;
+
 import java.util.Scanner;
 
 public class Leitor {
