@@ -9,6 +9,7 @@ import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Usuario;
+import br.edu.ifsc.modelo.RentAI.persistenciaDB.Conexao;
 import br.edu.ifsc.modelo.RentAI.visao.Mensagens;
 
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class Main {
     } // Verifica se esta o modelo CRECI corretamente
 
     public static void main(String[] args) {
+        Conexao.criarTabelas();
         Leitor leitor = new Leitor();
         Mensagens mensagem = new Mensagens();
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();

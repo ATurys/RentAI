@@ -1,4 +1,4 @@
-package br.edu.ifsc.modelo.RentAI.persistencia;
+package br.edu.ifsc.modelo.RentAI.persistenciaDB;
 
 import java.util.List;
 
