@@ -6,22 +6,16 @@ public abstract class Usuario {
     private String nome;
     private String sobrenome;
     private String telefone;
+    private String userName;
 
     //Construtores
-    public Usuario(String email, String senha, String nome, String sobrenome) {
-        this.email = email;
-        this.senha = senha;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.telefone = "N/A";
-    }
-
-    public Usuario(String email, String senha, String nome, String sobrenome, String telefone) {
+    public Usuario(String email, String senha, String nome, String sobrenome, String telefone, String userName) {
         this.email = email;
         this.senha = senha;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.telefone = telefone;
+        this.userName = userName;
     }
 
     public void mostrarInfoUser() {
@@ -29,6 +23,7 @@ public abstract class Usuario {
         System.out.println("Nome: " + this.nome);
         System.out.println("Sobrenome: " + this.sobrenome);
         System.out.println("Telefone: " + this.telefone);
+        System.out.println("User: " + this.userName);
     }
     //Getters
     public String getEmail() {
@@ -51,6 +46,8 @@ public abstract class Usuario {
         return telefone;
     }
 
+    public String getUserName() {return userName;}
+
     //Setters
     public void setTelefone(String telefone) {
         this.telefone = telefone;
@@ -59,4 +56,6 @@ public abstract class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public void setUserName(String userName) {this.userName = userName;}
 }
