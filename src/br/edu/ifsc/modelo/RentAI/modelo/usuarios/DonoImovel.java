@@ -17,6 +17,12 @@ public class DonoImovel extends Usuario {
         this.cpfOuCnpjProprietarioCripted = cpfOuCnpjDonoImovel.substring(0,4) + "....";
     }
 
+    public DonoImovel(String proprietarioDonoImovel) {
+        super(null,null,null,null,null, null);
+        this.cpfOuCnpjDonoImovel = proprietarioDonoImovel;
+        this.cpfOuCnpjProprietarioCripted = cpfOuCnpjDonoImovel.substring(0,4) + "....";
+    }
+
     public void AdicionarImovel(Imovel imovel) {
         imoveis.add(imovel);
     };

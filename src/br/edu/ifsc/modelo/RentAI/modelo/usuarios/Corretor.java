@@ -6,8 +6,8 @@ public class Corretor extends Usuario {
 
 
     // Construtor
-    public Corretor(String email, String senha, String nome, String sobrenome, String telefone, String creciCoretor) {
-        super(email, senha, nome, sobrenome, telefone);
+    public Corretor(String email, String senha, String nome, String sobrenome, String telefone, String userName, String creciCoretor) {
+        super(email, senha, nome, sobrenome, telefone, userName);
         this.creciCoretor = creciCoretor;
     }
 

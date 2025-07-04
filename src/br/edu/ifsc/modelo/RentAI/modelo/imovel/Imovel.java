@@ -37,14 +37,14 @@ public class Imovel {
         this.tipoImovel = tipoImovel;
         this.statusImovel = statusImovel;
         this.donoImovel = new DonoImovel(null, null, null, null, null, null, cpfCnpjProprietario);
-        this.corretor = new Corretor(null, null, null, null, null, creciCorretpr);
+        this.corretor = new Corretor(null, null, null, null, null, null, creciCorretpr);
         this.metragem = metragem;
         this.banheiros = banheiros;
         this.quartos = quartos;
         this.vagas = vagas;
     }
 
-    public Imovel(int idImovel) {
+    public Imovel(int idImovel) { //Para buscas no Banco de dados
         this.idImovel = idImovel;
     }
 

@@ -6,8 +6,8 @@ public class Cliente extends Usuario {
     private String cpfOuCnpjClienteCripted;
 
     // Construtor
-    public Cliente(String email, String senha, String nome, String sobrenome, String telefone, String cpfOuCnpjCliente) {
-        super(email, senha, nome, sobrenome, telefone);
+    public Cliente(String email, String senha, String nome, String sobrenome, String telefone, String userName, String cpfOuCnpjCliente) {
+        super(email, senha, nome, sobrenome, telefone, userName);
         this.cpfOuCnpjCliente = cpfOuCnpjCliente;
         this.cpfOuCnpjClienteCripted = cpfOuCnpjCliente.substring(0,4);
     }

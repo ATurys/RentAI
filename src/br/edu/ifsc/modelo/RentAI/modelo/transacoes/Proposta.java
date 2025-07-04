@@ -35,18 +35,20 @@ public class Proposta {
         this.dateTimeProposta = (Date) Date.from(agora.atZone(zoneId).toInstant());
     }
 
-    public Proposta(String cpfCnpjCliente, String creciCorretor, int idImovel, int id, float valorOferecido, String status) {
-        this.cliente = new Cliente(null, null, null, null, null, cpfCnpjCliente);
-        this.corretor = new Corretor(null, null, null, null, null, creciCorretor);
+    public Proposta(String cpfCnpjCliente, String creciCorretor, int idImovel, int id, float valorOferecido, String status, Date dataDaProposta) { //Para buscar uma proposta
+        this.cliente = new Cliente(null, null, null, null, null, null, cpfCnpjCliente);
+        this.corretor = new Corretor(null, null, null, null, null, null, creciCorretor);
         this.imovel = new Imovel(idImovel);
         this.id = id;
         this.valorOferecido = valorOferecido;
-        this.dataDaProposta = LocalDateTime.now().toString();
+        this.dataDaProposta = dataDaProposta.toString();
         this.status = status;
+    }
 
-        LocalDateTime agora = LocalDateTime.now();
-        ZoneId zoneId = ZoneId.systemDefault();
-        this.dateTimeProposta = (Date) Date.from(agora.atZone(zoneId).toInstant());
+    public Proposta(String cpfCnpjCliente, String creciCorretor, int idImovel){ //Para buscar uma venda
+        this.cliente = new Cliente(null, null, null, null, null, null, cpfCnpjCliente);
+        this.corretor = new Corretor(null, null, null, null, null, null, creciCorretor);
+        this.imovel = new Imovel(idImovel);
     }
 
     public void mostrarInfoProposta(){

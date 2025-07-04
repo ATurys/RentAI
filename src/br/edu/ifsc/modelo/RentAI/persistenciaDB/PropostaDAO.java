@@ -62,7 +62,7 @@ public class PropostaDAO implements DAO<Proposta, Integer> {
             statement.setInt(1, entidade.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Erro ao deletar o proprietario " + e.getMessage());
+            System.err.println("Erro ao deletar a proposta " + e.getMessage());
         }
     }
 
@@ -82,7 +82,8 @@ public class PropostaDAO implements DAO<Proposta, Integer> {
                         resultSet.getInt("id_imovel"),
                         resultSet.getInt("id_proposta"),
                         resultSet.getFloat("valor_oferecido"),
-                        resultSet.getString("status"));
+                        resultSet.getString("status"),
+                        resultSet.getDate("data_proposta"));
                 return p;
             }else{
                 System.out.println("Não existe uma proposta com o ID " + arg);
@@ -110,6 +111,7 @@ public class PropostaDAO implements DAO<Proposta, Integer> {
                         resultSet.getInt("id_proposta"),
                         resultSet.getFloat("valor_oferecido"),
                         resultSet.getString("status"));
+                        resultSet.getDate("data_proposta");
                 propostas.add(p);
             }
 
