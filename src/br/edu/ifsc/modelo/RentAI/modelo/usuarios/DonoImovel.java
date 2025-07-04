@@ -5,34 +5,29 @@ import java.util.ArrayList;
 
 public class DonoImovel extends Usuario {
     private ArrayList<Imovel> imoveis;
-    private Usuario userInfo;
     private String cpfOuCnpjDonoImovel;
     private String cpfOuCnpjProprietarioCripted;
 
     // Construtor
-    public DonoImovel(String email, String senha, String nome, String sobrenome, String telefone, String cpfOuCnpjDonoImovel) {
+    public DonoImovel(String email, String senha, String nome, String sobrenome, String telefone, String userName, String cpfOuCnpjDonoImovel) {
 
-        super(email, senha, nome, sobrenome, telefone);
+        super(email, senha, nome, sobrenome, telefone, userName);
         this.cpfOuCnpjDonoImovel = cpfOuCnpjDonoImovel;
         this.imoveis = new ArrayList<>();
-        this.cpfOuCnpjProprietarioCripted = cpfOuCnpjDonoImovel.substring(0,4);
+        this.cpfOuCnpjProprietarioCripted = cpfOuCnpjDonoImovel.substring(0,4) + "....";
     }
 
     public void AdicionarImovel(Imovel imovel) {
         imoveis.add(imovel);
     };
     public void mostrarInfoProprietario() {
-        userInfo.mostrarInfoUser();
-        System.out.println("CPF/CNPJ: " + cpfOuCnpjProprietarioCripted + "....");
+        mostrarInfoUser();
+        System.out.println("CPF/CNPJ: " + cpfOuCnpjProprietarioCripted);
     }
 
     // Getters
     public ArrayList<Imovel> getImoveis() {
         return imoveis;
-    }
-
-    public Usuario getUserInfo() {
-        return userInfo;
     }
 
     public String getCpfOuCnpjDonoImovel() {
@@ -46,9 +41,5 @@ public class DonoImovel extends Usuario {
     // Setters
     public void setImoveis(ArrayList<Imovel> imoveis) {
         this.imoveis = imoveis;
-    }
-
-    public void setUserInfo(Usuario userInfo) {
-        this.userInfo = userInfo;
     }
 }

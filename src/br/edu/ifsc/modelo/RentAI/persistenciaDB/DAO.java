@@ -1,5 +1,7 @@
 package br.edu.ifsc.modelo.RentAI.persistenciaDB;
 
+import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
+
 import java.util.List;
 
 /**
@@ -14,9 +16,11 @@ public interface DAO<TipoClasse, TipoChavePrimaria> {
 
     void atualizar(TipoClasse entidade, TipoChavePrimaria arg);
 
+
     void deletar(TipoClasse entidade);
 
     TipoClasse buscar(TipoChavePrimaria arg);
+
 
     List<TipoClasse> buscarTodos();
 

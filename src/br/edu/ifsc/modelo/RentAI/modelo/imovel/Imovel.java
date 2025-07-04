@@ -1,5 +1,6 @@
 package br.edu.ifsc.modelo.RentAI.modelo.imovel;
 
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
 
 public class Imovel {
@@ -8,18 +9,39 @@ public class Imovel {
     private int idImovel;
     private String tipoImovel;
     private String statusImovel;
-    private String nomeImovel;
+    private float metragem;
+    private int banheiros;
+    private int quartos;
+    private int vagas;
     private DonoImovel donoImovel;
+    private Corretor corretor;
 
     // Construtor
 
-    public Imovel(Endereco endereco, int idImovel, String nomeImovel, String tipoImovel, String statusImovel, DonoImovel donoImovel) {
+    public Imovel(Endereco endereco, int idImovel, String tipoImovel, String statusImovel, float metragem, int banheiros, int quartos, int vagas, DonoImovel donoImovel, Corretor corretor) {
         this.endereco = endereco;
         this.idImovel = idImovel;
-        this.nomeImovel = nomeImovel;
         this.tipoImovel = tipoImovel;
         this.statusImovel = statusImovel;
         this.donoImovel = donoImovel;
+        this.corretor = corretor;
+        this.metragem = metragem;
+        this.banheiros = banheiros;
+        this.quartos = quartos;
+        this.vagas = vagas;
+    }
+
+    public Imovel(Endereco endereco, int idImovel, String tipoImovel, String statusImovel, float metragem, int banheiros, int quartos, int vagas, String cpfCnpjProprietario, String creciCorretpr) {
+        this.endereco = endereco;
+        this.idImovel = idImovel;
+        this.tipoImovel = tipoImovel;
+        this.statusImovel = statusImovel;
+        this.donoImovel = donoImovel(null, null, null, null, null, null, cpfCnpjProprietario);
+        this.corretor = corretor(null, null, null, null, null, creciCorretpr);
+        this.metragem = metragem;
+        this.banheiros = banheiros;
+        this.quartos = quartos;
+        this.vagas = vagas;
     }
 
     public void mostrarInfoImovel() {
@@ -30,10 +52,16 @@ public class Imovel {
         this.endereco.mostrarEndereco();
 
         System.out.println("\nSobre o ímovel: ");
-        System.out.println("ID do br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel: " + this.idImovel);
-        System.out.println("Nome do br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel: " + this.nomeImovel);
-        System.out.println("Tipo do br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel: " + this.tipoImovel);
-        System.out.println("Status do br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel: " + this.statusImovel);
+        System.out.println("ID do Imovel: " + this.idImovel);
+        System.out.println("Tipo do Imovel: " + this.tipoImovel);
+        System.out.println("Status do Imovel: " + this.statusImovel);
+        System.out.println("Metragem: " + this.metragem);
+        System.out.println("Numero de Banheiros: " + this.banheiros);
+        System.out.println("Numero de Vagas: " + this.vagas);
+        System.out.println("Dono do Imovel: " + this.donoImovel.getNome());
+        System.out.println("Cpf_Cnpj do dono: " + this.donoImovel.getCpfOuCnpjProprietarioCripted());
+        System.out.println("Corretor Responsável: " + this.corretor.getNome());
+        System.out.println("Creci do Corretor Responsavel: " + this.corretor.getCreciCoretor());
     }
 
     // Getters
@@ -53,8 +81,28 @@ public class Imovel {
         return statusImovel;
     }
 
-    public String getNomeImovel() {
-        return nomeImovel;
+    public float getMetragem() {
+        return metragem;
+    }
+
+    public int getBanheiros() {
+        return banheiros;
+    }
+
+    public int getVagas() {
+        return vagas;
+    }
+
+    public DonoImovel getDonoImovel() {
+        return donoImovel;
+    }
+
+    public Corretor getCorretor() {
+        return corretor;
+    }
+
+    public int getQuartos() {
+        return quartos;
     }
 
     // Setters
@@ -70,10 +118,28 @@ public class Imovel {
         this.statusImovel = statusImovel;
     }
 
-    public void setNomeImovel(String nomeImovel) {
-        this.nomeImovel = nomeImovel;
-
+    public void setMetragem(float metragem) {
+        this.metragem = metragem;
     }
 
+    public void setBanheiros(int banheiros) {
+        this.banheiros = banheiros;
+    }
+
+    public void setVagas(int vagas) {
+        this.vagas = vagas;
+    }
+
+    public void setDonoImovel(DonoImovel donoImovel) {
+        this.donoImovel = donoImovel;
+    }
+
+    public void setCorretor(Corretor corretor) {
+        this.corretor = corretor;
+    }
+
+    public void setQuartos(int quartos) {
+        this.quartos = quartos;
+    }
 }
 

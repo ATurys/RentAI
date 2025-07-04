@@ -9,12 +9,13 @@ public class Endereco {
     private String cep;
 
     // Construtor
-    public Endereco(String bairro, String cidade, String rua, String numero, String cep) {
+    public Endereco(String bairro, String cidade, String rua, String numero, String cep, String complemento) {
         this.bairro = bairro;
         this.cidade = cidade;
         this.rua = rua;
         this.numero = numero;
         this.cep = cep;
+        this.complemento = complemento;
     }
 
     public void mostrarEndereco(){
@@ -23,9 +24,15 @@ public class Endereco {
         System.out.println("Rua: " + rua);
         System.out.println("Número: " + numero);
         System.out.println("CEP: " + cep);
+        System.out.println("Complemento: " + complemento);
     }
 
     // Getters e Setters (todos possuem tanto get quanto set)
+    public String getEnderecoCompleto(){
+        String enderecoCompleto = this.bairro + ", " + this.cidade + ", " + this.rua + ", " + this.numero + ", " + this.cep + ", " + this.complemento;
+        return enderecoCompleto;
+    }
+
     public String getBairro() {
         return bairro;
     }
