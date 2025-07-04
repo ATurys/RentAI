@@ -16,7 +16,7 @@ public class Imovel {
     private DonoImovel donoImovel;
     private Corretor corretor;
 
-    // Construtor
+    // Construtores
 
     public Imovel(Endereco endereco, int idImovel, String tipoImovel, String statusImovel, float metragem, int banheiros, int quartos, int vagas, DonoImovel donoImovel, Corretor corretor) {
         this.endereco = endereco;
@@ -36,12 +36,16 @@ public class Imovel {
         this.idImovel = idImovel;
         this.tipoImovel = tipoImovel;
         this.statusImovel = statusImovel;
-        this.donoImovel = donoImovel(null, null, null, null, null, null, cpfCnpjProprietario);
-        this.corretor = corretor(null, null, null, null, null, creciCorretpr);
+        this.donoImovel = new DonoImovel(null, null, null, null, null, null, cpfCnpjProprietario);
+        this.corretor = new Corretor(null, null, null, null, null, creciCorretpr);
         this.metragem = metragem;
         this.banheiros = banheiros;
         this.quartos = quartos;
         this.vagas = vagas;
+    }
+
+    public Imovel(int idImovel) {
+        this.idImovel = idImovel;
     }
 
     public void mostrarInfoImovel() {

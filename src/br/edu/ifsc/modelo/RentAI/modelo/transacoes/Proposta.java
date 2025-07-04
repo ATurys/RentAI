@@ -1,10 +1,14 @@
 package br.edu.ifsc.modelo.RentAI.modelo.transacoes;
 
+import br.edu.ifsc.modelo.RentAI.modelo.imovel.Endereco;
 import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class Proposta {
 
@@ -13,28 +17,44 @@ public class Proposta {
     private Imovel imovel;
     private int id;
     private float valorOferecido;
-    private float comissaoCorretor;
     private String dataDaProposta;
+    private Date dateTimeProposta;
     private String status;
 
-    public Proposta(Cliente cliente, Corretor corretor, float comissaoCorretor, Imovel imovel, int id, float valorOferecido, String status) {
+    public Proposta(Cliente cliente, Corretor corretor, Imovel imovel, int id, float valorOferecido, String status) {
         this.cliente = cliente;
         this.corretor = corretor;
-        this.comissaoCorretor = comissaoCorretor;
         this.imovel = imovel;
         this.id = id;
         this.valorOferecido = valorOferecido;
         this.dataDaProposta = LocalDateTime.now().toString();
         this.status = status;
+
+        LocalDateTime agora = LocalDateTime.now();
+        ZoneId zoneId = ZoneId.systemDefault();
+        this.dateTimeProposta = (Date) Date.from(agora.atZone(zoneId).toInstant());
+    }
+
+    public Proposta(String cpfCnpjCliente, String creciCorretor, int idImovel, int id, float valorOferecido, String status) {
+        this.cliente = new Cliente(null, null, null, null, null, cpfCnpjCliente);
+        this.corretor = new Corretor(null, null, null, null, null, creciCorretor);
+        this.imovel = new Imovel(idImovel);
+        this.id = id;
+        this.valorOferecido = valorOferecido;
+        this.dataDaProposta = LocalDateTime.now().toString();
+        this.status = status;
+
+        LocalDateTime agora = LocalDateTime.now();
+        ZoneId zoneId = ZoneId.systemDefault();
+        this.dateTimeProposta = (Date) Date.from(agora.atZone(zoneId).toInstant());
     }
 
     public void mostrarInfoProposta(){
         System.out.println("ID da proposta: " + this.id);
-        System.out.println("br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente: " + cliente.getNome() + " " + cliente.getSobrenome() );
-        System.out.println("Iniciais CPF/CNPJ do br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente: " + cliente.getCpfOuCnpjClienteCripted());
-        System.out.println("br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor: " + corretor.getNome() + " " + corretor.getSobrenome() );
-        System.out.println("CRECI br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor: " + corretor.getCreciCoretor());
-        System.out.println("Comissão do br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor: " + comissaoCorretor);
+        System.out.println("Cliente: " + cliente.getNome() + " " + cliente.getSobrenome() );
+        System.out.println("Iniciais CPF/CNPJ do Cliente: " + cliente.getCpfOuCnpjClienteCripted());
+        System.out.println("Corretor: " + corretor.getNome() + " " + corretor.getSobrenome() );
+        System.out.println("CRECI Corretor: " + corretor.getCreciCoretor());
         System.out.println("Valor oferecido: " + this.valorOferecido);
         System.out.println("Data da proposta: " + this.dataDaProposta);
         System.out.println("Status: " + this.status);
@@ -59,6 +79,17 @@ public class Proposta {
 
     public String getStatus() {
         return status;
+    }
+    public Corretor getCorretor() {
+        return corretor;
+    }
+
+    public Imovel getImovel(){
+        return imovel;
+    }
+
+    public Date getDateTimeProposta() {
+        return dateTimeProposta;
     }
 
     // Setters
