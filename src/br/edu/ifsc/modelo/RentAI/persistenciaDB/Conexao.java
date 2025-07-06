@@ -31,76 +31,83 @@ public class Conexao {
     }
 
     public static void criarTabelas() {
-        String sql = """
-            CREATE TABLE IF NOT EXISTS Cliente (
-                id_cliente INTEGER PRIMARY KEY,
-                nome TEXT NOT NULL,
-                cpf_cnpj TEXT NOT NULL UNIQUE,
-                telefone TEXT,
-                email TEXT,
-                nome_usuario TEXT UNIQUE,
-                senha_hash TEXT
-            );
+        String sql = "CREATE TABLE IF NOT EXISTS 'Cliente' (" +
+                "'nome' TEXT NOT NULL," +
+                "'cpf_cnpj' TEXT NOT NULL UNIQUE," +
+                "'telefone' TEXT," +
+                "'email' TEXT," +
+                "'nome_usuario' TEXT UNIQUE," +
+                "'senha_hash' TEXT," +
+                "PRIMARY KEY ('cpf_cnpj')" +
+                ");" +
 
-            CREATE TABLE IF NOT EXISTS Corretor (
-                id_corretor INTEGER PRIMARY KEY,
-                nome TEXT NOT NULL,
-                creci TEXT NOT NULL UNIQUE,
-                telefone TEXT,
-                email TEXT,
-                percentual_comissao REAL,
-                senha_hash TEXT
-            );
+                "CREATE TABLE IF NOT EXISTS 'Corretor' (" +
+                "'nome' TEXT NOT NULL," +
+                "'creci' TEXT NOT NULL UNIQUE," +
+                "'telefone' TEXT," +
+                "'email' TEXT," +
+                "'nome_usuario' TEXT UNIQUE," +
+                "'senha_hash' TEXT," +
+                "PRIMARY KEY ('creci')" +
+                ");" +
 
-            CREATE TABLE IF NOT EXISTS Imovel (
-                id_imovel INTEGER PRIMARY KEY,
-                tipo TEXT NOT NULL,
-                endereco TEXT,
-                metragem REAL,
-                quartos INTEGER,
-                banheiros INTEGER,
-                vagas INTEGER,
-                status TEXT CHECK(status IN ('disponível', 'vendido', 'em negociação')),
-                id_proprietario INTEGER NOT NULL,
-                id_corretor INTEGER,
-                FOREIGN KEY (id_proprietario) REFERENCES Proprietario(id_proprietario),
-                FOREIGN KEY (id_corretor) REFERENCES Corretor(id_corretor)
-            );
+                "CREATE TABLE IF NOT EXISTS 'Proprietario' (" +
+                "'nome' TEXT NOT NULL," +
+                "'cpf_cnpj' TEXT NOT NULL UNIQUE," +
+                "'telefone' TEXT," +
+                "'email' TEXT," +
+                "'nome_usuario' TEXT UNIQUE," +
+                "'senha_hash' TEXT NOT NULL," +
+                "PRIMARY KEY ('cpf_cnpj')" +
+                ");" +
 
-            CREATE TABLE IF NOT EXISTS Proposta (
-                id_proposta INTEGER PRIMARY KEY,
-                valor_oferecido REAL NOT NULL,
-                data_proposta DATE NOT NULL,
-                status TEXT CHECK(status IN ('pendente', 'aceita', 'recusada')),
-                id_cliente INTEGER NOT NULL,
-                id_imovel INTEGER NOT NULL,
-                FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
-                FOREIGN KEY (id_imovel) REFERENCES Imovel(id_imovel)
-            );
+                "CREATE TABLE IF NOT EXISTS 'Imovel' (" +
+                "'id_imovel' INTEGER," +
+                "'tipo' TEXT NOT NULL," +
+                "'endereco' TEXT," +
+                "'metragem' REAL," +
+                "'quartos' INTEGER," +
+                "'banheiros' INTEGER," +
+                "'vagas' INTEGER," +
+                "'status' TEXT CHECK('status' IN ('disponível', 'vendido', 'em negociação'))," +
+                "'cpf_cnpj_proprietario' TEXT NOT NULL," +
+                "'creci_corretor' TEXT NOT NULL," +
+                "PRIMARY KEY('id_imovel')," +
+                "FOREIGN KEY ('cpf_cnpj_proprietario') REFERENCES 'Proprietario'('cpf_cnpj')" +
+                "FOREIGN KEY ('creci_corretor') REFERENCES 'Corretor'('creci')" +
+                ");" +
 
-            CREATE TABLE IF NOT EXISTS Proprietario (
-                id_proprietario INTEGER PRIMARY KEY,
-                nome TEXT NOT NULL,
-                cpf_cnpj TEXT NOT NULL UNIQUE,
-                telefone TEXT,
-                email TEXT,
-                endereco TEXT
-            );
+                "CREATE TABLE IF NOT EXISTS 'Proposta' (" +
+                "'id_proposta' INTEGER," +
+                "'valor_oferecido' REAL NOT NULL," +
+                "'data_proposta' DATE NOT NULL," +
+                "'status' TEXT CHECK('status' IN ('pendente', 'aceita', 'recusada'))," +
+                "'cpf_cnpj_cliente' TEXT NOT NULL," +
+                "'creci_corretor' TEXT NOT NULL," +
+                "'id_imovel' INTEGER NOT NULL," +
+                "PRIMARY KEY('id_proposta')," +
+                "FOREIGN KEY ('cpf_cnpj_cliente') REFERENCES 'Cliente'('cpf_cnpj')" +
+                "FOREIGN KEY ('creci_corretor') REFERENCES 'Corretor'('creci')" +
+                "FOREIGN KEY ('id_imovel') REFERENCES 'Imovel'('id_imovel')" +
+                ");" +
 
-            CREATE TABLE IF NOT EXISTS Venda (
-                id_venda INTEGER PRIMARY KEY,
-                data_venda DATE NOT NULL,
-                valor_final REAL NOT NULL,
-                forma_pagamento TEXT CHECK(forma_pagamento IN ('à vista', 'financiamento', 'parcelado')),
-                comissao_paga BOOLEAN,
-                id_cliente INTEGER NOT NULL,
-                id_corretor INTEGER NOT NULL,
-                id_imovel INTEGER UNIQUE NOT NULL,
-                FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
-                FOREIGN KEY (id_corretor) REFERENCES Corretor(id_corretor),
-                FOREIGN KEY (id_imovel) REFERENCES Imovel(id_imovel)
-            );
-            """;
+                "CREATE TABLE IF NOT EXISTS 'Venda' (" +
+                "'id_venda' INTEGER NOT NULL," +
+                "'valor_final' REAL NOT NULL," +
+                "'data_venda' DATE NOT NULL," +
+                "'forma_pagamento' TEXT CHECK('forma_pagamento' IN ('à vista', 'financiamento', 'parcelado'))," +
+                "'valor_comissao_paga' REAL," +
+                "'creci_corretor' TEXT NOT NULL," +
+                "'id_imovel' INTEGER NOT NULL," +
+                "'cpf_cnpj_proprietario' TEXT NOT NULL," +
+                "'cpf_cnpj_cliente' TEXT NOT NULL," +
+                "PRIMARY KEY('id_venda')," +
+                "FOREIGN KEY ('cpf_cnpj_cliente') REFERENCES 'Cliente'('cpf_cnpj')" +
+                "FOREIGN KEY ('creci_corretor') REFERENCES 'Corretor'('creci')" +
+                "FOREIGN KEY ('id_imovel') REFERENCES 'Imovel'('id_imovel')" +
+                "FOREIGN KEY ('cpf_cnpj_proprietario') REFERENCES 'Proprietario'('cpf_cnpj')" +
+                ");"
+                ;
 
         try (Statement stmt = getConexao().createStatement()) {
             stmt.execute(sql);

@@ -51,6 +51,7 @@ public class Main {
     } // Verifica se esta o modelo CRECI corretamente
 
     public static void main(String[] args) {
+        Conexao.getConexao();
         Conexao.criarTabelas();
         Leitor leitor = new Leitor();
         Mensagens mensagem = new Mensagens();

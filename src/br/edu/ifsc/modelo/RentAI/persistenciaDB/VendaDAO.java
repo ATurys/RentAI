@@ -49,7 +49,7 @@ public class VendaDAO implements DAO<Venda, Integer> {
 
     @Override
     public void atualizar(Venda entidade, Integer arg) {
-        
+
     }
 
 

@@ -78,6 +78,19 @@ public class CorretorDAO implements  DAO<Corretor, String> {
         }
     }
 
+    public void atualizarUserName(Corretor entidade, String arg) {
+        try {
+            Connection conexao = Conexao.getConexao();
+            String sql = "UPDATE Corretor SET nome_usuario = ? WHERE creci = ?";
+            PreparedStatement statement = conexao.prepareStatement(sql);
+            statement.setString(1, entidade.getUserName());
+            statement.setString(2, arg);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar o nome de usuário do corretor " + e.getMessage());
+        }
+    }
+
     public void atualizarEmail(Corretor entidade, String arg) {
         try {
             Connection conexao = Conexao.getConexao();
