@@ -6,20 +6,21 @@ public class Mensagens {
             "\t1 - Cadastrar\n" +
             "\t2 - Visualizar\n" +
             "\t3 - Criar uma proposta\n" +
-            "\t4 - Anunciar uma br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda\n" +
-            "\t5 - Sair\n";
+            "\t4 - Anunciar uma Venda\n" +
+            "\t5 - Deletar\n" +
+            "\t6 - Sair";
 
     // Textos camda 1
     private String cadastro =
-            "\t1 - Cadastrar br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente\n" +
-            "\t2 - Cadastrar br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor\n" +
+            "\t1 - Cadastrar Cliente\n" +
+            "\t2 - Cadastrar Corretor\n" +
             "\t3 - Cadastrar Proprietário\n" +
             "\t4 - Cadastrar Ímovel\n" +
             "\t5 - Voltar\n";
 
     private String visualizar =
-            "\t1 - Visualizar br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente\n" +
-            "\t2 - Visualizar br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor\n" +
+            "\t1 - Visualizar Cliente\n" +
+            "\t2 - Visualizar Corretor\n" +
             "\t3 - Visualizar Proprietário\n" +
             "\t4 - Visualizar Ímovel\n" +
             "\t5 - Visualizar Vendas\n" +
@@ -27,8 +28,8 @@ public class Mensagens {
 
     private String criar =
             "Precisaremos das seguintes informações: \n" +
-            "\t1 - CPF do br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente\n" +
-            "\t2 - CRECI do br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor\n" +
+            "\t1 - CPF do Cliente\n" +
+            "\t2 - CRECI do Corretor\n" +
             "\t3 - ID Ímovel\n" +
             "\t4 - Valor da proposta\n" +
             "\t5 - Comissão do corretor\n";
@@ -46,8 +47,9 @@ public class Mensagens {
             "2° - senha\n" +
             "3° - nome\n" +
             "4° - sobrenome\n" +
-            "5 ° - telefone\n" +
-            "6 ° - CPF/CNPJ\n";
+            "5° - telefone\n" +
+            "6° - CPF/CNPJ\n" +
+            "7° - Nome de Usuário\n";
     private String cadastroCorretor =
             "Precisaremos das seguintes informações: \n" +
             "1° - e-mail\n" +
@@ -55,7 +57,8 @@ public class Mensagens {
             "3° - nome\n" +
             "4° - sobrenome\n" +
             "5 ° - telefone\n" +
-            "6 ° - número do CRECI\n";
+            "6 ° - número do CRECI\n" +
+            "7° - Nome de Usuário\n";
     private String cadastroProprietario =
             "Precisaremos das seguintes informações: \n" +
             "1° - e-mail:\n" +
@@ -63,7 +66,8 @@ public class Mensagens {
             "3° - nome:\n" +
             "4° - sobrenome:\n" +
             "5 ° - telefone:\n" +
-            "6 ° - CPF/CNPJ\n";
+            "6 ° - CPF/CNPJ\n" +
+            "7° - Nome de Usuário\n";
     private String cadastroImovel =
             "Precisaremos das seguintes informações: \n" +
             "1° - bairro\n" +

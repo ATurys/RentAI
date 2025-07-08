@@ -72,7 +72,7 @@ public class ClienteDAO implements DAO<Cliente, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Cliente SET nome = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            String nomeCompleto = entidade.getNome() + entidade.getSobrenome();
+            String nomeCompleto = entidade.getNome() + " " + entidade.getSobrenome();
             statement.setString(1, nomeCompleto);
             statement.setString(2, arg);
             statement.executeUpdate();
@@ -137,6 +137,7 @@ public class ClienteDAO implements DAO<Cliente, String> {
                         nome[0],
                         nome[1],
                         resultSet.getString("telefone"),
+                        resultSet.getString("nome_usuario"),
                         resultSet.getString("cpf_cnpj"));
                 return c;
             }else{
@@ -165,6 +166,7 @@ public class ClienteDAO implements DAO<Cliente, String> {
                         nome[0],
                         nome[1],
                         resultSet.getString("telefone"),
+                        resultSet.getString("nome_usuario"),
                         resultSet.getString("cpf_cnpj"));
                 clientes.add(c);
             }

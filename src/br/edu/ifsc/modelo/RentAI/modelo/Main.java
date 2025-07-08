@@ -9,7 +9,9 @@ import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Usuario;
+import br.edu.ifsc.modelo.RentAI.persistenciaDB.ClienteDAO;
 import br.edu.ifsc.modelo.RentAI.persistenciaDB.Conexao;
+import br.edu.ifsc.modelo.RentAI.visao.InputCliente;
 import br.edu.ifsc.modelo.RentAI.visao.Mensagens;
 
 import java.util.ArrayList;
@@ -66,63 +68,26 @@ public class Main {
 
         while (continua) {
             int userPrompt = leitor.lerInt(mensagem.getTextoInicial());
-            testePrompt(5, userPrompt);// Verifica se o numero esta entre 1 e 5
+            testePrompt(6, userPrompt);// Verifica se o numero esta entre 1 e 5
             switch (userPrompt) {
                 case 1://Cadastrar
                     userPrompt = leitor.lerInt(mensagem.getCadastro());
                     testePrompt(5, userPrompt);
 
                     switch (userPrompt) {
+                        boolean verificado = false;
                         case 1: //Cadastro de Cliente
-                            System.out.println("[DIGITE 0 PARA SAIR]");
-                            System.out.println(mensagem.getCadastroCliente());
-                            String emailCliente = leitor.lerString("Digite seu e-mail: ");
-                            if (emailCliente.equals("0")) {
-                                break;
-                            }
-                            String senhaCliente = leitor.lerString("Digite sua senha: ");
-                            if (senhaCliente.equals("0")) {
-                                break;
-                            }
-                            String nomeCliente = leitor.lerString("Digite o nome do cliente: ");
-                            if (nomeCliente.equals("0")) {
-                                break;
-                            }
-                            String sobrenomeCliente = leitor.lerString("Digite o sobrenome do cliente: ");
-                            if (sobrenomeCliente.equals("0")) {
-                                break;
-                            }
-                            String telefoneCliente = leitor.lerString("Digite o telefone do cliente: ");
-                            if (telefoneCliente.equals("0")) {
-                                break;
-                            }
 
-                            String cpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do cliente: ");
-                            if (cpfCnpjCliente.equals("0")) {
+                            InputCliente inputCliente = new InputCliente();
+                            Cliente novoCliente = inputCliente.getCadastro();
+                            if (novoCliente == null) {
+                                //TODO realizar a verificação do banco de dados
                                 break;
                             }
-
-                            //Realiza a verificação do CPF/CNPJ digitado
-                            boolean verificado = false;
-                            while (!verificado){
-                                if (verificarCpfOuCnpj(cpfCnpjCliente)){
-                                    verificado = true;
-                                    break;
-                                }
-                                else{
-                                    cpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do cliente: ");
-                                    if (cpfCnpjCliente.equals("0")) {
-                                        break;
-                                    }
-                                }
-                            }
-                            if (cpfCnpjCliente.equals("0")) {
-                                break;
-                            }
-                            Cliente novoCliente = new Cliente(emailCliente, senhaCliente, nomeCliente, sobrenomeCliente, telefoneCliente, cpfCnpjCliente);
                             clientes.add(novoCliente);
-
                             System.out.println("Cadastro concluído");
+                            //TODO Adicionar ao Banco de Dados
+                            ClienteDAO.getInstancia().criar(novoCliente);
                             break;
 
                         case 2://Cadastro de Corretor
@@ -347,28 +312,10 @@ public class Main {
                     testePrompt(6, userPrompt);// Verifica se o numero esta entre 1 e 6
                     switch (userPrompt) {
                         case 1: // Ver cliente
-                            System.out.println("[DIGITE 0 PARA SAIR]");
-                            String view = leitor.lerString(mensagem.getVisualizarCliente());
-                            // Validação de cliente
-                            boolean achouCliente = false;
-                            while (!achouCliente) {
-                                if (view.equals("0")) {
-                                    break;
-                                }
-                                for (int i = 0; i < clientes.size(); i++) {
-                                    Cliente c = clientes.get(i);
-                                    if (c.getCpfOuCnpjCliente().equals(view)) {
-                                        // Achou o usuarios.Cliente com o CPF correspondente
-                                        clientes.get(i).mostrarInfoCliente();
-                                        achouCliente = true;
-                                        break;
-                                    }
-                                }
-                                if (achouCliente) {
-                                    break;
-                                }
-                                System.out.println("Cliente não encontrado, tente novamente: ");
-                                view = leitor.lerString("Digite o CPF/CNPJ do usuarios.Cliente: ");
+                            InputCliente inputCliente = new InputCliente();
+                            Cliente cliente = inputCliente.getVisualizar();
+                            if (cliente != null) {
+                                cliente.mostrarInfoCliente();
                             }
                             break;
 
@@ -728,7 +675,9 @@ public class Main {
                         }
                     }
                     break;
-                case 5: //Sair
+                case 5: //Deletar
+                    break;
+                case 6: //Sair
                     continua = false;
                     break;
 
