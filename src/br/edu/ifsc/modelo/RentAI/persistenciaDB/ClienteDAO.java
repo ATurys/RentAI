@@ -98,8 +98,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Cliente SET telefone = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getTelefone());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjCliente());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o telefone do cliente " + e.getMessage());

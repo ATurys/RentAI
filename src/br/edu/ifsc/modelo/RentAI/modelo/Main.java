@@ -87,55 +87,17 @@ public class Main {
                             break;
 
                         case 2://Cadastro de Corretor
-                            System.out.println("[DIGITE 0 PARA SAIR]");
-                            System.out.println(mensagem.getCadastroCorretor());
-                            String emailCorretor = leitor.lerString("Digite seu e-mail: ");
-                            if (emailCorretor.equals("0")) {
-                                break;
-                            }
-                            String senhaCorretor = leitor.lerString("Digite sua senha: ");
-                            if (senhaCorretor.equals("0")) {
-                                break;
-                            }
-                            String nomeCorretor = leitor.lerString("Digite o nome do corretor: ");
-                            if (nomeCorretor.equals("0")) {
-                                break;
-                            }
-                            String sobrenomeCorretor = leitor.lerString("Digite o sobrenome do corretor: ");
-                            if (sobrenomeCorretor.equals("0")) {
-                                break;
-                            }
-                            String telefoneCorretor = leitor.lerString("Digite o telefone do corretor: ");
-                            if (telefoneCorretor.equals("0")) {
-                                break;
-                            }
-                            String creciCorretor = leitor.lerString("Digite o CRECI do corretor: ");
-                            if (creciCorretor.equals("0")) {
-                                break;
-                            }
 
-                            //Realiza a verificação do CRECI digitado
-                            verificado = false;
-                            while (!verificado){
-                                if (verificarCreci(creciCorretor)){
-                                    verificado = true;
-                                    break;
-                                }
-                                else{
-                                    creciCorretor = leitor.lerString("Digite o CRECI do corretor: ");
-                                    if (creciCorretor.equals("0")) {
-                                        break;
-                                    }
-                                }
-                            }
-                            if (creciCorretor.equals("0")) {
+                            InputCorretor inputCorretor = new InputCorretor();
+                            Corretor novoCorretor = inputCorretor.getCadastro();
+                            if (novoCorretor == null) {
                                 break;
                             }
-                            Corretor novoCorretor = new Corretor(emailCorretor, senhaCorretor, nomeCorretor, sobrenomeCorretor, telefoneCorretor, creciCorretor);
-                            corretores.add(novoCorretor);
 
                             System.out.println("Cadastro concluído");
                             break;
+
+
                         case 3://Cadastro de Proprietario
                             System.out.println("[DIGITE 0 PARA SAIR]");
                             System.out.println(mensagem.getCadastroProprietario());
