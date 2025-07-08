@@ -4,6 +4,8 @@ import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
 import br.edu.ifsc.modelo.RentAI.leitor.Leitor;
 import br.edu.ifsc.modelo.RentAI.persistenciaDB.ClienteDAO;
 
+import java.util.List;
+
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
 
 
@@ -47,11 +49,41 @@ public class InputCliente {
             return null;
         }
 
+        boolean verificador = false;
+        List<Cliente> clientes = ClienteDAO.getInstancia().buscarTodos();
+        for (Cliente i : clientes) { //Vê se já existe no sistema um CPF/CNPJ igual
+            if (i.getCpfOuCnpjCliente().equals(cpfCnpjCliente) ) {
+                System.out.println("Um usuário com este CPF/CNPJ já existe no sistema!!!");
+                System.out.println("Voltando...\n");
+                return null;
+            } else if (i.getUserName().equals(userNameCliente) ) {
+                verificador = true;
+                System.out.println("Um usuário com este userName já existe no sistema!!!\n");
+                break;
+            }
+        }
+        while (verificador) { //Vê se já existe no sistema um userName igual
+            boolean nomeDuplicado = false;
+            userNameCliente = leitor.lerString("Digite o nome de usuário do cliente: ");
+            if (userNameCliente.equals("0")) {
+                return null;
+            }
+            for (Cliente i : clientes) {
+                if (i.getUserName().equals(userNameCliente) ) {
+                    System.out.println("Um usuário com este userName já existe no sistema!!!\n");
+                    nomeDuplicado = true;
+                    break;
+                }
+            }
+            if (!nomeDuplicado){
+                verificador = false;
+            }
+        };
         //Realiza a verificação do CPF/CNPJ digitado
-        boolean verificado = false;
-        while (!verificado) {
-            if (verificarCpfOuCnpj(cpfCnpjCliente)) {
-                verificado = true;
+        verificador = false;
+        while (!verificador) {
+            if (verificarCpfOuCnpj(cpfCnpjCliente)) { //Realiza a verificação da validade do CPF/CNPJ digitado
+                verificador = true;
                 break;
             } else {
                 System.out.println("CPF/CNPJ Invalido, tente novamente.\n");
@@ -76,6 +108,7 @@ public class InputCliente {
                 return null;
             }
             cliente = ClienteDAO.getInstancia().buscar(view);
+
 
             // Validação de cliente
             if (cliente == null) {

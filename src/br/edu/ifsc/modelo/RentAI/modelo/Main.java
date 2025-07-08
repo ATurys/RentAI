@@ -8,13 +8,12 @@ import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
-import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Usuario;
 import br.edu.ifsc.modelo.RentAI.persistenciaDB.ClienteDAO;
 import br.edu.ifsc.modelo.RentAI.persistenciaDB.Conexao;
-import br.edu.ifsc.modelo.RentAI.visao.InputCliente;
-import br.edu.ifsc.modelo.RentAI.visao.Mensagens;
+import br.edu.ifsc.modelo.RentAI.visao.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void testePrompt (int max, int userPrompt) {
@@ -57,7 +56,6 @@ public class Main {
         Conexao.criarTabelas();
         Leitor leitor = new Leitor();
         Mensagens mensagem = new Mensagens();
-        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
         ArrayList<Corretor> corretores = new ArrayList<Corretor>();
         ArrayList<DonoImovel> proprietarios = new ArrayList<DonoImovel>();
         ArrayList<Imovel> imoveis = new ArrayList<Imovel>();
@@ -81,13 +79,11 @@ public class Main {
                             InputCliente inputCliente = new InputCliente();
                             Cliente novoCliente = inputCliente.getCadastro();
                             if (novoCliente == null) {
-                                //TODO realizar a verificação do banco de dados
                                 break;
                             }
-                            clientes.add(novoCliente);
-                            System.out.println("Cadastro concluído");
-                            //TODO Adicionar ao Banco de Dados
+
                             ClienteDAO.getInstancia().criar(novoCliente);
+                            System.out.println("Cadastro concluído");
                             break;
 
                         case 2://Cadastro de Corretor
