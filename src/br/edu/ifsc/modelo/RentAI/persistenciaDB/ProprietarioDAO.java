@@ -45,8 +45,8 @@ public class ProprietarioDAO implements DAO<DonoImovel, String>{
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Proprietario SET cpf_cnpj = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getCpfOuCnpjDonoImovel());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjDonoImovel());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o cpf ou cnpj do proprietario " + e.getMessage());
@@ -58,8 +58,8 @@ public class ProprietarioDAO implements DAO<DonoImovel, String>{
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Proprietario SET senha_hash = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getSenha());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjDonoImovel());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar a senha do proprietario " + e.getMessage());
@@ -71,9 +71,8 @@ public class ProprietarioDAO implements DAO<DonoImovel, String>{
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Proprietario SET nome = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            String nomeCompleto = entidade.getNome() + entidade.getSobrenome();
-            statement.setString(1, nomeCompleto);
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjDonoImovel());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o nome do proprietario " + e.getMessage());
@@ -85,8 +84,8 @@ public class ProprietarioDAO implements DAO<DonoImovel, String>{
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Proprietario SET email = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getEmail());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjDonoImovel());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o email do proprietario " + e.getMessage());
@@ -98,8 +97,8 @@ public class ProprietarioDAO implements DAO<DonoImovel, String>{
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Proprietario SET telefone = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getTelefone());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjDonoImovel());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o telefone do proprietario " + e.getMessage());

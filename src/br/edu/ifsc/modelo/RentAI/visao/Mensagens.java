@@ -133,7 +133,7 @@ public class Mensagens {
     private String atualizarCliente =
             "\t1 - atualizar CPF/CNPJ\n" +
             "\t2 - atualizar Senha\n" +
-            "\t3 - atualizar Nome\n" +
+            "\t3 - atualizar Nome e Sobrenome\n" +
             "\t4 - atualizar Email\n" +
             "\t5 - atualizar Telefone\n" +
             "\t6 - voltar\n";
@@ -141,7 +141,7 @@ public class Mensagens {
     private String atualizarCorretor =
             "\t1 - atualizar CRECI\n" +
             "\t2 - atualizar Senha\n" +
-            "\t3 - atualizar Nome\n" +
+            "\t3 - atualizar Nome e Sobrenome\n" +
             "\t4 - atualizar Email\n" +
             "\t5 - atualizar Telefone\n" +
             "\t6 - voltar\n";
@@ -149,7 +149,7 @@ public class Mensagens {
     private String atualizarProprietario =
             "\t1 - atualizar CPF/CNPJ\n" +
             "\t2 - atualizar Senha\n" +
-            "\t3 - atualizar Nome\n" +
+            "\t3 - atualizar Nome e Sobrenome\n" +
             "\t4 - atualizar Email\n" +
             "\t5 - atualizar Telefone\n" +
             "\t6 - voltar\n";

@@ -13,7 +13,6 @@ import br.edu.ifsc.modelo.RentAI.persistenciaDB.Conexao;
 import br.edu.ifsc.modelo.RentAI.visao.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void testePrompt (int max, int userPrompt) {
@@ -76,7 +75,7 @@ public class Main {
                         boolean verificado = false;
                         case 1: //Cadastro de Cliente
 
-                            InputCliente inputCliente = new InputCliente();
+                            InputUserCliente inputCliente = new InputUserCliente();
                             Cliente novoCliente = inputCliente.cadastro();
                             if (novoCliente == null) {
                                 break;
@@ -88,7 +87,7 @@ public class Main {
 
                         case 2://Cadastro de Corretor
 
-                            InputCorretor inputCorretor = new InputCorretor();
+                            InputUserCorretor inputCorretor = new InputUserCorretor();
                             Corretor novoCorretor = inputCorretor.cadastro();
                             if (novoCorretor == null) {
                                 break;
@@ -99,54 +98,13 @@ public class Main {
 
 
                         case 3://Cadastro de Proprietario
-                            System.out.println("[DIGITE 0 PARA SAIR]");
-                            System.out.println(mensagem.getCadastroProprietario());
-                            String emailProprietario = leitor.lerString("Digite seu e-mail: ");
-                            if (emailProprietario.equals("0")) {
-                                break;
-                            }
-                            String senhaProprietario = leitor.lerString("Digite sua senha: ");
-                            if (senhaProprietario.equals("0")) {
-                                break;
-                            }
-                            String nomeProprietario = leitor.lerString("Digite o nome do proprietário: ");
-                            if (nomeProprietario.equals("0")) {
-                                break;
-                            }
-                            String sobrenomeProprietario = leitor.lerString("Digite o sobrenome do proprietário: ");
-                            if (sobrenomeProprietario.equals("0")) {
-                                break;
-                            }
-                            String telefoneProprietario = leitor.lerString("Digite o telefone do proprietário: ");
-                            if (telefoneProprietario.equals("0")) {
-                                break;
-                            }
-                            String cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
-                            if (cpfCnpjProprietario.equals("0")) {
-                                break;
-                            }
 
-                            //Realiza a verificação do CPF/CNPJ digitado
-                            verificado = false;
-                            while (!verificado){
-                                if (verificarCpfOuCnpj(cpfCnpjProprietario)){
-                                    verificado = true;
-                                    break;
-                                }
-                                else{
-                                    cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
-                                    if (cpfCnpjProprietario.equals("0")) {
-                                        break;
-                                    }
-                                }
-                            }
-                            if (cpfCnpjProprietario.equals("0")) {
+                            InputUserProprietario inputProprietario = new InputUserProprietario();
+                            DonoImovel Proprietario = inputProprietario.cadastro();
+                            if (Proprietario == null) {
                                 break;
                             }
-                            DonoImovel novoProprietario = new DonoImovel(emailProprietario, senhaProprietario, nomeProprietario, sobrenomeProprietario, telefoneProprietario, cpfCnpjProprietario);
-                            proprietarios.add(novoProprietario);
-
-                            System.out.println("Cadastro concluído");
+                            System.out.println("Cadastro concluido");
                             break;
 
                         case 4://Cadastro de Imovel
@@ -269,8 +227,9 @@ public class Main {
                     userPrompt = leitor.lerInt(mensagem.getVisualizar());
                     testePrompt(6, userPrompt);// Verifica se o numero esta entre 1 e 6
                     switch (userPrompt) {
+
                         case 1: // Ver cliente
-                            InputCliente inputCliente = new InputCliente();
+                            InputUserCliente inputCliente = new InputUserCliente();
                             Cliente cliente = inputCliente.visualizar();
                             if (cliente != null) {
                                 cliente.mostrarInfoCliente();
@@ -278,54 +237,18 @@ public class Main {
                             break;
 
                         case 2: // Ver corretor
-                            System.out.println("[DIGITE 0 PARA SAIR]");
-                            view = leitor.lerString(mensagem.getVisualizarCorretor());
-                            // Validação de corretor
-                            boolean achouCorretor = false;
-                            while (!achouCorretor) {
-                                if (view.equals("0")) {
-                                    break;
-                                }
-                                for (int i = 0; i < corretores.size(); i++) {
-                                    Corretor c = corretores.get(i);
-                                    if (c.getCreciCoretor().equals(view)) {
-                                        // Achou o usuarios.Corretor com o CRECI correspondente
-                                        corretores.get(i).mostrarInfoCorretor();
-                                        achouCorretor = true;
-                                        break;
-                                    }
-                                }
-                                if (achouCorretor) {
-                                    break;
-                                }
-                                System.out.println("usuarios.Corretor não encontrado, tente novamente: ");
-                                view = leitor.lerString("Digite o CCRECI do usuarios.Corretor: ");
+                            InputUserCorretor inputCorretor = new InputUserCorretor();
+                            Corretor corretor = inputCorretor.visualizar();
+                            if (corretor != null) {
+                                corretor.mostrarInfoCorretor();
                             }
                             break;
 
                         case 3: // Ver proprietario
-                            System.out.println("[DIGITE 0 PARA SAIR]");
-                            view = leitor.lerString(mensagem.getVisualizarProprietario());
-                            // Validação de Proprietario
-                            boolean achouProprietario = false;
-                            while (!achouProprietario) {
-                                if (view.equals("0")) {
-                                    break;
-                                }
-                                for (int i = 0; i < proprietarios.size(); i++) {
-                                    DonoImovel p = proprietarios.get(i);
-                                    if (p.getCpfOuCnpjDonoImovel().equals(view)) {
-                                        // Achou o Proprietario com o CPF correspondente
-                                        proprietarios.get(i).mostrarInfoProprietario();
-                                        achouProprietario = true;
-                                        break;
-                                    }
-                                }
-                                if (achouProprietario) {
-                                    break;
-                                }
-                                System.out.println("Proprietário não encontrado, tente novamente: ");
-                                view = leitor.lerString("Digite o CPF/CNPJ do Proprietario: ");
+                            InputUserProprietario inputProprietario = new InputUserProprietario();
+                            DonoImovel proprietario = inputProprietario.visualizar();
+                            if (proprietario != null) {
+                                proprietario.mostrarInfoProprietario();
                             }
                             break;
 
@@ -637,16 +560,19 @@ public class Main {
                     userPrompt = leitor.lerInt(mensagem.getDeletar());
                     testePrompt(4, userPrompt);
 
+                    //Deletar
                     switch (userPrompt) {
                         case 1:
-                            InputCliente inputCliente = new InputCliente();
+                            InputUserCliente inputCliente = new InputUserCliente();
                             inputCliente.deletar();
                             break;
                         case 2:
-                            String deletarCorretor = leitor.lerString(mensagem.getDeletarCorretor());
+                            InputUserCorretor inputCorretor = new InputUserCorretor();
+                            inputCorretor.deletar();
                             break;
                         case 3:
-                            String deletarProprietario = leitor.lerString(mensagem.getDeletarProprietario());
+                            InputUserProprietario inputProprietario = new InputUserProprietario();
+                            inputProprietario.deletar();
                             break;
                         case 4:
                             break;
@@ -658,26 +584,27 @@ public class Main {
                     userPrompt = leitor.lerInt(mensagem.getAtualizar());
                     testePrompt(4, userPrompt);
 
+                    // Alterar
                     switch (userPrompt) {
                         case 1:
                             userPrompt = leitor.lerInt(mensagem.getAtualizarCliente());
                             testePrompt(6, userPrompt);
-                            InputCliente inputCliente = new InputCliente();
+                            InputUserCliente inputCliente = new InputUserCliente();
                             switch (userPrompt) {
                                 case 1:
-                                    inputCliente.getAtualizarCpf_Cnpj();
+                                    inputCliente.atualizarPK();
                                     break;
                                 case 2:
-                                    inputCliente.getAtualzarSenha();
+                                    inputCliente.atualizarSenha();
                                     break;
                                 case 3:
-                                    inputCliente.getAtualizarNomeSobrenome();
+                                    inputCliente.atualizarNomeSobrenome();
                                     break;
                                 case 4:
-                                    inputCliente.getAtualizarEmail();
+                                    inputCliente.atualizarEmail();
                                     break;
                                 case 5:
-                                    inputCliente.getAtualizarTelefone();
+                                    inputCliente.atualizarTelefone();
                                     break;
                                 case 6:
                                     break;
@@ -687,16 +614,22 @@ public class Main {
                             userPrompt = leitor.lerInt(mensagem.getAtualizarCorretor());
                             testePrompt(6, userPrompt);
 
+                            InputUserCorretor inputCorretor = new InputUserCorretor();
                             switch (userPrompt) {
                                 case 1:
+                                    inputCorretor.atualizarPK();
                                     break;
                                 case 2:
+                                    inputCorretor.atualizarSenha();
                                     break;
                                 case 3:
+                                    inputCorretor.atualizarNomeSobrenome();
                                     break;
                                 case 4:
+                                    inputCorretor.atualizarEmail();
                                     break;
                                 case 5:
+                                    inputCorretor.atualizarTelefone();
                                     break;
                                 case 6:
                                     break;
@@ -706,16 +639,22 @@ public class Main {
                             userPrompt = leitor.lerInt(mensagem.getAtualizarProprietario());
                             testePrompt(6, userPrompt);
 
+                            InputUserProprietario inputProprietario = new InputUserProprietario();
                             switch (userPrompt) {
                                 case 1:
+                                    inputProprietario.atualizarPK();
                                     break;
                                 case 2:
+                                    inputProprietario.atualizarSenha();
                                     break;
                                 case 3:
+                                    inputProprietario.atualizarNomeSobrenome();
                                     break;
                                 case 4:
+                                    inputProprietario.atualizarEmail();
                                     break;
                                 case 5:
+                                    inputProprietario.atualizarTelefone();
                                     break;
                                 case 6:
                                     break;

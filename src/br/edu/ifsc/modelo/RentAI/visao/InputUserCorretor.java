@@ -2,7 +2,6 @@ package br.edu.ifsc.modelo.RentAI.visao;
 
 import br.edu.ifsc.modelo.RentAI.leitor.Leitor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
-import br.edu.ifsc.modelo.RentAI.persistenciaDB.ClienteDAO;
 import br.edu.ifsc.modelo.RentAI.persistenciaDB.CorretorDAO;
 
 import java.util.List;
@@ -10,10 +9,10 @@ import java.util.List;
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCreci;
 
 
-public class InputCorretor implements Input<Corretor> {
+public class InputUserCorretor implements InputUser<Corretor> {
 
-    private Leitor leitor = new Leitor();
-    private Mensagens mensagem = new Mensagens();
+    private final Leitor leitor  = new Leitor();
+    private final Mensagens mensagem = new Mensagens();
     //Cadastro de Corretor
 
     @Override
@@ -51,10 +50,8 @@ public class InputCorretor implements Input<Corretor> {
         }
 
         //Realiza a verificação do CRECI digitado
-        boolean verificador = false;
-        while (!verificador){
+        while (true){
             if (verificarCreci(creciCorretor)){
-                verificador = true;
                 break;
             }
             else{
@@ -68,7 +65,7 @@ public class InputCorretor implements Input<Corretor> {
             return null;
         }
 
-        verificador = false;
+        boolean verificador = false;
         List<Corretor> corretores = CorretorDAO.getInstancia().buscarTodos();
         for (Corretor i : corretores) { //Vê se já existe no sistema um CRECI igual
             if (i.getCreciCoretor().equals(creciCorretor) ) {
@@ -177,7 +174,7 @@ public class InputCorretor implements Input<Corretor> {
     }
 
     @Override
-    public void atualzarSenha() {
+    public void atualizarSenha() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String senhaNova = leitor.lerString("Digite a nova senha do corretor: ");
         if (senhaNova.equals("0")) {
@@ -268,7 +265,7 @@ public class InputCorretor implements Input<Corretor> {
     }
 
     @Override
-    public void atualziarEmail() {
+    public void atualizarEmail() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String emailNovo = leitor.lerString("Digite o novo Email do corretor: ");
         if (emailNovo.equals("0")) {
@@ -361,10 +358,8 @@ public class InputCorretor implements Input<Corretor> {
             if (view.equals("0")) {
                 break;
             }
-            boolean verificador = false;
-            while (!verificador){
+            while (true){
                 if (verificarCreci(view)){
-                    verificador = true;
                     break;
                 }
                 else{

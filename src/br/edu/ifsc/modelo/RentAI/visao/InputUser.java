@@ -6,7 +6,7 @@ package br.edu.ifsc.modelo.RentAI.visao;
  * @param <TipoClasse> Define o tipo da entidade.
  */
 
-public interface Input<TipoClasse> {
+public interface InputUser<TipoClasse> {
 
     default TipoClasse cadastro(){
         return null;
@@ -18,9 +18,9 @@ public interface Input<TipoClasse> {
     default void atualizarPK(){} ;
 
 
-    default void atualzarSenha(){};
+    default void atualizarSenha(){};
     default void atualizarNomeSobrenome(){};
-    default void atualziarEmail(){};
+    default void atualizarEmail(){};
 
     default void atualizarTelefone() {
 

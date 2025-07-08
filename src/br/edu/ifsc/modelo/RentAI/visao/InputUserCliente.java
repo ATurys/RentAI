@@ -9,10 +9,10 @@ import java.util.List;
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
 
 
-public class InputCliente implements Input<Cliente> {
+public class InputUserCliente implements InputUser<Cliente> {
 
-    private Leitor leitor = new Leitor();
-    private Mensagens mensagem = new Mensagens();
+    private final Leitor leitor = new Leitor();
+    private final Mensagens mensagem = new Mensagens();
     //Cadastro de Cliente
 
     @Override
@@ -80,12 +80,10 @@ public class InputCliente implements Input<Cliente> {
             if (!nomeDuplicado){
                 verificador = false;
             }
-        };
+        }
         //Realiza a verificação do CPF/CNPJ digitado
-        verificador = false;
-        while (!verificador) {
+        while (true) {
             if (verificarCpfOuCnpj(cpfCnpjCliente)) { //Realiza a verificação da validade do CPF/CNPJ digitado
-                verificador = true;
                 break;
             } else {
                 System.out.println("CPF/CNPJ Invalido, tente novamente.\n");
@@ -129,7 +127,7 @@ public class InputCliente implements Input<Cliente> {
             return;
         }
 
-        Cliente cliente = null;
+        Cliente cliente;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
@@ -150,14 +148,14 @@ public class InputCliente implements Input<Cliente> {
     }
 
     @Override
-    public void atualzarSenha() {
+    public void atualizarSenha() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String senhaNova = leitor.lerString("Digite a nova senha do cliente: ");
         if (senhaNova.equals("0")) {
             return;
         }
 
-        Cliente cliente = null;
+        Cliente cliente;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
@@ -193,7 +191,7 @@ public class InputCliente implements Input<Cliente> {
         }
 
         String nomeCompleto = nomeNovo[0] + nomeNovo[1];
-        Cliente cliente = null;
+        Cliente cliente;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
@@ -214,14 +212,14 @@ public class InputCliente implements Input<Cliente> {
     }
 
     @Override
-    public void atualziarEmail() {
+    public void atualizarEmail() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String emailNovo = leitor.lerString("Digite o novo Email do cliente: ");
         if (emailNovo.equals("0")) {
             return;
         }
 
-        Cliente cliente = null;
+        Cliente cliente;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
@@ -249,7 +247,7 @@ public class InputCliente implements Input<Cliente> {
             return;
         }
 
-        Cliente cliente = null;
+        Cliente cliente;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
