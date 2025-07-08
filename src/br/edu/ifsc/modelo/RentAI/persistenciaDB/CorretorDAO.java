@@ -147,6 +147,7 @@ public class CorretorDAO implements  DAO<Corretor, String> {
                         nome[0],
                         nome[1],
                         resultSet.getString("telefone"),
+                        resultSet.getString("nome_usuario"),
                         resultSet.getString("creci"));
                 return c;
             }else{
@@ -175,6 +176,7 @@ public class CorretorDAO implements  DAO<Corretor, String> {
                         nome[0],
                         nome[1],
                         resultSet.getString("telefone"),
+                        resultSet.getString("nome_usuario"),
                         resultSet.getString("creci"));
                 corretores.add(c);
             }

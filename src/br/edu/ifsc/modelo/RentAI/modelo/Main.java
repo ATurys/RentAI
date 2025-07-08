@@ -66,7 +66,7 @@ public class Main {
 
         while (continua) {
             int userPrompt = leitor.lerInt(mensagem.getTextoInicial());
-            testePrompt(6, userPrompt);// Verifica se o numero esta entre 1 e 5
+            testePrompt(7, userPrompt);// Verifica se o numero esta entre 1 e 5
             switch (userPrompt) {
                 case 1://Cadastrar
                     userPrompt = leitor.lerInt(mensagem.getCadastro());
@@ -672,8 +672,98 @@ public class Main {
                     }
                     break;
                 case 5: //Deletar
+                    userPrompt = leitor.lerInt(mensagem.getDeletar());
+                    testePrompt(4, userPrompt);
+
+                    switch (userPrompt) {
+                        case 1:
+                            InputCliente inputCliente = new InputCliente();
+                            inputCliente.getDeletar();
+                            break;
+                        case 2:
+                            String deletarCorretor = leitor.lerString(mensagem.getDeletarCorretor());
+                            break;
+                        case 3:
+                            String deletarProprietario = leitor.lerString(mensagem.getDeletarProprietario());
+                            break;
+                        case 4:
+                            break;
+                    }
                     break;
-                case 6: //Sair
+
+
+                case 6: // Alterar
+                    userPrompt = leitor.lerInt(mensagem.getAtualizar());
+                    testePrompt(4, userPrompt);
+
+                    switch (userPrompt) {
+                        case 1:
+                            userPrompt = leitor.lerInt(mensagem.getAtualizarCliente());
+                            testePrompt(6, userPrompt);
+                            InputCliente inputCliente = new InputCliente();
+                            switch (userPrompt) {
+                                case 1:
+                                    inputCliente.getAtualizarCpf_Cnpj();
+                                    break;
+                                case 2:
+                                    inputCliente.getAtualzarSenha();
+                                    break;
+                                case 3:
+                                    inputCliente.getAtualizarNomeSobrenome();
+                                    break;
+                                case 4:
+                                    inputCliente.getAtualizarEmail();
+                                    break;
+                                case 5:
+                                    inputCliente.getAtualizarTelefone();
+                                    break;
+                                case 6:
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            userPrompt = leitor.lerInt(mensagem.getAtualizarCorretor());
+                            testePrompt(6, userPrompt);
+
+                            switch (userPrompt) {
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    break;
+                                case 4:
+                                    break;
+                                case 5:
+                                    break;
+                                case 6:
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            userPrompt = leitor.lerInt(mensagem.getAtualizarProprietario());
+                            testePrompt(6, userPrompt);
+
+                            switch (userPrompt) {
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    break;
+                                case 4:
+                                    break;
+                                case 5:
+                                    break;
+                                case 6:
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            break;
+                    }
+                    break;
+                case 7: //Sair
                     continua = false;
                     break;
 

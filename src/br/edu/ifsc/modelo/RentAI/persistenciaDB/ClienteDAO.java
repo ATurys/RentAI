@@ -46,8 +46,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Cliente SET cpf_cnpj = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getCpfOuCnpjCliente());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjCliente());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o cpf_cnpj do cliente " + e.getMessage());
@@ -59,8 +59,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Cliente SET senha_hash = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getSenha());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjCliente());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar a senha do cliente " + e.getMessage());
@@ -72,9 +72,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Cliente SET nome = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            String nomeCompleto = entidade.getNome() + " " + entidade.getSobrenome();
-            statement.setString(1, nomeCompleto);
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjCliente());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o nome do cliente " + e.getMessage());
@@ -86,8 +85,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Cliente SET email = ? WHERE cpf_cnpj = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getEmail());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCpfOuCnpjCliente());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o email do cliente " + e.getMessage());

@@ -8,7 +8,8 @@ public class Mensagens {
             "\t3 - Criar uma proposta\n" +
             "\t4 - Anunciar uma Venda\n" +
             "\t5 - Deletar\n" +
-            "\t6 - Sair";
+            "\t6 - Alterar\n" +
+            "\t7 - Sair";
 
     // Textos camda 1
     private String cadastro =
@@ -121,6 +122,50 @@ public class Mensagens {
     private String vendaFormaDePagamento =
             "Forma de pagamento: ";
 
+    // Opções para Atualizar
+        //TODO
+    private String atualizar =
+            "\t1 - atualizar Cliente\n" +
+            "\t2 - atualizar Corretor\n" +
+            "\t3 - atualizar Proprietário\n" +
+            "\t4 - voltar\n";
+
+    private String atualizarCliente =
+            "\t1 - atualizar CPF/CNPJ\n" +
+            "\t2 - atualizar Senha\n" +
+            "\t3 - atualizar Nome\n" +
+            "\t4 - atualizar Email\n" +
+            "\t5 - atualizar Telefone\n" +
+            "\t6 - voltar\n";
+
+    private String atualizarCorretor =
+            "\t1 - atualizar CRECI\n" +
+            "\t2 - atualizar Senha\n" +
+            "\t3 - atualizar Nome\n" +
+            "\t4 - atualizar Email\n" +
+            "\t5 - atualizar Telefone\n" +
+            "\t6 - voltar\n";
+
+    private String atualizarProprietario =
+            "\t1 - atualizar CPF/CNPJ\n" +
+            "\t2 - atualizar Senha\n" +
+            "\t3 - atualizar Nome\n" +
+            "\t4 - atualizar Email\n" +
+            "\t5 - atualizar Telefone\n" +
+            "\t6 - voltar\n";
+
+    // Opções para deletar
+    private String deletar =
+            "\t1 - Deletar Cliente\n" +
+            "\t2 - Deletar Corretor\n" +
+            "\t3 - Deletar Proprietário\n" +
+            "\t4 - voltar\n";
+
+    private String deletarCliente =  "\t1 - CPF/CNPJ do cliente a ser Deletado [ESSA AÇÃO NÃO PODE SER DESFEITA!]: ";
+    private String deletarCorretor =  "\t1 - CRECI do corretor a ser Deletado [ESSA AÇÃO NÃO PODE SER DESFEITA!]: ";
+    private String deletarProprietario =  "\t1 - CPF/CNPJ do proprietario a ser Deletado [ESSA AÇÃO NÃO PODE SER DESFEITA!]: ";
+
+
     //Getter texto inicial
     public String getTextoInicial() {
         return textoInicial;
@@ -145,6 +190,13 @@ public class Mensagens {
         return anunciar;
     }
 
+    public String getDeletar() {
+        return deletar;
+    }
+
+    public String getAtualizar() {
+        return atualizar;
+    }
 
     // Getters camada 2 -> Cadastro
 
@@ -194,7 +246,7 @@ public class Mensagens {
     }
 
 
-    // Getters camada 2 -> Criar br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta
+    // Getters camada 2 -> Criar Proposta
 
     public String getPropostaCpfCnpjCliente() {
         return propostaCpfCnpjCliente;
@@ -217,7 +269,7 @@ public class Mensagens {
     }
 
 
-    // Getters camada 2 -> Criar br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda
+    // Getters camada 2 -> Criar Venda
 
     public String getVendaPropostaID() {
         return vendaPropostaID;
@@ -229,5 +281,35 @@ public class Mensagens {
 
     public String getVendaFormaDePagamento() {
         return vendaFormaDePagamento;
+    }
+
+    // Getters camada 2 -> Deletar
+
+
+    public String getDeletarCliente() {
+        return deletarCliente;
+    }
+
+    public String getDeletarCorretor() {
+        return deletarCorretor;
+    }
+
+    public String getDeletarProprietario() {
+        return deletarProprietario;
+    }
+
+    // Getter camada 2 -> Atualziar
+
+
+    public String getAtualizarCliente() {
+        return atualizarCliente;
+    }
+
+    public String getAtualizarCorretor() {
+        return atualizarCorretor;
+    }
+
+    public String getAtualizarProprietario() {
+        return atualizarProprietario;
     }
 }
