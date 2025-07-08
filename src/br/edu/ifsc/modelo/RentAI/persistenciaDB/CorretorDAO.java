@@ -43,8 +43,8 @@ public class CorretorDAO implements  DAO<Corretor, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Corretor SET creci = ? WHERE creci = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getCreciCoretor());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCreciCoretor());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o creci do corretor " + e.getMessage());
@@ -56,8 +56,8 @@ public class CorretorDAO implements  DAO<Corretor, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Corretor SET senha_hash = ? WHERE creci = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getSenha());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCreciCoretor());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar a senha do corretor " + e.getMessage());
@@ -69,9 +69,8 @@ public class CorretorDAO implements  DAO<Corretor, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Corretor SET nome = ? WHERE creci = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            String nomeCompleto = entidade.getNome() + entidade.getSobrenome();
-            statement.setString(1, nomeCompleto);
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCreciCoretor());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o nome do corretor " + e.getMessage());
@@ -83,8 +82,8 @@ public class CorretorDAO implements  DAO<Corretor, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Corretor SET nome_usuario = ? WHERE creci = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getUserName());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCreciCoretor());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o nome de usuário do corretor " + e.getMessage());
@@ -96,8 +95,8 @@ public class CorretorDAO implements  DAO<Corretor, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Corretor SET email = ? WHERE creci = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getEmail());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCreciCoretor());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o email do corretor " + e.getMessage());
@@ -109,8 +108,8 @@ public class CorretorDAO implements  DAO<Corretor, String> {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Corretor SET telefone = ? WHERE creci = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getTelefone());
-            statement.setString(2, arg);
+            statement.setString(2, entidade.getCreciCoretor());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o telefone do corretor " + e.getMessage());

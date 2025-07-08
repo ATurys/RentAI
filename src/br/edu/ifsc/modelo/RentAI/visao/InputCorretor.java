@@ -10,12 +10,14 @@ import java.util.List;
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCreci;
 
 
-public class InputCorretor {
+public class InputCorretor implements Input<Corretor> {
 
     private Leitor leitor = new Leitor();
     private Mensagens mensagem = new Mensagens();
     //Cadastro de Corretor
-    private Corretor cadastro() {
+
+    @Override
+    public Corretor cadastro() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         System.out.println(mensagem.getCadastroCorretor());
         String emailCorretor = leitor.lerString("Digite seu e-mail: ");
@@ -100,224 +102,295 @@ public class InputCorretor {
         return new Corretor(emailCorretor, senhaCorretor, nomeCorretor, sobrenomeCorretor, telefoneCorretor, userNameCorretor, creciCorretor);
     }
 
-    private Cliente visualizar() {
+    @Override
+    public Corretor visualizar() {
         System.out.println("[DIGITE 0 PARA SAIR]");
-        Cliente cliente;
+        Corretor corretor;
         do {
-            String view = leitor.lerString(mensagem.getVisualizarCliente());
+            String view = leitor.lerString(mensagem.getVisualizarCorretor());
             if (view.equals("0")) {
                 return null;
             }
-            cliente = ClienteDAO.getInstancia().buscar(view);
+            corretor = CorretorDAO.getInstancia().buscar(view);
 
 
-            // Validação de cliente
-            if (cliente == null) {
-                System.out.println("Cliente não encontrado, tente novamente: ");
+            // Validação de corretor
+            if (corretor == null) {
+                System.out.println("Corretor não encontrado, tente novamente: ");
             }
-        } while (cliente == null);
-        return cliente;
+        } while (corretor == null);
+        return corretor;
     }
 
-    private void atualizarCpf_Cnpj() {
+    @Override
+    public void atualizarPK() {
         System.out.println("[DIGITE 0 PARA SAIR]");
-        String cpf_cnpjNovo = leitor.lerString("Digite o novo CPF/CNPJ do cliente: ");
-        if (cpf_cnpjNovo.equals("0")) {
+        String creciNovo = leitor.lerString("Digite o novo CRECI do corretor: ");
+        if (creciNovo.equals("0")) {
             return;
         }
+        boolean verificador = false;
+        while (!verificador){
+            if (verificarCreci(creciNovo)){
+                verificador = true;
+                break;
+            }
+            else{
+                creciNovo = leitor.lerString("Digite o novo CRECI do corretor: ");
+                if (creciNovo.equals("0")) {
+                    return;
+                }
+            }
+        }
 
-        Cliente cliente = null;
+        Corretor corretor = null;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
         do {
-            view = leitor.lerString("Digite o CPF/CNPJ que está atualmente no sistema do cliente : ");
+            view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor : ");
             if (view.equals("0")) {
                 return;
             }
-            cliente = ClienteDAO.getInstancia().buscar(view);
-
-            // Validação de cliente
-            if (cliente == null) {
-                System.out.println("Cliente não encontrado, tente novamente: ");
+            verificador = false;
+            while (!verificador){
+                if (verificarCreci(view)){
+                    verificador = true;
+                    break;
+                }
+                else{
+                    view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor: ");
+                    if (view.equals("0")) {
+                        return;
+                    }
+                }
             }
-        } while (cliente == null);
-        ClienteDAO.getInstancia().atualizar(cliente, cpf_cnpjNovo);
+            corretor = CorretorDAO.getInstancia().buscar(view);
+
+            // Validação de corretor
+            if (corretor == null) {
+                System.out.println("Corretor não encontrado, tente novamente: ");
+            }
+        } while (corretor == null);
+        CorretorDAO.getInstancia().atualizar(corretor, creciNovo);
         System.out.println("Atualizado com sucesso!");
     }
 
-    private void atualzarSenha() {
+    @Override
+    public void atualzarSenha() {
         System.out.println("[DIGITE 0 PARA SAIR]");
-        String senhaNova = leitor.lerString("Digite a nova senha do cliente: ");
+        String senhaNova = leitor.lerString("Digite a nova senha do corretor: ");
         if (senhaNova.equals("0")) {
             return;
         }
 
-        Cliente cliente = null;
+        Corretor corretor = null;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
         do {
-            view = leitor.lerString("Digite o CPF/CNPJ que está atualmente no sistema do cliente : ");
+            view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor : ");
             if (view.equals("0")) {
                 return;
             }
-            cliente = ClienteDAO.getInstancia().buscar(view);
+            boolean verificador = false;
+            while (!verificador){
+                if (verificarCreci(view)){
+                    verificador = true;
+                    break;
+                }
+                else{
+                    view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor: ");
+                    if (view.equals("0")) {
+                        return;
+                    }
+                }
+            }
 
-            // Validação de cliente
-            if (cliente == null) {
+            corretor = CorretorDAO.getInstancia().buscar(view);
+
+            // Validação de corretor
+            if (corretor == null) {
                 System.out.println("Cliente não encontrado, tente novamente: ");
             }
-        } while (cliente == null);
-        ClienteDAO.getInstancia().atualizarSenha(cliente, senhaNova);
+        } while (corretor == null);
+        CorretorDAO.getInstancia().atualizarSenha(corretor, senhaNova);
         System.out.println("Atualizado com sucesso!");
     }
 
-    private void atualizarNomeSobrenome() {
+    @Override
+    public void atualizarNomeSobrenome() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String[] nomeNovo = new String[2];
 
-        nomeNovo[0] = leitor.lerString("Digite o novo nome do cliente: ");
+        nomeNovo[0] = leitor.lerString("Digite o novo nome do corretor: ");
         if (nomeNovo[0].equals("0")) {
             return;
         }
 
-        nomeNovo[1] = leitor.lerString("Digite o novo sobrenome do cliente: ");
+        nomeNovo[1] = leitor.lerString("Digite o novo sobrenome do corretor: ");
         if (nomeNovo[1].equals("0")) {
             return;
         }
 
         String nomeCompleto = nomeNovo[0] + nomeNovo[1];
-        Cliente cliente = null;
+        Corretor corretor = null;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
         do {
-            view = leitor.lerString("Digite o CPF/CNPJ que está atualmente no sistema do cliente : ");
+            view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor : ");
             if (view.equals("0")) {
                 return;
             }
-            cliente = ClienteDAO.getInstancia().buscar(view);
-
-            // Validação de cliente
-            if (cliente == null) {
-                System.out.println("Cliente não encontrado, tente novamente: ");
+            boolean verificador = false;
+            while (!verificador){
+                if (verificarCreci(view)){
+                    verificador = true;
+                    break;
+                }
+                else{
+                    view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor: ");
+                    if (view.equals("0")) {
+                        return;
+                    }
+                }
             }
-        } while (cliente == null);
-        ClienteDAO.getInstancia().atualizarSenha(cliente, nomeCompleto);
+            corretor = CorretorDAO.getInstancia().buscar(view);
+
+            // Validação de corretor
+            if (corretor == null) {
+                System.out.println("Corretor não encontrado, tente novamente: ");
+            }
+        } while (corretor == null);
+        CorretorDAO.getInstancia().atualizarNome(corretor, nomeCompleto);
         System.out.println("Atualizado com sucesso!");
     }
 
-    private void atualziarEmail() {
+    @Override
+    public void atualziarEmail() {
         System.out.println("[DIGITE 0 PARA SAIR]");
-        String emailNovo = leitor.lerString("Digite o novo Email do cliente: ");
+        String emailNovo = leitor.lerString("Digite o novo Email do corretor: ");
         if (emailNovo.equals("0")) {
             return;
         }
 
-        Cliente cliente = null;
+        Corretor corretor = null;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
         do {
-            view = leitor.lerString("Digite o CPF/CNPJ que está atualmente no sistema do cliente : ");
+            view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor : ");
             if (view.equals("0")) {
                 return;
             }
-            cliente = ClienteDAO.getInstancia().buscar(view);
-
-            // Validação de cliente
-            if (cliente == null) {
-                System.out.println("Cliente não encontrado, tente novamente: ");
+            boolean verificador = false;
+            while (!verificador){
+                if (verificarCreci(view)){
+                    verificador = true;
+                    break;
+                }
+                else{
+                    view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor: ");
+                    if (view.equals("0")) {
+                        return;
+                    }
+                }
             }
-        } while (cliente == null);
-        ClienteDAO.getInstancia().atualizar(cliente, emailNovo);
+
+            corretor = CorretorDAO.getInstancia().buscar(view);
+
+            // Validação de corretor
+            if (corretor == null) {
+                System.out.println("Corretor não encontrado, tente novamente: ");
+            }
+        } while (corretor == null);
+        CorretorDAO.getInstancia().atualizarEmail(corretor, emailNovo);
         System.out.println("Atualizado com sucesso!");
     }
-    private void atualizarTelefone() {
+
+    @Override
+    public void atualizarTelefone() {
         System.out.println("[DIGITE 0 PARA SAIR]");
-        String telefoneNovo = leitor.lerString("Digite o novo telefone do cliente: ");
+        String telefoneNovo = leitor.lerString("Digite o novo telefone do corretor: ");
         if (telefoneNovo.equals("0")) {
             return;
         }
 
-        Cliente cliente = null;
+        Corretor corretor = null;
         String view;
 
         System.out.println("[DIGITE 0 PARA SAIR]");
         do {
-            view = leitor.lerString("Digite o CPF/CNPJ que está atualmente no sistema do cliente : ");
+            view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor : ");
             if (view.equals("0")) {
                 return;
             }
-            cliente = ClienteDAO.getInstancia().buscar(view);
+            boolean verificador = false;
+            while (!verificador){
+                if (verificarCreci(view)){
+                    verificador = true;
+                    break;
+                }
+                else{
+                    view = leitor.lerString("Digite o CRECI que está atualmente no sistema do corretor: ");
+                    if (view.equals("0")) {
+                        return;
+                    }
+                }
+            }
+
+            corretor = CorretorDAO.getInstancia().buscar(view);
 
             // Validação de cliente
-            if (cliente == null) {
-                System.out.println("Cliente não encontrado, tente novamente: ");
+            if (corretor == null) {
+                System.out.println("corretor não encontrado, tente novamente: ");
             }
-        } while (cliente == null);
-        ClienteDAO.getInstancia().atualizar(cliente, telefoneNovo);
+        } while (corretor == null);
+        CorretorDAO.getInstancia().atualizarTelefone(corretor, telefoneNovo);
         System.out.println("Atualizado com sucesso!");
     }
 
-    private void deletar() {
+    @Override
+    public void deletar() {
         System.out.println("[DIGITE 0 PARA SAIR]");
-        Cliente cliente;
+        Corretor corretor;
         String view;
         do {
-            view = leitor.lerString(mensagem.getDeletarCliente());
+            view = leitor.lerString(mensagem.getDeletarCorretor());
             if (view.equals("0")) {
                 break;
             }
-            cliente = ClienteDAO.getInstancia().buscar(view);
+            boolean verificador = false;
+            while (!verificador){
+                if (verificarCreci(view)){
+                    verificador = true;
+                    break;
+                }
+                else{
+                    view = leitor.lerString(mensagem.getDeletarCorretor());
+                    if (view.equals("0")) {
+                        return;
+                    }
+                }
+            }
+
+            corretor = CorretorDAO.getInstancia().buscar(view);
 
             // Validação de cliente
-            if (cliente == null) {
-                System.out.println("Cliente não encontrado, tente novamente: ");
+            if (corretor == null) {
+                System.out.println("corretor não encontrado, tente novamente: ");
             } else {
-                ClienteDAO.getInstancia().deletar(cliente);
+                CorretorDAO.getInstancia().deletar(corretor);
             }
-        } while (cliente == null);
+        } while (corretor == null);
         if (view.equals("0")) {
             return;
         } else {
-            System.out.println("Cliente deletado com sucesso!");
+            System.out.println("Corretor deletado com sucesso!");
         }
     }
 
-    //Getters (não há setters)
 
-    public Corretor getCadastro() {
-        return cadastro();
-    }
-
-    public Corretor getVisualizar() {
-        return visualizar();
-    }
-
-    public void getDeletar() {
-        deletar();
-    }
-
-    public void getAtualizarCpf_Cnpj() {
-        atualizarCpf_Cnpj();
-    }
-
-    public void getAtualzarSenha() {
-        atualzarSenha();
-    }
-
-    public void getAtualizarNomeSobrenome() {
-        atualizarNomeSobrenome();
-    }
-
-    public void getAtualizarEmail() {
-        atualziarEmail();
-    }
-
-    public void getAtualizarTelefone() {
-        atualizarTelefone();
-    }
 }
 

@@ -77,7 +77,7 @@ public class Main {
                         case 1: //Cadastro de Cliente
 
                             InputCliente inputCliente = new InputCliente();
-                            Cliente novoCliente = inputCliente.getCadastro();
+                            Cliente novoCliente = inputCliente.cadastro();
                             if (novoCliente == null) {
                                 break;
                             }
@@ -89,7 +89,7 @@ public class Main {
                         case 2://Cadastro de Corretor
 
                             InputCorretor inputCorretor = new InputCorretor();
-                            Corretor novoCorretor = inputCorretor.getCadastro();
+                            Corretor novoCorretor = inputCorretor.cadastro();
                             if (novoCorretor == null) {
                                 break;
                             }
@@ -271,7 +271,7 @@ public class Main {
                     switch (userPrompt) {
                         case 1: // Ver cliente
                             InputCliente inputCliente = new InputCliente();
-                            Cliente cliente = inputCliente.getVisualizar();
+                            Cliente cliente = inputCliente.visualizar();
                             if (cliente != null) {
                                 cliente.mostrarInfoCliente();
                             }
@@ -640,7 +640,7 @@ public class Main {
                     switch (userPrompt) {
                         case 1:
                             InputCliente inputCliente = new InputCliente();
-                            inputCliente.getDeletar();
+                            inputCliente.deletar();
                             break;
                         case 2:
                             String deletarCorretor = leitor.lerString(mensagem.getDeletarCorretor());

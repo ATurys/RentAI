@@ -9,12 +9,14 @@ import java.util.List;
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
 
 
-public class InputCliente {
+public class InputCliente implements Input<Cliente> {
 
     private Leitor leitor = new Leitor();
     private Mensagens mensagem = new Mensagens();
     //Cadastro de Cliente
-    private Cliente cadastro() {
+
+    @Override
+    public Cliente cadastro() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         System.out.println(mensagem.getCadastroCliente());
 
@@ -99,7 +101,8 @@ public class InputCliente {
         return new Cliente(emailCliente, senhaCliente, nomeCliente, sobrenomeCliente, telefoneCliente, userNameCliente, cpfCnpjCliente);
     }
 
-    private Cliente visualizar() {
+    @Override
+    public Cliente visualizar() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         Cliente cliente;
         do {
@@ -118,7 +121,8 @@ public class InputCliente {
         return cliente;
     }
 
-    private void atualizarCpf_Cnpj() {
+    @Override
+    public void atualizarPK() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String cpf_cnpjNovo = leitor.lerString("Digite o novo CPF/CNPJ do cliente: ");
         if (cpf_cnpjNovo.equals("0")) {
@@ -145,7 +149,8 @@ public class InputCliente {
         System.out.println("Atualizado com sucesso!");
     }
 
-    private void atualzarSenha() {
+    @Override
+    public void atualzarSenha() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String senhaNova = leitor.lerString("Digite a nova senha do cliente: ");
         if (senhaNova.equals("0")) {
@@ -172,7 +177,8 @@ public class InputCliente {
         System.out.println("Atualizado com sucesso!");
     }
 
-    private void atualizarNomeSobrenome() {
+    @Override
+    public void atualizarNomeSobrenome() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String[] nomeNovo = new String[2];
 
@@ -203,11 +209,12 @@ public class InputCliente {
                 System.out.println("Cliente não encontrado, tente novamente: ");
             }
         } while (cliente == null);
-        ClienteDAO.getInstancia().atualizarSenha(cliente, nomeCompleto);
+        ClienteDAO.getInstancia().atualizarNome(cliente, nomeCompleto);
         System.out.println("Atualizado com sucesso!");
     }
 
-    private void atualziarEmail() {
+    @Override
+    public void atualziarEmail() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String emailNovo = leitor.lerString("Digite o novo Email do cliente: ");
         if (emailNovo.equals("0")) {
@@ -230,10 +237,12 @@ public class InputCliente {
                 System.out.println("Cliente não encontrado, tente novamente: ");
             }
         } while (cliente == null);
-        ClienteDAO.getInstancia().atualizar(cliente, emailNovo);
+        ClienteDAO.getInstancia().atualizarEmail(cliente, emailNovo);
         System.out.println("Atualizado com sucesso!");
     }
-    private void atualizarTelefone() {
+
+    @Override
+    public void atualizarTelefone() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         String telefoneNovo = leitor.lerString("Digite o novo telefone do cliente: ");
         if (telefoneNovo.equals("0")) {
@@ -256,11 +265,12 @@ public class InputCliente {
                 System.out.println("Cliente não encontrado, tente novamente: ");
             }
         } while (cliente == null);
-        ClienteDAO.getInstancia().atualizar(cliente, telefoneNovo);
+        ClienteDAO.getInstancia().atualizarTelefone(cliente, telefoneNovo);
         System.out.println("Atualizado com sucesso!");
     }
 
-    private void deletar() {
+    @Override
+    public void deletar() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         Cliente cliente;
         String view;
@@ -285,37 +295,4 @@ public class InputCliente {
         }
     }
 
-    //Getters (não há setters)
-
-    public Cliente getCadastro() {
-        return cadastro();
-    }
-
-    public Cliente getVisualizar() {
-        return visualizar();
-    }
-
-    public void getDeletar() {
-        deletar();
-    }
-
-    public void getAtualizarCpf_Cnpj() {
-        atualizarCpf_Cnpj();
-    }
-
-    public void getAtualzarSenha() {
-        atualzarSenha();
-    }
-
-    public void getAtualizarNomeSobrenome() {
-        atualizarNomeSobrenome();
-    }
-
-    public void getAtualizarEmail() {
-        atualziarEmail();
-    }
-
-    public void getAtualizarTelefone() {
-        atualizarTelefone();
-    }
 }
