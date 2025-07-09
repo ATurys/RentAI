@@ -57,6 +57,7 @@ public class Venda {
 
     public void mostrarInfoVenda() {
         System.out.println("Informações da Proposta: \n");
+        System.out.println("ID da venda: " + this.idVenda + "\n");
         this.proposta.mostrarInfoProposta();
 
         System.out.println("\nInformações sobre o dono anterior do ímovel (Antes de ser realizada a venda): \n");

@@ -5,30 +5,17 @@ import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
 import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
-import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
 import br.edu.ifsc.modelo.RentAI.persistenciaDB.*;
 
 import java.util.List;
-
-import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
-import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCreci;
 
 public class InputProposta {
 
     private final Leitor leitor = new Leitor();
     private final Mensagens mensagem = new Mensagens();
-    //Cadastro de Cliente
 
     public Proposta cadastro() {
         System.out.println(mensagem.getCriar());
-
-
-
-
-
-
-
-
         System.out.println("[DIGITE 0 PARA SAIR]");
 
         // Pegar cliente pelo CPF
@@ -182,6 +169,5 @@ public class InputProposta {
             }
         } while (proposta == null);
         return proposta;
-        }
     }
 }

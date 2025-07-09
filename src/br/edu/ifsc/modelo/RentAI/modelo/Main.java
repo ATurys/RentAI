@@ -1,7 +1,6 @@
 package br.edu.ifsc.modelo.RentAI.modelo;
 
 import br.edu.ifsc.modelo.RentAI.leitor.Leitor;
-import br.edu.ifsc.modelo.RentAI.modelo.imovel.Endereco;
 import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
 import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta;
 import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda;
@@ -10,8 +9,6 @@ import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
 import br.edu.ifsc.modelo.RentAI.persistenciaDB.*;
 import br.edu.ifsc.modelo.RentAI.visao.*;
-
-import java.util.ArrayList;
 
 public class Main {
     public static void testePrompt (int max, int userPrompt) {
@@ -54,11 +51,6 @@ public class Main {
         Conexao.criarTabelas();
         Leitor leitor = new Leitor();
         Mensagens mensagem = new Mensagens();
-        ArrayList<Corretor> corretores = new ArrayList<Corretor>();
-        ArrayList<DonoImovel> proprietarios = new ArrayList<DonoImovel>();
-        ArrayList<Imovel> imoveis = new ArrayList<Imovel>();
-        ArrayList<Proposta> propostas = new ArrayList<Proposta>();
-        ArrayList<Venda> vendas = new ArrayList<Venda>();
 
         boolean continua = true;
 
@@ -181,28 +173,10 @@ public class Main {
                             break;
 
                         case 5: // Ver vendas
-                            System.out.println("[DIGITE 0 PARA SAIR]");
-                            userPrompt = leitor.lerInt(mensagem.getVisualizarVenda());
-                            // Validação de Venda
-                            boolean achouVenda = false;
-                            while (!achouVenda) {
-                                if (userPrompt == 0) {
-                                    break;
-                                }
-                                for (int i = 0; i < vendas.size(); i++) {
-                                    Venda venda = vendas.get(i);
-                                    if (venda.getId() == userPrompt) {
-                                        // Achou a Venda com o ID correspondente
-                                        vendas.get(i).mostrarInfoVenda();
-                                        achouVenda = true;
-                                        break;
-                                    }
-                                }
-                                if (achouVenda) {
-                                    break;
-                                }
-                                System.out.println("Venda não encontrada, tente novamente: ");
-                                userPrompt = leitor.lerInt(mensagem.getVisualizarVenda());
+                            InputVenda inputvenda = new InputVenda();
+                            Venda novaVenda = inputvenda.visualizar();
+                            if (novaVenda != null) {
+                                novaVenda.mostrarInfoVenda();
                             }
                             break;
 
@@ -224,102 +198,16 @@ public class Main {
                     break;
 
                 case 4://Anunciar Venda
-                    boolean verifica = false;
-                    while (!verifica) {
-                        System.out.println("[DIGITE 0 PARA SAIR]");
-                        System.out.println((mensagem.getAnunciar()));
-                        Proposta propostaVenda = null;
-                        DonoImovel donoImovel = null;
-
-                        //Pegar Proposta
-                        iDProposta = leitor.lerInt((mensagem.getVendaPropostaID()));
-                        achou = false;
-                        while (!achou) {
-                            if (iDProposta == 0) {
-                                break;
-                            }// verifica saida
-                            for (int i = 0; i < propostas.size(); i++) {
-                                propostaVenda = propostas.get(i);
-                                if (propostaVenda.getId() == (iDProposta)) {
-                                    // Achou Proposta correspondente
-                                    achou = true;
-                                    break;
-                                }
-                            }
-                            System.out.println("Proposta não encontrado, tente novamente: ");
-                            iDProposta = leitor.lerInt("Digite o ID da Proposta ou digite 0 para sair: ");
-                        } // Verifica se existe essa proposta
-                        // Saida da escolha de proposta
-                        if (iDProposta == 0) {
-                            break;
-                        }
-
-                        //Pegar Proprietario
-                        String cpfCnpjProprietario = leitor.lerString(mensagem.getVendaCpfCnpjProprietario());
-                        achou = false;
-                        while (!achou) {
-                            if (cpfCnpjProprietario.equals("0")) {
-                                break;
-                            }// verifica saida
-                            for (int i = 0; i < proprietarios.size(); i++) {
-                                donoImovel = proprietarios.get(i);
-                                if (donoImovel.getCpfOuCnpjDonoImovel().equals(cpfCnpjProprietario)) {
-                                    // Achou Proprietario correspondente
-                                    achou = true;
-                                    break;
-                                }
-                            }
-                            System.out.println("Proprietario não encontrado, tente novamente: ");
-                            cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do Proprietario ou digite 0 para sair: ");
-                        } // Verifica se existe esse Proprietario
-                        // Saida da escolha de Proprietario
-                        if (cpfCnpjProprietario.equals("0")) {
-                            break;
-                        }
-
-                        //Escolher forma de pagamento
-                        System.out.println("[DIGITE 0 PARA SAIR]");
-                        String formaDePagamento = leitor.lerString(mensagem.getVendaFormaDePagamento());
-                        if (formaDePagamento.equals("0")) {
-                            break;
-                        }
-
-                        // Definir valor da venda
-                        float valorVenda = propostaVenda.getValorOferecido();
-
-                        //Definir ID da venda
-                        int idVenda = vendas.size() + 1;
-
-                        System.out.println("Venda: " +
-                                "\nId da proposta: " + propostaVenda.getId() +
-                                "\nValor da venda: " + propostaVenda.getValorOferecido() +
-                                "\nForma de pagamento: " + formaDePagamento +
-                                "\nProprietario atual: " + donoImovel.getUserInfo().getNome() + " " + donoImovel.getUserInfo().getSobrenome() +
-                                "\nCPF/CNPJ do proprietario atual: " + donoImovel.getCpfOuCnpjProprietarioCripted()
-                        );
-                        verifica = leitor.lerBoolean("Confirmar?");
-                        if (verifica) {
-                            //Atualiza status da proposta
-                            for (int i = 0; i < propostas.size(); i++) {
-                                if (propostaVenda.equals(propostas.get(i))) {
-                                    // Achou Proposta correspondente
-                                    propostas.get(i).setStatus("PROPOSTA TRANSFORMADA EM VENDA");
-                                    propostaVenda.setStatus("PROPOSTA TRANSFORMADA EM VENDA");
-                                    break;
-                                }
-                            }
-                            //Cria a venda
-                            Venda venda = new Venda(
-                                    propostaVenda,
-                                    donoImovel,
-                                    idVenda,
-                                    valorVenda,
-                                    formaDePagamento
-                            );
-                            vendas.add(venda);
-                        }
+                    InputVenda inputvenda = new InputVenda();
+                    Venda novaVenda = inputvenda.cadastro();
+                    if (novaVenda == null) {
+                        break;
                     }
+
+                    VendaDAO.getInstance().criar(novaVenda);
+                    System.out.println("Venda concluída, o ID dessa venda é " + novaVenda.getId() + ", não esqueça!");
                     break;
+
                 case 5: //Deletar
                     userPrompt = leitor.lerInt(mensagem.getDeletar());
                     testePrompt(4, userPrompt);
@@ -374,10 +262,10 @@ public class Main {
                                     break;
                             }
                             break;
+
                         case 2:
                             userPrompt = leitor.lerInt(mensagem.getAtualizarCorretor());
                             testePrompt(6, userPrompt);
-
                             InputUserCorretor inputCorretor = new InputUserCorretor();
                             switch (userPrompt) {
                                 case 1:
@@ -399,10 +287,10 @@ public class Main {
                                     break;
                             }
                             break;
+
                         case 3:
                             userPrompt = leitor.lerInt(mensagem.getAtualizarProprietario());
                             testePrompt(6, userPrompt);
-
                             InputUserProprietario inputProprietario = new InputUserProprietario();
                             switch (userPrompt) {
                                 case 1:
@@ -424,6 +312,7 @@ public class Main {
                                     break;
                             }
                             break;
+
                         case 4:
                             break;
                     }

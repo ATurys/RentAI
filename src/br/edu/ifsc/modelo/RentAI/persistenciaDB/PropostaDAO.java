@@ -1,6 +1,9 @@
 package br.edu.ifsc.modelo.RentAI.persistenciaDB;
 
+import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
 import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -104,10 +107,13 @@ public class PropostaDAO implements DAO<Proposta, Integer> {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
+                        Cliente cliente = new Cliente(null, null, null, null, null, null, resultSet.getString("cpf_cnpj_cliente"));
+                        Corretor corretor = new Corretor(null, null, null, null, null, null, resultSet.getString("creci_corretor"));
+                        Imovel imovel = new Imovel(resultSet.getInt("id_imovel"));
                 Proposta p = new Proposta(
-                        resultSet.getString("cpf_cnpj_cliente"),
-                        resultSet.getString("creci_corretor"),
-                        resultSet.getInt("id_imovel"),
+                        cliente,
+                        corretor,
+                        imovel,
                         resultSet.getInt("id_proposta"),
                         resultSet.getFloat("valor_oferecido"),
                         resultSet.getString("status"));

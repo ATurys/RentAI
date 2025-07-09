@@ -37,7 +37,7 @@ public class Mensagens {
 
     private String anunciar =
             "Precisaremos das seguintes informações: \n" +
-            "\t1 - ID da br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta que foi aceita\n" +
+            "\t1 - ID da Proposta que foi aceita\n" +
             "\t2 - CPF/CNPJ do proprietário atual\n" +
             "\t3 - Forma de pagamento\n";
 
@@ -122,11 +122,14 @@ public class Mensagens {
 
     // Opções para criar uma venda
     private String vendaPropostaID =
-            "ID da br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta que foi aceita: ";
+            "ID da Proposta que foi aceita: ";
     private String vendaCpfCnpjProprietario =
             "CPF/CNPJ do proprietário atual: ";
     private String vendaFormaDePagamento =
-            "Forma de pagamento: ";
+            "Defina a forma de pagamento: \n" +
+            "\t1 - [a vista]\n" +
+            "\t2 - [financiamento]\n" +
+            "\t3 - [parcelado]\n";
 
     // Opções para Atualizar
         //TODO
