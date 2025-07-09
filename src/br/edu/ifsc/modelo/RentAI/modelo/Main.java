@@ -8,8 +8,7 @@ import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
-import br.edu.ifsc.modelo.RentAI.persistenciaDB.ClienteDAO;
-import br.edu.ifsc.modelo.RentAI.persistenciaDB.Conexao;
+import br.edu.ifsc.modelo.RentAI.persistenciaDB.*;
 import br.edu.ifsc.modelo.RentAI.visao.*;
 
 import java.util.ArrayList;
@@ -93,6 +92,7 @@ public class Main {
                                 break;
                             }
 
+                            CorretorDAO.getInstancia().criar(novoCorretor);
                             System.out.println("Cadastro concluído");
                             break;
 
@@ -100,123 +100,25 @@ public class Main {
                         case 3://Cadastro de Proprietario
 
                             InputUserProprietario inputProprietario = new InputUserProprietario();
-                            DonoImovel Proprietario = inputProprietario.cadastro();
-                            if (Proprietario == null) {
+                            DonoImovel proprietario = inputProprietario.cadastro();
+                            if (proprietario == null) {
                                 break;
                             }
+
+                            ProprietarioDAO.getInstancia().criar(proprietario);
                             System.out.println("Cadastro concluido");
                             break;
 
                         case 4://Cadastro de Imovel
-                            System.out.println("[DIGITE 0 PARA SAIR]");
-                            System.out.println(mensagem.getCadastroImovel());
-                            String bairroImovel = leitor.lerString("Digite o bairro: ");
-                            if (bairroImovel.equals("0")) {
-                                break;
-                            }
-                            String cidadeImovel = leitor.lerString("Digite a cidade: ");
-                            if (cidadeImovel.equals("0")) {
-                                break;
-                            }
-                            String ruaImovel = leitor.lerString("Digite a rua: ");
-                            if (ruaImovel.equals("0")) {
-                                break;
-                            }
-                            String numeroImovel = leitor.lerString("Digite o numero: ");
-                            if (numeroImovel.equals("0")) {
-                                break;
-                            }
-                            String cepImovel = leitor.lerString("Digite o CEP: ");
-                            if (cepImovel.equals("0")) {
-                                break;
-                            }
-                            String tipoImovel = leitor.lerString("Digite o tipo (casa ou apartamneto): ");
-                            if (tipoImovel.equals("0")) {
-                                break;
-                            }
-                            String statusImovel = leitor.lerString("Digite o status do ímovel (Reformado, Mobiliado ou Construção): ");
-                            if (statusImovel.equals("0")) {
-                                break;
-                            }
-                            String nomeImovel = leitor.lerString("Digite o nome do movel: ");
-                            if (nomeImovel.equals("0")) {
-                                break;
-                            }
-                            String cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
-                            if (cpfCnpjImovel.equals("0")) {
+                            InputImovel inputImovel = new InputImovel();
+                            Imovel imovel = inputImovel.cadastro();
+                            if (imovel == null) {
                                 break;
                             }
 
-                            //Realiza a verificação do CPF/CNPJ digitado
-                            verificado = false;
-                            while (!verificado){
-                                if (verificarCpfOuCnpj(cpfCnpjImovel)){
-                                    verificado = true;
-                                    break;
-                                }
-                                else{
-                                    cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
-                                    if (cpfCnpjImovel.equals("0")) {
-                                        break;
-                                    }
-                                }
-                            }
-                            if (cpfCnpjImovel.equals("0")) {
-                                break;
-                            }
-
-                            // Validação de proprietário
-                            DonoImovel proprietarioImovel = null;
-                            boolean achouProprietario = false;
-                            while (!achouProprietario) {
-                                for (int i = 0; i < proprietarios.size(); i++) {
-                                    if (cpfCnpjImovel.equals("0")) {
-                                        break;
-                                    }
-                                    proprietarioImovel = proprietarios.get(i);
-                                    if (proprietarioImovel.getCpfOuCnpjDonoImovel().equals(cpfCnpjImovel)) {
-                                        // Achou o proprietário com o CPF correspondente
-                                        System.out.println("Proprietário encontrado: " + proprietarioImovel.getUserInfo().getNome());
-                                        achouProprietario = true;
-                                        break;
-                                    }
-                                }
-                                if (achouProprietario) {
-                                    break;
-                                }
-                                System.out.println("Proprietário não encontrado, tente novamente: ");
-                                cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
-
-                                //Realiza a verificação do CPF/CNPJ digitado
-                                verificado = false;
-                                while (!verificado){
-                                    if (verificarCpfOuCnpj(cpfCnpjImovel)){
-                                        verificado = true;
-                                        break;
-                                    }
-                                else{
-                                        cpfCnpjImovel = leitor.lerString("Digite o CPF/CNPJ do proprietário: ");
-                                        if (cpfCnpjImovel.equals("0")) {
-                                            break;
-                                        }
-                                    }
-                                }
-                                if (cpfCnpjImovel.equals("0")) {
-                                    break;
-                                }
-                            }
-                            if (cpfCnpjImovel.equals("0")) {
-                                break;
-                            }
-
-                            // Cria o Endereço, ID e Ímovel em sí no sistema
-                            Endereco novoEndereco = new Endereco(bairroImovel, cidadeImovel, ruaImovel, numeroImovel, cepImovel);
-                            int idImovel = imoveis.size() + 1;
-                            Imovel novoimovel = new Imovel(novoEndereco, idImovel, nomeImovel,tipoImovel, statusImovel, proprietarioImovel);
-                            imoveis.add(novoimovel);
-
+                            ImovelDAO.getInstancia().criar(imovel);
                             //confirma o cadastro + informa a ID
-                            System.out.println("Cadastro concluído, o número de ID desse ímovel é " + idImovel + ", Não esqueça!");
+                            System.out.println("Cadastro concluído, o número de ID desse ímovel é " + imovel.getIdImovel() + ", Não esqueça!");
                             break;
                         case 5: //opção de saida
                             break;
@@ -288,27 +190,10 @@ public class Main {
 
                                 case 2: // Ver imoveis Infos
                                     System.out.println("[DIGITE 0 PARA SAIR]");
-                                    userPrompt = leitor.lerInt(mensagem.getVisualzarImovelInformacoes());
-                                    // Validação de Imovel
-                                    boolean achouImovel = false;
-                                    while (!achouImovel) {
-                                        if (userPrompt == 0) {
-                                            break;
-                                        }
-                                        for (int i = 0; i < imoveis.size(); i++) {
-                                            Imovel imov = imoveis.get(i);
-                                            if (imov.getIdImovel() == userPrompt) {
-                                                // Achou o Imovel com o ID correspondente
-                                                imoveis.get(i).mostrarInfoImovel();
-                                                achouImovel = true;
-                                                break;
-                                            }
-                                        }
-                                        if (achouImovel) {
-                                            break;
-                                        }
-                                        System.out.println("Imovel não encontrado, tente novamente: ");
-                                        userPrompt = leitor.lerInt(mensagem.getVisualzarImovelInformacoes());
+                                    InputImovel inputImovel = new InputImovel();
+                                    Imovel imovel = inputImovel.visualizar();
+                                    if (imovel != null) {
+                                        imovel.mostrarInfoImovel();
                                     }
                                     break;
                             }

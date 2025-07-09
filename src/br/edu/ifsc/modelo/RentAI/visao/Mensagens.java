@@ -233,11 +233,13 @@ public class Mensagens {
         return visualizarImovel;
     }
 
-    public String getVisualzarImovelPropostas() {
+
+
+    public String getVisualizarImovelPropostas() {
         return visualzarImovelPropostas;
     }
 
-    public String getVisualzarImovelInformacoes() {
+    public String getVisualizarImovelInformacoes() {
         return visualzarImovelInformacoes;
     }
 
