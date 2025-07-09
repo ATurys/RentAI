@@ -114,6 +114,12 @@ public class Mensagens {
     private String propostaComissao =
             "Digite o valor da comissao do corretor (em porcentagem): \n";
 
+    private String propostaStatus =
+            "Defina o status do proposta: \n" +
+            "\t1 - [pendente]\n" +
+            "\t2 - [aceita]\n" +
+            "\t3 - [recusada]\n";
+
     // Opções para criar uma venda
     private String vendaPropostaID =
             "ID da br.edu.ifsc.modelo.RentAI.modelo.transacoes.Proposta que foi aceita: ";
@@ -270,6 +276,9 @@ public class Mensagens {
         return propostaComissao;
     }
 
+    public String getPropostaStatus() {
+        return propostaStatus;
+    }
 
     // Getters camada 2 -> Criar Venda
 

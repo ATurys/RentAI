@@ -71,7 +71,6 @@ public class Main {
                     testePrompt(5, userPrompt);
 
                     switch (userPrompt) {
-                        boolean verificado = false;
                         case 1: //Cadastro de Cliente
 
                             InputUserCliente inputCliente = new InputUserCliente();
@@ -163,28 +162,10 @@ public class Main {
                             testePrompt(2, userPrompt);// Verifica se o numero esta entre 1 e 2
                             switch (userPrompt) {
                                 case 1:// Ver imovel Propostas
-                                    System.out.println("[DIGITE 0 PARA SAIR]");
-                                    userPrompt = leitor.lerInt(mensagem.getVisualzarImovelPropostas());
-                                    // Validação da proposta
-                                    boolean achouProposta = false;
-                                    while (!achouProposta) {
-                                        if (userPrompt == 0) {
-                                            break;
-                                        }
-                                        for (int i = 0; i < propostas.size(); i++) {
-                                            Proposta prop = propostas.get(i);
-                                            if (prop.getId() == userPrompt) {
-                                                // Achou a transacoes.Proposta com o ID correspondente
-                                                propostas.get(i).mostrarInfoProposta();
-                                                achouProposta = true;
-                                                break;
-                                            }
-                                        }
-                                        if (achouProposta) {
-                                            break;
-                                        }
-                                        System.out.println("Proposta não encontrada, tente novamente: ");
-                                        userPrompt = leitor.lerInt(mensagem.getVisualzarImovelPropostas());
+                                    InputProposta inputProposta = new InputProposta();
+                                    Proposta proposta = inputProposta.visualizar();
+                                    if (proposta != null) {
+                                        proposta.mostrarInfoProposta();
                                     }
                                     break;
 
@@ -231,117 +212,15 @@ public class Main {
                     break;
 
                 case 3: //Criar proposta
-                    System.out.println(mensagem.getCriar());
-                    boolean achou = false;
-                    Cliente clienteProposta = null;
-                    Corretor corretorProposta = null;
-                    Imovel imovelProposta = null;
-
-                    System.out.println("[DIGITE 0 PARA SAIR]");
-
-                    // Pegar cliente pelo CPF
-                    String propostaCpfCnpjCliente = leitor.lerString(mensagem.getPropostaCpfCnpjCliente());
-                    while (!achou) {
-                        if (propostaCpfCnpjCliente.equals("0")) {
-                            break;
-                        } // verifica saida
-                        for (int i = 0; i < clientes.size(); i++) {
-                            clienteProposta = clientes.get(i);
-                            if (clienteProposta.getCpfOuCnpjCliente().equals(propostaCpfCnpjCliente)) {
-                                // Achou o Cliente com o CPF correspondente
-                                achou = true;
-                                break;
-                            }
-                        }
-                        if (achou) {
-                            break;
-                        }
-                        System.out.println("Cliente não encontrado, tente novamente: ");
-                        propostaCpfCnpjCliente = leitor.lerString("Digite o CPF/CNPJ do Cliente ou digite 0 para sair: ");
-                    } // Verifica se existe esse cliente
-                        // Saida da criação de proposta
-                    if (propostaCpfCnpjCliente.equals("0")) {
+                    InputProposta inputProposta = new InputProposta();
+                    Proposta novaProposta = inputProposta.cadastro();
+                    if (novaProposta == null) {
                         break;
                     }
 
-                    // Pegar corretor pelo Creci
-                    String propostaCreci = leitor.lerString(mensagem.getPropostaCreci());
-                    achou = false;
-                    while (!achou) {
-                        if (propostaCreci.equals("0")) {
-                            break;
-                        }// verifica saida
-                        for (int i = 0; i < corretores.size(); i++) {
-                            corretorProposta = corretores.get(i);
-                            if (corretorProposta.getCreciCoretor().equals(propostaCreci)) {
-                                // Achou o Cliente com o CPF correspondente
-                                achou = true;
-                                break;
-                            }
-                        }
-                        if (achou) {
-                            break;
-                        }
-                        System.out.println("Corretor não encontrado, tente novamente: ");
-                        propostaCreci = leitor.lerString("Digite o CRECI do Corretor ou digite 0 para sair: ");
-                    } // Verifica se existe esse corretor
-                        // Saida da criação de proposta
-                    if (propostaCreci.equals("0")) {
-                        break;
-                    }
-
-                    // Pegar Imovel pelo ID
-                    int propostaImovel = leitor.lerInt(mensagem.getPropostaImovel());
-                    achou = false;
-                    while (!achou) {
-                        if (propostaImovel == 0) {
-                            break;
-                        }// verifica saida
-                        for (int i = 0; i < imoveis.size(); i++) {
-                            imovelProposta = imoveis.get(i);
-                            if (imovelProposta.getIdImovel() == propostaImovel) {
-                                // Achou o Cliente com o CPF correspondente
-                                achou = true;
-                                break;
-                            }
-                        }
-                        if (achou) {
-                            break;
-                        }
-                        System.out.println("Imovel não encontrado, tente novamente: ");
-                        propostaImovel = leitor.lerInt("Digite o ID do Imovel ou digite 0 para sair: ");
-                    } // Verifica se existe esse imovel
-                        // Saida da criação de proposta
-                    if (propostaImovel == 0) {
-                        break;
-                    }
-
-                    // Pegar valor + verif. saida
-                    float propostaValor = leitor.lerFloat(mensagem.getPropostaValor());
-                    if (propostaValor == 0) {
-                        break;
-                    }
-
-                    // Pegar comissao (não há saida nesse caso)
-                    System.out.println("Digite 0 caso não haja comissão, você não vai sair do sistema!\n");
-                    float propostaComissao = leitor.lerFloat(mensagem.getPropostaComissao());
-
-                    // Cria o ID no sistema
-                    int iDProposta = propostas.size() + 1;
-
-
-                    Proposta novaProposta = new Proposta(
-                            clienteProposta,
-                            corretorProposta,
-                            propostaComissao,
-                            imovelProposta,
-                            iDProposta,
-                            propostaValor,
-                            "PROPOSTA ABERTA"
-                    );
-                    propostas.add(novaProposta);
-
+                    PropostaDAO.getInstancia().criar(novaProposta);
                     System.out.println("Cadastro concluído, o ID dessa proposta é " + novaProposta.getId() + ", não esqueça!");
+
                     break;
 
                 case 4://Anunciar Venda
