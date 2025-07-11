@@ -24,7 +24,7 @@ public class ProprietarioDAO implements DAO<DonoImovel, String>{
             String sql = "INSERT INTO Proprietario (cpf_cnpj, nome, telefone, email, senha_hash, nome_usuario) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conexao.prepareStatement(sql);
             statement.setString(1, entidade.getCpfOuCnpjDonoImovel());
-            String nomeCompleto = entidade.getNome() + entidade.getSobrenome();
+            String nomeCompleto = entidade.getNome() + " " + entidade.getSobrenome();
             statement.setString(2, nomeCompleto);
             statement.setString(3, entidade.getTelefone());
             statement.setString(4, entidade.getEmail());

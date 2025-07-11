@@ -2,6 +2,7 @@ package br.edu.ifsc.modelo.RentAI.visao;
 
 public class Mensagens {
     private String textoInicial =
+            "=======================================\n" +
             "Olá, selecione uma das opções abaixo:\n" +
             "\t1 - Cadastrar\n" +
             "\t2 - Visualizar\n" +
@@ -9,41 +10,50 @@ public class Mensagens {
             "\t4 - Anunciar uma Venda\n" +
             "\t5 - Deletar\n" +
             "\t6 - Alterar\n" +
-            "\t7 - Sair";
+            "\t7 - Sair\n"+
+            "=======================================\n";
 
     // Textos camda 1
     private String cadastro =
+            "=======================================\n" +
             "\t1 - Cadastrar Cliente\n" +
             "\t2 - Cadastrar Corretor\n" +
             "\t3 - Cadastrar Proprietário\n" +
             "\t4 - Cadastrar Ímovel\n" +
-            "\t5 - Voltar\n";
+            "\t5 - Voltar\n" +
+            "=======================================\n";
 
     private String visualizar =
+            "=======================================\n" +
             "\t1 - Visualizar Cliente\n" +
             "\t2 - Visualizar Corretor\n" +
             "\t3 - Visualizar Proprietário\n" +
             "\t4 - Visualizar Ímovel\n" +
             "\t5 - Visualizar Vendas\n" +
-            "\t6 - Voltar\n";
+            "\t6 - Voltar\n" +
+            "=======================================\n";
 
     private String criar =
+            "=======================================\n" +
             "Precisaremos das seguintes informações: \n" +
             "\t1 - CPF do Cliente\n" +
             "\t2 - CRECI do Corretor\n" +
             "\t3 - ID Ímovel\n" +
             "\t4 - Valor da proposta\n" +
-            "\t5 - Comissão do corretor\n";
+            "\t5 - Comissão do corretor\n" +
+            "=======================================\n";
 
     private String anunciar =
+            "=======================================\n" +
             "Precisaremos das seguintes informações: \n" +
             "\t1 - ID da Proposta que foi aceita\n" +
             "\t2 - CPF/CNPJ do proprietário atual\n" +
-            "\t3 - Forma de pagamento\n";
+            "\t3 - Forma de pagamento\n" +
+            "=======================================\n" ;
 
     // Opções após selecionar o texto inicial -> Cadastro
     private String cadastroCliente =
-            "Precisaremos das seguintes informações: \n" +
+            "\nPrecisaremos das seguintes informações: \n" +
             "1° - e-mail\n" +
             "2° - senha\n" +
             "3° - nome\n" +
@@ -52,7 +62,7 @@ public class Mensagens {
             "6° - CPF/CNPJ\n" +
             "7° - Nome de Usuário\n";
     private String cadastroCorretor =
-            "Precisaremos das seguintes informações: \n" +
+            "\nPrecisaremos das seguintes informações: \n" +
             "1° - e-mail\n" +
             "2° - senha\n" +
             "3° - nome\n" +
@@ -61,7 +71,7 @@ public class Mensagens {
             "6 ° - número do CRECI\n" +
             "7° - Nome de Usuário\n";
     private String cadastroProprietario =
-            "Precisaremos das seguintes informações: \n" +
+            "\nPrecisaremos das seguintes informações: \n" +
             "1° - e-mail:\n" +
             "2° - senha:\n" +
             "3° - nome:\n" +
@@ -70,7 +80,7 @@ public class Mensagens {
             "6 ° - CPF/CNPJ\n" +
             "7° - Nome de Usuário\n";
     private String cadastroImovel =
-            "Precisaremos das seguintes informações: \n" +
+            "\nPrecisaremos das seguintes informações: \n" +
             "1° - bairro\n" +
             "2° - cidade\n" +
             "3° - rua\n" +
@@ -115,7 +125,7 @@ public class Mensagens {
             "Digite o valor da comissao do corretor (em porcentagem): \n";
 
     private String propostaStatus =
-            "Defina o status do proposta: \n" +
+            "\nDefina o status do proposta: \n" +
             "\t1 - [pendente]\n" +
             "\t2 - [aceita]\n" +
             "\t3 - [recusada]\n";
@@ -132,12 +142,13 @@ public class Mensagens {
             "\t3 - [parcelado]\n";
 
     // Opções para Atualizar
-        //TODO
     private String atualizar =
+            "=======================================\n" +
             "\t1 - atualizar Cliente\n" +
             "\t2 - atualizar Corretor\n" +
             "\t3 - atualizar Proprietário\n" +
-            "\t4 - voltar\n";
+            "\t4 - voltar\n" +
+            "=======================================\n";
 
     private String atualizarCliente =
             "\t1 - atualizar CPF/CNPJ\n" +
@@ -165,10 +176,12 @@ public class Mensagens {
 
     // Opções para deletar
     private String deletar =
+            "=======================================\n" +
             "\t1 - Deletar Cliente\n" +
             "\t2 - Deletar Corretor\n" +
             "\t3 - Deletar Proprietário\n" +
-            "\t4 - voltar\n";
+            "\t4 - voltar\n" +
+            "=======================================\n";
 
     private String deletarCliente =  "\t1 - CPF/CNPJ do cliente a ser Deletado [ESSA AÇÃO NÃO PODE SER DESFEITA!]: ";
     private String deletarCorretor =  "\t1 - CRECI do corretor a ser Deletado [ESSA AÇÃO NÃO PODE SER DESFEITA!]: ";

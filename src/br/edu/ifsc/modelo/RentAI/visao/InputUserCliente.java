@@ -190,7 +190,7 @@ public class InputUserCliente implements InputUser<Cliente> {
             return;
         }
 
-        String nomeCompleto = nomeNovo[0] + nomeNovo[1];
+        String nomeCompleto = nomeNovo[0] + " " + nomeNovo[1];
         Cliente cliente;
         String view;
 

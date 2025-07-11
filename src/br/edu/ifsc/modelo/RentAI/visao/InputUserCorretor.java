@@ -230,7 +230,7 @@ public class InputUserCorretor implements InputUser<Corretor> {
             return;
         }
 
-        String nomeCompleto = nomeNovo[0] + nomeNovo[1];
+        String nomeCompleto = nomeNovo[0] + " " + nomeNovo[1];
         Corretor corretor = null;
         String view;
 

@@ -187,7 +187,7 @@ public class InputUserProprietario implements InputUser<DonoImovel> {
             return;
         }
 
-        String nomeCompleto = nomeNovo[0] + nomeNovo[1];
+        String nomeCompleto = nomeNovo[0] + " " + nomeNovo[1];
         DonoImovel proprietario;
         String view;
 

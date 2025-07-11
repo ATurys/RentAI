@@ -56,6 +56,7 @@ public class Main {
 
         while (continua) {
             int userPrompt = leitor.lerInt(mensagem.getTextoInicial());
+            System.out.println("\n");
             testePrompt(7, userPrompt);// Verifica se o numero esta entre 1 e 5
             switch (userPrompt) {
                 case 1://Cadastrar

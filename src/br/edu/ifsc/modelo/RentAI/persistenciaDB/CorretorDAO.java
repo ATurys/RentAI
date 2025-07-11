@@ -23,7 +23,7 @@ public class CorretorDAO implements  DAO<Corretor, String> {
             String sql = "INSERT INTO Corretor (creci, nome, telefone, email, senha_hash) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conexao.prepareStatement(sql);
             statement.setString(1, entidade.getCreciCoretor());
-            String nomeCompleto = entidade.getNome() + entidade.getSobrenome();
+            String nomeCompleto = entidade.getNome() + " " + entidade.getSobrenome();
             statement.setString(2, nomeCompleto);
             statement.setString(3, entidade.getTelefone());
             statement.setString(4, entidade.getEmail());

@@ -25,7 +25,7 @@ public class ClienteDAO implements DAO<Cliente, String> {
             String sql = "INSERT INTO Cliente (cpf_cnpj, nome, telefone, email, nome_usuario, senha_hash) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conexao.prepareStatement(sql);
             statement.setString(1, entidade.getCpfOuCnpjCliente());
-            String nomeCompleto = entidade.getNome() + entidade.getSobrenome();
+            String nomeCompleto = entidade.getNome() + " " + entidade.getSobrenome();
             statement.setString(2, nomeCompleto);
             statement.setString(3, entidade.getTelefone());
             statement.setString(4, entidade.getEmail());
@@ -34,6 +34,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao criar o cliente " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
     }
 
@@ -51,6 +53,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o cpf_cnpj do cliente " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
     }
 
@@ -64,6 +68,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar a senha do cliente " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
     }
 
@@ -77,6 +83,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o nome do cliente " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
     }
 
@@ -90,6 +98,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o email do cliente " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
     }
 
@@ -103,6 +113,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar o telefone do cliente " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
     }
 
@@ -116,25 +128,39 @@ public class ClienteDAO implements DAO<Cliente, String> {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao deletar o cliente " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
     }
 
     @Override
     public Cliente buscar(String arg) {
+        Connection conexao = null; // Inicializa a conexão fora do try-with-resources para poder fechar no finally, se necessário
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
         try {
-            Connection conexao = Conexao.getConexao();
+            conexao = Conexao.getConexao();
             String sql = "SELECT * FROM Cliente WHERE cpf_cnpj = ?";
-            PreparedStatement statement = conexao.prepareStatement(sql);
+            statement = conexao.prepareStatement(sql);
             statement.setString(1, arg);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                String[] nome = resultSet.getString("nome").split(" ");
-                Cliente c = new Cliente(
+                String nomeCompletoBanco = resultSet.getString("nome");
+                String[] nome = nomeCompletoBanco.split(" ");
+                String primeiroNome = nome[0];
+                String ultimoNome = "";
+
+                if (nome.length > 1) {
+                    ultimoNome = nome[1];
+                }
+
+                Cliente c;
+                c = new Cliente(
                         resultSet.getString("email"),
                         resultSet.getString("senha_hash"),
-                        nome[0],
-                        nome[1],
+                        primeiroNome,
+                        ultimoNome,
                         resultSet.getString("telefone"),
                         resultSet.getString("nome_usuario"),
                         resultSet.getString("cpf_cnpj"));
@@ -144,6 +170,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
             }
         } catch (SQLException e) {
             System.err.println("Erro ao buscar o cliente por cpf_cnpj: " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
         return null;
     }
@@ -172,6 +200,8 @@ public class ClienteDAO implements DAO<Cliente, String> {
 
         } catch (SQLException e) {
             System.err.println("Erro ao buscar todos os clientes " + e.getMessage());
+        } finally {
+            Conexao.fecharConexao();
         }
         return clientes;
     }
