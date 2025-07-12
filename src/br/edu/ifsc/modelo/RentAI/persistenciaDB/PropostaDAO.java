@@ -75,13 +75,21 @@ public class PropostaDAO implements DAO<Proposta, Integer> {
             Connection conexao = Conexao.getConexao();
             String sql = "SELECT * FROM Proposta WHERE id_proposta = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
+
             statement.setInt(1, arg);
             ResultSet resultSet = statement.executeQuery();
-
             if (resultSet.next()) {
+                Cliente cliente = ClienteDAO.getInstancia().buscar(resultSet.getString("cpf_cnpj_cliente"));
+                if (cliente == null) {
+                    cliente = new Cliente(null, null, "Não registrado no sistema", "", null, null, resultSet.getString("cpf_cnpj_cliente"));
+                }
+                Corretor corretor = CorretorDAO.getInstancia().buscar(resultSet.getString("creci_corretor"));
+                if (corretor == null) {
+                    corretor = new Corretor(null, null, "Não registrado no sistema", "", null, null, resultSet.getString("creci_corretor"));
+                }
                 Proposta p = new Proposta(
-                        resultSet.getString("cpf_cnpj_cliente"),
-                        resultSet.getString("creci_corretor"),
+                        cliente,
+                        corretor,
                         resultSet.getInt("id_imovel"),
                         resultSet.getInt("id_proposta"),
                         resultSet.getFloat("valor_oferecido"),
@@ -107,17 +115,24 @@ public class PropostaDAO implements DAO<Proposta, Integer> {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                        Cliente cliente = new Cliente(null, null, null, null, null, null, resultSet.getString("cpf_cnpj_cliente"));
-                        Corretor corretor = new Corretor(null, null, null, null, null, null, resultSet.getString("creci_corretor"));
-                        Imovel imovel = new Imovel(resultSet.getInt("id_imovel"));
+                Cliente cliente = ClienteDAO.getInstancia().buscar(resultSet.getString("cpf_cnpj_cliente"));
+                if (cliente.getNome() == null) {
+                    cliente.setName("Não registrado no sistema");
+                    cliente.setSobreNome("");
+                }
+                Corretor corretor = CorretorDAO.getInstancia().buscar(resultSet.getString("creci_corretor"));
+                if (corretor.getNome() == null) {
+                    corretor.setName("Não registrado no sistema");
+                    corretor.setSobreNome("");
+                }
                 Proposta p = new Proposta(
                         cliente,
                         corretor,
-                        imovel,
+                        resultSet.getInt("id_imovel"),
                         resultSet.getInt("id_proposta"),
                         resultSet.getFloat("valor_oferecido"),
-                        resultSet.getString("status"));
-                        resultSet.getDate("data_proposta");
+                        resultSet.getString("status"),
+                        resultSet.getDate("data_proposta"));
                 propostas.add(p);
             }
 

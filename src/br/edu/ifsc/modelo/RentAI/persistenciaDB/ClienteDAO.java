@@ -170,8 +170,6 @@ public class ClienteDAO implements DAO<Cliente, String> {
             }
         } catch (SQLException e) {
             System.err.println("Erro ao buscar o cliente por cpf_cnpj: " + e.getMessage());
-        } finally {
-            Conexao.fecharConexao();
         }
         return null;
     }

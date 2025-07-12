@@ -5,6 +5,7 @@ import br.edu.ifsc.modelo.RentAI.modelo.imovel.Endereco;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ImovelDAO implements DAO<Imovel, Integer> {
@@ -181,7 +182,15 @@ public class ImovelDAO implements DAO<Imovel, Integer> {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                String[] endereco = resultSet.getString("endereco").split(", ");
+                String[] endereco = new String[6]; //inicializa o Array
+                String[] enderecoCompletoDb = resultSet.getString("endereco").split(", "); //pega as informações do DB
+                System.arraycopy(enderecoCompletoDb, 0, endereco, 0, enderecoCompletoDb.length); //Copia as informações com o tamanho correto
+                for (int i = 0; i < endereco.length; i++) { //Altera as variaveis nulas para "";
+                    if (endereco[i] == null) {
+                        endereco[i] = "";
+                    }
+                }
+
                 Endereco e = new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5]);
                 Imovel i = new Imovel(
                         e,
@@ -214,7 +223,15 @@ public class ImovelDAO implements DAO<Imovel, Integer> {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                String[] endereco = resultSet.getString("endereco").split(", ");
+                String[] endereco = new String[6]; //inicializa o Array
+                String[] enderecoCompletoDb = resultSet.getString("endereco").split(", "); //pega as informações do DB
+                System.arraycopy(enderecoCompletoDb, 0, endereco, 0, enderecoCompletoDb.length); //Copia as informações com o tamanho correto
+                for (int i = 0; i < endereco.length; i++) { //Altera as variaveis nulas para "";
+                    if (endereco[i] == null) {
+                        endereco[i] = "";
+                    }
+                }
+
                 Endereco e = new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5]);
                 Imovel i = new Imovel(
                         e,

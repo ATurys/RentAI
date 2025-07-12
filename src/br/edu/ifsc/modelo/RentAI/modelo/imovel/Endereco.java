@@ -19,12 +19,12 @@ public class Endereco {
     }
 
     public void mostrarEndereco(){
-        System.out.println("Bairro: " + bairro);
-        System.out.println("Cidade: " + cidade);
-        System.out.println("Rua: " + rua);
-        System.out.println("Número: " + numero);
-        System.out.println("CEP: " + cep);
-        System.out.println("Complemento: " + complemento);
+        System.out.println("\tBairro: " + bairro);
+        System.out.println("\tCidade: " + cidade);
+        System.out.println("\tRua: " + rua);
+        System.out.println("\tNúmero: " + numero);
+        System.out.println("\tCEP: " + cep);
+        System.out.println("\tComplemento: " + complemento);
     }
 
     // Getters e Setters (todos possuem tanto get quanto set)

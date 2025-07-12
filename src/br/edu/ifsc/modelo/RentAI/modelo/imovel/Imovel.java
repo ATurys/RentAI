@@ -49,23 +49,18 @@ public class Imovel {
     }
 
     public void mostrarInfoImovel() {
-        System.out.println("Dono do imovel: ");
-        this.donoImovel.mostrarInfoProprietario();
-
         System.out.println("\nEndereço: ");
         this.endereco.mostrarEndereco();
 
         System.out.println("\nSobre o ímovel: ");
-        System.out.println("ID do Imovel: " + this.idImovel);
-        System.out.println("Tipo do Imovel: " + this.tipoImovel);
-        System.out.println("Status do Imovel: " + this.statusImovel);
-        System.out.println("Metragem: " + this.metragem);
-        System.out.println("Numero de Banheiros: " + this.banheiros);
-        System.out.println("Numero de Vagas: " + this.vagas);
-        System.out.println("Dono do Imovel: " + this.donoImovel.getNome());
-        System.out.println("Cpf_Cnpj do dono: " + this.donoImovel.getCpfOuCnpjProprietarioCripted());
-        System.out.println("Corretor Responsável: " + this.corretor.getNome());
-        System.out.println("Creci do Corretor Responsavel: " + this.corretor.getCreciCoretor());
+        System.out.println("\tID do Imovel: " + this.idImovel);
+        System.out.println("\tTipo do Imovel: " + this.tipoImovel);
+        System.out.println("\tStatus do Imovel: " + this.statusImovel);
+        System.out.println("\tMetragem: " + this.metragem);
+        System.out.println("\tNumero de Banheiros: " + this.banheiros);
+        System.out.println("\tNumero de Vagas: " + this.vagas);
+        System.out.println("\tCpf_Cnpj do dono: " + this.donoImovel.getCpfOuCnpjProprietarioCripted());
+        System.out.println("\tCreci do Corretor Responsavel: " + this.corretor.getCreciCoretor());
     }
 
     // Getters

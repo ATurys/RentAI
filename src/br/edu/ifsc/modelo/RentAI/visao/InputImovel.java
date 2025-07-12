@@ -51,10 +51,23 @@ public class InputImovel {
         if (tipoImovel.equals("0")) {
             return null;
         }
-        String statusImovel = leitor.lerString("Digite o status do ímovel (Reformado, Mobiliado ou Construção): ");
-        if (statusImovel.equals("0")) {
-            return null;
-        }
+        int statusImovel;
+        String status = "";
+        do {
+            statusImovel = leitor.lerInt("Digite o status do ímovel:" +
+                    "\t1 - Disponível" +
+                    "\t2 - Vendido" +
+                    "\t3 - em negociação\n");
+            if (statusImovel == 0) {
+                return null;
+            } else if (statusImovel == 1) {
+                status = "disponível";
+            } else if (statusImovel == 2) {
+                status = "vendido";
+            } else if (statusImovel == 3) {
+                status = "em negociação";
+            }
+        } while (statusImovel > 3);
 
         float metragemImovel = leitor.lerFloat("Digite a metragem do ímovel em M²: ");
         if (metragemImovel == 0) {
@@ -155,7 +168,7 @@ public class InputImovel {
                 endereco,
                 idImovel,
                 tipoImovel,
-                statusImovel,
+                status,
                 metragemImovel,
                 banheirosImovel,
                 quartosImovel,

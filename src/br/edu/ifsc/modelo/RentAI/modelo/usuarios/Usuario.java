@@ -57,5 +57,9 @@ public abstract class Usuario {
         this.senha = senha;
     }
 
-    public void setUserName(String userName) {this.userName = userName;}
+    public void setName(String name) {this.nome = name;}
+
+    public void setSobreNome(String sobreNome) {
+        this.sobrenome = sobreNome;
+    }
 }

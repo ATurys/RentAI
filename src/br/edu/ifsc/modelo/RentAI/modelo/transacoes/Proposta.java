@@ -1,12 +1,10 @@
 package br.edu.ifsc.modelo.RentAI.modelo.transacoes;
 
-import br.edu.ifsc.modelo.RentAI.modelo.imovel.Endereco;
 import br.edu.ifsc.modelo.RentAI.modelo.imovel.Imovel;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 
 import java.sql.Date;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -18,7 +16,7 @@ public class Proposta {
     private int id;
     private float valorOferecido;
     private String dataDaProposta;
-    private Date dateTimeProposta;
+    private java.sql.Date dateTimeProposta;
     private String status;
 
     public Proposta(Cliente cliente, Corretor corretor, Imovel imovel, int id, float valorOferecido, String status) {
@@ -32,12 +30,21 @@ public class Proposta {
 
         LocalDateTime agora = LocalDateTime.now();
         ZoneId zoneId = ZoneId.systemDefault();
-        this.dateTimeProposta = (Date) Date.from(agora.atZone(zoneId).toInstant());
+
+        /*this.dateTimeProposta = Date.from(agora.atZone(zoneId).toInstant());
+          este apenas pegava a data de acordo com o padrão java.util.date
+          Incompativel com o java.sql.date [necessário para o DB]
+         */
+        this.dateTimeProposta = new java.sql.Date(Date.from(agora.atZone(zoneId).toInstant()).getTime());
+        /*
+        * Este converte em java.sql.Date, para isso ele precisa do getTime()
+        * [transforma um tipo long com os milissegundos (Que podem ser convertidos para o java.sql.Date)]
+        * */
     }
 
-    public Proposta(String cpfCnpjCliente, String creciCorretor, int idImovel, int id, float valorOferecido, String status, Date dataDaProposta) { //Para buscar uma proposta
-        this.cliente = new Cliente(null, null, null, null, null, null, cpfCnpjCliente);
-        this.corretor = new Corretor(null, null, null, null, null, null, creciCorretor);
+    public Proposta(Cliente cliente, Corretor corretor, int idImovel, int id, float valorOferecido, String status, Date dataDaProposta) { //Para buscar uma proposta
+        this.cliente = cliente;
+        this.corretor = corretor;
         this.imovel = new Imovel(idImovel);
         this.id = id;
         this.valorOferecido = valorOferecido;
@@ -90,7 +97,7 @@ public class Proposta {
         return imovel;
     }
 
-    public Date getDateTimeProposta() {
+    public java.sql.Date getDateTimeProposta() {
         return dateTimeProposta;
     }
 
@@ -98,5 +105,4 @@ public class Proposta {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }
