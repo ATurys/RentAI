@@ -3,10 +3,9 @@ package br.edu.ifsc.modelo.RentAI.visao;
 import br.edu.ifsc.modelo.RentAI.leitor.Leitor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 import br.edu.ifsc.modelo.RentAI.persistenciaDB.CorretorDAO;
-
 import java.util.List;
 
-import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCreci;
+import static br.edu.ifsc.modelo.RentAI.leitor.Verificadores.verificarCreci;
 
 
 public class InputUserCorretor implements InputUser<Corretor>, Input<Corretor> {

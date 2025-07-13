@@ -6,7 +6,8 @@ import br.edu.ifsc.modelo.RentAI.persistenciaDB.ClienteDAO;
 
 import java.util.List;
 
-import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
+import static br.edu.ifsc.modelo.RentAI.leitor.Verificadores.verificarCpfOuCnpj;
+
 
 
 public class InputUserCliente implements InputUser<Cliente>, Input<Cliente> {

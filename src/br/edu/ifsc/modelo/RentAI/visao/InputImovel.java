@@ -10,8 +10,8 @@ import br.edu.ifsc.modelo.RentAI.persistenciaDB.ProprietarioDAO;
 
 import java.util.List;
 
-import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
-import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCreci;
+import static br.edu.ifsc.modelo.RentAI.leitor.Verificadores.verificarCpfOuCnpj;
+import static br.edu.ifsc.modelo.RentAI.leitor.Verificadores.verificarCreci;
 
 public class InputImovel implements Input<Imovel> {
 
