@@ -8,13 +8,6 @@ package br.edu.ifsc.modelo.RentAI.visao;
 
 public interface InputUser<TipoClasse> {
 
-    default TipoClasse cadastro(){
-        return null;
-    };
-
-    default TipoClasse visualizar(){
-        return null;
-    };
     default void atualizarPK(){} ;
 
 

@@ -13,12 +13,13 @@ import java.util.List;
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCreci;
 
-public class InputImovel {
+public class InputImovel implements Input<Imovel> {
 
     private final Leitor leitor = new Leitor();
     private final Mensagens mensagem = new Mensagens();
     //Cadastro de Cliente
 
+    @Override
     public Imovel cadastro() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         System.out.println(mensagem.getCadastroImovel());
@@ -178,7 +179,7 @@ public class InputImovel {
         );
     }
 
-
+    @Override
     public Imovel visualizar() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         Imovel imovel;

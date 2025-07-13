@@ -8,11 +8,12 @@ import br.edu.ifsc.modelo.RentAI.persistenciaDB.*;
 
 import java.util.List;
 
-public class InputVenda {
+public class InputVenda implements Input<Venda> {
 
     private final Leitor leitor = new Leitor();
     private final Mensagens mensagem = new Mensagens();
 
+    @Override
     public Venda cadastro() {
         boolean verifica = false;
         System.out.println("[DIGITE 0 PARA SAIR]");
@@ -143,6 +144,7 @@ public class InputVenda {
         }
     }
 
+    @Override
     public Venda visualizar() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         Venda venda;

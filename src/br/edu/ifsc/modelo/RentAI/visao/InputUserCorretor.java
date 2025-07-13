@@ -9,7 +9,7 @@ import java.util.List;
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCreci;
 
 
-public class InputUserCorretor implements InputUser<Corretor> {
+public class InputUserCorretor implements InputUser<Corretor>, Input<Corretor> {
 
     private final Leitor leitor  = new Leitor();
     private final Mensagens mensagem = new Mensagens();

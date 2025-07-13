@@ -8,7 +8,7 @@ import java.util.List;
 
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
 
-public class InputUserProprietario implements InputUser<DonoImovel> {
+public class InputUserProprietario implements InputUser<DonoImovel>, Input<DonoImovel> {
 
     private final Leitor leitor = new Leitor();
     private final Mensagens mensagem = new Mensagens();

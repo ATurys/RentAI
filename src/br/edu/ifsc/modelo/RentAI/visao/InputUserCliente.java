@@ -9,7 +9,7 @@ import java.util.List;
 import static br.edu.ifsc.modelo.RentAI.modelo.Main.verificarCpfOuCnpj;
 
 
-public class InputUserCliente implements InputUser<Cliente> {
+public class InputUserCliente implements InputUser<Cliente>, Input<Cliente> {
 
     private final Leitor leitor = new Leitor();
     private final Mensagens mensagem = new Mensagens();

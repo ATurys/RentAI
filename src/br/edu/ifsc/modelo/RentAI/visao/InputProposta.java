@@ -9,11 +9,12 @@ import br.edu.ifsc.modelo.RentAI.persistenciaDB.*;
 
 import java.util.List;
 
-public class InputProposta {
+public class InputProposta implements Input<Proposta> {
 
     private final Leitor leitor = new Leitor();
     private final Mensagens mensagem = new Mensagens();
 
+    @Override
     public Proposta cadastro() {
         System.out.println(mensagem.getCriar());
         System.out.println("[DIGITE 0 PARA SAIR]");
@@ -151,7 +152,7 @@ public class InputProposta {
 
     }
 
-
+    @Override
     public Proposta visualizar() {
         System.out.println("[DIGITE 0 PARA SAIR]");
         Proposta proposta;
