@@ -13,8 +13,6 @@ import br.edu.ifsc.modelo.RentAI.visao.*;
 import static br.edu.ifsc.modelo.RentAI.leitor.Verificadores.testePrompt;
 
 public class Main {
-    
-
     public static void main(String[] args) {
         Conexao.getConexao();
         Conexao.criarTabelas();
