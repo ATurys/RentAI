@@ -1,5 +1,7 @@
 package br.edu.ifsc.modelo.RentAI.modelo.transacoes;
 
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
 import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
 
 import java.sql.Date;
@@ -12,6 +14,7 @@ public class Venda {
     private int idVenda;
     private String dataVenda;
     private java.sql.Date dateTimeVenda;
+    private java.util.Date dataHoraVenda;
     private float valorFinalVenda;
     private String formaPagamentoVenda;
     private float comissao;
@@ -33,42 +36,42 @@ public class Venda {
 
         LocalDateTime agora = LocalDateTime.now();
         ZoneId zoneId = ZoneId.systemDefault();
-        this.dateTimeVenda = (java.sql.Date) java.sql.Date.from(agora.atZone(zoneId).toInstant());
+        this.dateTimeVenda = new java.sql.Date(agora.atZone(zoneId).toInstant().toEpochMilli());
     }
 
-    public Venda(String corretorProposta,
-                 String clienteProposta,
-                 String proprietarioDonoImovel,
+    public Venda(Corretor corretorProposta,
+                 Cliente clienteProposta,
+                 DonoImovel proprietarioDonoImovel,
                  int idImovel,
                  int idVenda,
                  float valorFinalVenda,
                  String formaPagamentoVenda,
                  float comissao,
-                 Date dataVenda) {
+                 java.sql.Date dataVenda) {
         this.proposta = new Proposta(clienteProposta, corretorProposta, idImovel);
-        this.donoImovel = new DonoImovel(proprietarioDonoImovel);
+        this.donoImovel = proprietarioDonoImovel;
 
         this.idVenda = idVenda;
         this.valorFinalVenda = valorFinalVenda;
         this.formaPagamentoVenda = formaPagamentoVenda;
         this.comissao = comissao;
-        this.dateTimeVenda = dataVenda;
+        this.dataHoraVenda = dataVenda;// converte o tipo data do banco de dados para o tipo data suportado pelo CLI
     }
 
     public void mostrarInfoVenda() {
-        System.out.println("Informações da Proposta: \n");
-        System.out.println("ID da venda: " + this.idVenda + "\n");
-        this.proposta.mostrarInfoProposta();
 
-        System.out.println("\nInformações sobre o dono anterior do ímovel (Antes de ser realizada a venda): \n");
+        System.out.println("\n=============================");
+        System.out.println("Informações sobre o dono anterior do ímovel (Antes de ser realizada a venda): \n");
         this.donoImovel.mostrarInfoProprietario();
 
+        System.out.println("\n=============================");
         System.out.println("\nInformações sobre o dono atual do ímovel (Após de ser realizada a venda): \n");
         this.proposta.getCliente().mostrarInfoCliente();
 
+        System.out.println("\n=============================");
         System.out.println("Informações da Venda em sí: \n");
         System.out.println("ID da venda: " + this.idVenda);
-        System.out.println("Data da venda: " + this.dataVenda);
+        System.out.println("Data da venda: " + this.dataHoraVenda.toString());
         System.out.println("Valor da venda: " + this.valorFinalVenda);
         System.out.println("Forma de pagamento: " + this.formaPagamentoVenda);
 

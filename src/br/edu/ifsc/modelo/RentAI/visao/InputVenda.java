@@ -36,6 +36,9 @@ public class InputVenda {
                     break;
                 }
             }
+            if (achou) {
+                break;
+            }
             System.out.println("Proposta não encontrado, tente novamente: ");
             iDProposta = leitor.lerInt("Digite o ID da Proposta ou digite 0 para sair: ");
         }
@@ -56,6 +59,9 @@ public class InputVenda {
                     achou = true;
                     break;
                 }
+            }
+            if (achou) {
+                break;
             }
             System.out.println("Proprietario não encontrado, tente novamente: ");
             cpfCnpjProprietario = leitor.lerString("Digite o CPF/CNPJ do Proprietario ou digite 0 para sair: ");
@@ -88,7 +94,7 @@ public class InputVenda {
         float comissaoVenda;
         do {
             comissaoVenda = leitor.lerFloat("Digite o valor de comissão que o corretor vai receber: [Digite 0 para não informar comissao]: ");
-        } while (comissaoVenda > 0);
+        } while (comissaoVenda < 0);
 
         // Definir valor da venda
         float valorVenda = propostaVenda.getValorOferecido();
@@ -116,7 +122,7 @@ public class InputVenda {
                 "\nProprietario atual: " + proprietarioVenda.getNome() + " " + proprietarioVenda.getSobrenome() +
                 "\nCPF/CNPJ do proprietario atual: " + proprietarioVenda.getCpfOuCnpjProprietarioCripted()
         );
-        verifica = leitor.lerBoolean("Confirmar? [0 - NÃO] [1 - SIM]");
+        verifica = leitor.lerBoolean("Confirmar?");
         if (verifica) {
             //Atualiza status da proposta
             propostaVenda.setStatus("aceita");

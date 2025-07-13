@@ -58,6 +58,12 @@ public class Proposta {
         this.imovel = new Imovel(idImovel);
     }
 
+    public Proposta (Cliente cliente, Corretor corretor, int idImovel){
+        this.cliente = cliente;
+        this.corretor = corretor;
+        this.imovel = new Imovel(idImovel);
+    }
+
     public void mostrarInfoProposta(){
         System.out.println("ID da proposta: " + this.id);
         System.out.println("Cliente: " + cliente.getNome() + " " + cliente.getSobrenome() );

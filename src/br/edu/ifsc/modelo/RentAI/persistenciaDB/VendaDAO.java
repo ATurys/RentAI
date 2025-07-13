@@ -1,6 +1,9 @@
 package br.edu.ifsc.modelo.RentAI.persistenciaDB;
 
 import br.edu.ifsc.modelo.RentAI.modelo.transacoes.Venda;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Cliente;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.Corretor;
+import br.edu.ifsc.modelo.RentAI.modelo.usuarios.DonoImovel;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -52,69 +55,16 @@ public class VendaDAO implements DAO<Venda, Integer> {
 
     }
 
-
-    public void atualizarValor(Venda entidade, Integer arg) {
-        try {
-            Connection conexao = Conexao.getConexao();
-            String sql = "UPDATE Venda SET valor_final = ? WHERE id_venda = ?";
-            PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setFloat(1, entidade.getValorFinalVenda());
-            statement.setInt(2, arg);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar o valor da venda " + e.getMessage());
-        }
-    }
-
-    public void atualizarPagamento(Venda entidade, Integer arg) {
+    public void atualizar(Venda entidade, String arg) {
         try {
             Connection conexao = Conexao.getConexao();
             String sql = "UPDATE Venda SET forma_pagamento = ? WHERE id_venda = ?";
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getFormaPagamentoVenda());
-            statement.setInt(2, arg);
+            statement.setInt(2, entidade.getId());
+            statement.setString(1, arg);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar a forma de pagamento da venda " + e.getMessage());
-        }
-    }
-
-    public void atualizarCorretor(Venda entidade, Integer arg) {
-        try {
-            Connection conexao = Conexao.getConexao();
-            String sql = "UPDATE Venda SET creci_corretor = ? WHERE id_venda = ?";
-            PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getProposta().getCorretor().getCreciCoretor());
-            statement.setInt(2, arg);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar o corretor responsável pela venda " + e.getMessage());
-        }
-    }
-
-    public void atualizarCliente(Venda entidade, Integer arg) {
-        try {
-            Connection conexao = Conexao.getConexao();
-            String sql = "UPDATE Venda SET cpf_cnpj_cliente = ? WHERE id_venda = ?";
-            PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setString(1, entidade.getProposta().getCliente().getCpfOuCnpjCliente());
-            statement.setInt(2, arg);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar o cliente da venda " + e.getMessage());
-        }
-    }
-
-    public void atualizarComissao(Venda entidade, Integer arg) {
-        try {
-            Connection conexao = Conexao.getConexao();
-            String sql = "UPDATE Venda SET valor_comissao_paga = ? WHERE id_venda = ?";
-            PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setFloat(1, entidade.getComissao());
-            statement.setInt(2, arg);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar o valor da comissao da venda " + e.getMessage());
         }
     }
 
@@ -141,10 +91,23 @@ public class VendaDAO implements DAO<Venda, Integer> {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
+                Corretor corretor = CorretorDAO.getInstancia().buscar(resultSet.getString("creci_corretor"));
+                if (corretor == null) {
+                    corretor = new Corretor(null, null, "Não registrado no sistema", "", null, null, resultSet.getString("creci_corretor"));
+                }
+                Cliente cliente = ClienteDAO.getInstancia().buscar(resultSet.getString("cpf_cnpj_cliente"));
+                if (cliente == null) {
+                    cliente = new Cliente(null, null, "Não registrado no sistema", "", null, null, resultSet.getString("cpf_cnpj_cliente"));
+                }
+
+                DonoImovel proprietario = ProprietarioDAO.getInstancia().buscar(resultSet.getString("cpf_cnpj_proprietario"));
+                if (proprietario == null) {
+                    proprietario = new DonoImovel(null, null, "Não registrado no sistema", "", null, null, resultSet.getString("cpf_cnpj_proprietario"));
+                }
                 Venda v = new Venda(
-                        resultSet.getString("creci_corretor"),
-                        resultSet.getString("cpf_cnpj_cliente"),
-                        resultSet.getString("cpf_cnpj_proprietario"),
+                        corretor,
+                        cliente,
+                        proprietario,
                         resultSet.getInt("id_imovel"),
                         resultSet.getInt("id_venda"),
                         resultSet.getFloat("valor_final"),
@@ -171,10 +134,23 @@ public class VendaDAO implements DAO<Venda, Integer> {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
+                Corretor corretor = CorretorDAO.getInstancia().buscar(resultSet.getString("creci_corretor"));
+                if (corretor == null) {
+                    corretor = new Corretor(null, null, "Não registrado no sistema", "", null, null, resultSet.getString("creci_corretor"));
+                }
+                Cliente cliente = ClienteDAO.getInstancia().buscar(resultSet.getString("cpf_cnpj_cliente"));
+                if (cliente == null) {
+                    cliente = new Cliente(null, null, "Não registrado no sistema", "", null, null, resultSet.getString("cpf_cnpj_cliente"));
+                }
+
+                DonoImovel proprietario = ProprietarioDAO.getInstancia().buscar(resultSet.getString("cpf_cnpj_proprietario"));
+                if (proprietario == null) {
+                    proprietario = new DonoImovel(null, null, "Não registrado no sistema", "", null, null, resultSet.getString("cpf_cnpj_proprietario"));
+                }
                 Venda v = new Venda(
-                        resultSet.getString("creci_corretor"),
-                        resultSet.getString("cpf_cnpj_cliente"),
-                        resultSet.getString("cpf_cnpj_proprietario"),
+                        corretor,
+                        cliente,
+                        proprietario,
                         resultSet.getInt("id_imovel"),
                         resultSet.getInt("id_venda"),
                         resultSet.getFloat("valor_final"),
